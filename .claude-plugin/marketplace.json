@@ -21,7 +21,7 @@
         "name": "iOS Development"
       },
       "license": "MIT",
-      "strictMode": true
+      "strict": false
     },
     {
       "name": "swift-language",
@@ -34,7 +34,7 @@
         "name": "iOS Development"
       },
       "license": "MIT",
-      "strictMode": true
+      "strict": false
     },
     {
       "name": "swift-concurrency",
@@ -47,7 +47,7 @@
         "name": "iOS Development"
       },
       "license": "MIT",
-      "strictMode": true
+      "strict": false
     },
     {
       "name": "swiftui-views",
@@ -60,7 +60,7 @@
         "name": "iOS Development"
       },
       "license": "MIT",
-      "strictMode": true
+      "strict": false
     },
     {
       "name": "swiftui-state",
@@ -73,7 +73,7 @@
         "name": "iOS Development"
       },
       "license": "MIT",
-      "strictMode": true
+      "strict": false
     },
     {
       "name": "swiftdata-models",
@@ -86,7 +86,7 @@
         "name": "iOS Development"
       },
       "license": "MIT",
-      "strictMode": true
+      "strict": false
     },
     {
       "name": "ios-orchestration",
@@ -99,7 +99,7 @@
         "name": "iOS Development"
       },
       "license": "MIT",
-      "strictMode": false
+      "strict": false
     }
   ],
   "futurePlugins": [
