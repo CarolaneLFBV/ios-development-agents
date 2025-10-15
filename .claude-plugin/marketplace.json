@@ -17,7 +17,9 @@
       "version": "1.0.0",
       "category": "architecture",
       "keywords": ["architecture", "mvvm", "tca", "clean", "patterns"],
-      "author": "iOS Development",
+      "author": {
+        "name": "iOS Development"
+      },
       "license": "MIT",
       "strictMode": true
     },
@@ -28,7 +30,9 @@
       "version": "1.0.0",
       "category": "core",
       "keywords": ["swift", "generics", "protocols", "language", "swift62"],
-      "author": "iOS Development",
+      "author": {
+        "name": "iOS Development"
+      },
       "license": "MIT",
       "strictMode": true
     },
@@ -39,7 +43,9 @@
       "version": "1.0.0",
       "category": "core",
       "keywords": ["concurrency", "async", "await", "actors", "swift62"],
-      "author": "iOS Development",
+      "author": {
+        "name": "iOS Development"
+      },
       "license": "MIT",
       "strictMode": true
     },
@@ -50,7 +56,9 @@
       "version": "1.0.0",
       "category": "ui",
       "keywords": ["swiftui", "views", "layout", "composition"],
-      "author": "iOS Development",
+      "author": {
+        "name": "iOS Development"
+      },
       "license": "MIT",
       "strictMode": true
     },
@@ -61,7 +69,9 @@
       "version": "1.0.0",
       "category": "ui",
       "keywords": ["swiftui", "state", "observable", "binding"],
-      "author": "iOS Development",
+      "author": {
+        "name": "iOS Development"
+      },
       "license": "MIT",
       "strictMode": true
     },
@@ -72,7 +82,9 @@
       "version": "1.0.0",
       "category": "data",
       "keywords": ["swiftdata", "models", "schema", "relationships"],
-      "author": "iOS Development",
+      "author": {
+        "name": "iOS Development"
+      },
       "license": "MIT",
       "strictMode": true
     },
@@ -83,7 +95,9 @@
       "version": "1.0.0",
       "category": "orchestration",
       "keywords": ["orchestration", "workflow", "multi-agent"],
-      "author": "iOS Development",
+      "author": {
+        "name": "iOS Development"
+      },
       "license": "MIT",
       "strictMode": false
     }
