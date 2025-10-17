@@ -1,5 +1,5 @@
 ---
-name: Implement State
+name: ios-dev:state
 description: Implement SwiftUI state management (@State, @Observable, @Binding, @Environment)
 version: 1.0
 

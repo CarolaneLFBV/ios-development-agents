@@ -1,5 +1,5 @@
 ---
-name: Implement Concurrency
+name: ios-dev:concurrency
 description: Add Swift Concurrency (async/await, actors, @MainActor) to existing code or design new concurrent systems
 version: 1.0
 

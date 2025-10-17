@@ -1,5 +1,5 @@
 ---
-name: iOS Full Feature Workflow
+name: ios-dev:orchestration
 description: End-to-end iOS feature implementation from architecture to deployment. Orchestrates multiple specialized agents through 8 phases for production-quality features.
 version: 1.0
 

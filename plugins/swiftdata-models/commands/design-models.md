@@ -1,5 +1,5 @@
 ---
-name: Design Models
+name: ios-dev:models
 description: Design SwiftData @Model classes with relationships and proper schema
 version: 1.0
 

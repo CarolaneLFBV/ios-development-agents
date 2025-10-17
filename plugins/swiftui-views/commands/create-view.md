@@ -1,5 +1,5 @@
 ---
-name: Create View
+name: ios-dev:views
 description: Create SwiftUI view with proper composition, layout, and reusability
 version: 1.0
 

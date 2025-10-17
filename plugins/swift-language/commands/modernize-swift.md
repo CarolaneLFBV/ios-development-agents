@@ -1,5 +1,5 @@
 ---
-name: Modernize Swift
+name: ios-dev:swift-language
 description: Modernize Swift code to use Swift 6 language features (generics, protocols, property wrappers, etc.)
 version: 1.0
 

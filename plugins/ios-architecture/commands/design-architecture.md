@@ -1,5 +1,5 @@
 ---
-name: Design Architecture
+name: ios-dev:architecture
 description: Design complete iOS app architecture using MVVM, TCA, or Clean Architecture patterns
 version: 1.0
 
