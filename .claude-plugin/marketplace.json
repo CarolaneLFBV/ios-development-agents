@@ -1,134 +1,60 @@
 {
   "name": "ios-development",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "owner": {
-    "name": "iOS Development",
+    "name": "iOS Development Framework",
     "email": "carolanelefebvre@okorp.fr"
   },
-  "description": "Ultra-granular iOS development agents (1 plugin = 1 job). Swift 6.2, SwiftUI, SwiftData, and complete Apple ecosystem support.",
+  "description": "Comprehensive iOS development framework with 13 specialized commands, 5 expert agents, and complete orchestration system for Swift 6.2, SwiftUI, and SwiftData development.",
   "homepage": "https://github.com/CarolaneLFBV/ios-development-agents",
   "repository": "https://github.com/CarolaneLFBV/ios-development-agents",
-  "pluginRoot": "./plugins",
+  "pluginRoot": "./",
   "plugins": [
     {
-      "name": "ios-architecture",
-      "source": "./plugins/ios-architecture",
-      "description": "iOS architecture patterns specialist (MVVM, TCA, Clean Architecture ONLY)",
-      "version": "1.0.0",
-      "category": "architecture",
-      "keywords": ["architecture", "mvvm", "tca", "clean", "patterns"],
+      "name": "ios-framework",
+      "source": "./",
+      "description": "Complete iOS development framework with 13 commands and 5 specialized agents for Swift 6.2, SwiftUI, SwiftData, and modern iOS patterns",
+      "version": "2.0.0",
+      "category": "iOS Development",
+      "keywords": [
+        "ios",
+        "swift",
+        "swiftui",
+        "swiftdata",
+        "mvvm",
+        "tca",
+        "xcode",
+        "apple",
+        "mobile",
+        "swift62"
+      ],
       "author": {
-        "name": "iOS Development"
+        "name": "iOS Development Framework"
       },
       "license": "MIT",
-      "strict": false
-    },
-    {
-      "name": "swift-language",
-      "source": "./plugins/swift-language",
-      "description": "Swift 6.2 language features specialist (generics, protocols, property wrappers, InlineArray, integer generic parameters ONLY)",
-      "version": "1.0.0",
-      "category": "core",
-      "keywords": ["swift", "generics", "protocols", "language", "swift62"],
-      "author": {
-        "name": "iOS Development"
-      },
-      "license": "MIT",
-      "strict": false
-    },
-    {
-      "name": "swift-concurrency",
-      "source": "./plugins/swift-concurrency",
-      "description": "Swift 6.2 Concurrency specialist (async/await, actors, @MainActor, nonisolated async, Observations ONLY)",
-      "version": "1.0.0",
-      "category": "core",
-      "keywords": ["concurrency", "async", "await", "actors", "swift62"],
-      "author": {
-        "name": "iOS Development"
-      },
-      "license": "MIT",
-      "strict": false
-    },
-    {
-      "name": "swiftui-views",
-      "source": "./plugins/swiftui-views",
-      "description": "SwiftUI view composition specialist (layout, custom views, ViewBuilder ONLY)",
-      "version": "1.0.0",
-      "category": "ui",
-      "keywords": ["swiftui", "views", "layout", "composition"],
-      "author": {
-        "name": "iOS Development"
-      },
-      "license": "MIT",
-      "strict": false
-    },
-    {
-      "name": "swiftui-state",
-      "source": "./plugins/swiftui-state",
-      "description": "SwiftUI state management specialist (@State, @Observable, @Binding ONLY)",
-      "version": "1.0.0",
-      "category": "ui",
-      "keywords": ["swiftui", "state", "observable", "binding"],
-      "author": {
-        "name": "iOS Development"
-      },
-      "license": "MIT",
-      "strict": false
-    },
-    {
-      "name": "swiftdata-models",
-      "source": "./plugins/swiftdata-models",
-      "description": "SwiftData model architect (@Model, relationships, attributes ONLY)",
-      "version": "1.0.0",
-      "category": "data",
-      "keywords": ["swiftdata", "models", "schema", "relationships"],
-      "author": {
-        "name": "iOS Development"
-      },
-      "license": "MIT",
-      "strict": false
-    },
-    {
-      "name": "ios-orchestration",
-      "source": "./plugins/ios-orchestration",
-      "description": "Multi-agent workflow orchestration (complex feature workflows ONLY)",
-      "version": "1.0.0",
-      "category": "orchestration",
-      "keywords": ["orchestration", "workflow", "multi-agent"],
-      "author": {
-        "name": "iOS Development"
-      },
-      "license": "MIT",
-      "strict": false
+      "strict": false,
+      "commands": [
+        "./commands/implement.md",
+        "./commands/improve.md",
+        "./commands/review.md",
+        "./commands/refactor.md",
+        "./commands/design.md",
+        "./commands/test.md",
+        "./commands/migrate.md",
+        "./commands/analyze.md",
+        "./commands/optimize.md",
+        "./commands/accessibility.md",
+        "./commands/publish.md",
+        "./commands/debug.md",
+        "./commands/localize.md"
+      ],
+      "agents": [
+        "./agents/swiftui-specialist.md",
+        "./agents/swift-specialist.md",
+        "./agents/architecture-specialist.md",
+        "./agents/performance-specialist.md",
+        "./agents/testing-specialist.md"
+      ]
     }
-  ],
-  "futurePlugins": [
-    "swiftui-animations - Animation specialist",
-    "swiftui-custom-modifiers - ViewModifier specialist",
-    "swiftdata-queries - Query and FetchDescriptor specialist",
-    "swiftdata-migrations - Schema migration specialist",
-    "cloudkit-sync - CloudKit integration specialist",
-    "uikit-development - UIKit legacy support",
-    "project-structure - Project organization and scaffolding",
-    "dependency-management - SPM and package management",
-    "watchos-development - watchOS apps and complications",
-    "macos-development - macOS and AppKit",
-    "visionos-development - visionOS and spatial computing",
-    "ios-testing - XCTest strategies",
-    "ios-performance - Instruments profiling",
-    "ios-accessibility - VoiceOver and a11y",
-    "ios-security - Security audit and Keychain",
-    "healthkit-integration - HealthKit APIs",
-    "mapkit-location - MapKit and CoreLocation",
-    "storekit-iap - In-app purchases",
-    "widgets-extensions - WidgetKit and Live Activities",
-    "arkit-augmented - ARKit and AR experiences",
-    "passkit-wallet - Apple Wallet integration",
-    "mvvm-architecture - MVVM pattern implementation",
-    "tca-architecture - TCA pattern implementation",
-    "clean-architecture - Clean arch implementation",
-    "app-store-deployment - App Store submission",
-    "fastlane-automation - CI/CD with Fastlane",
-    "xcode-cloud - Xcode Cloud integration"
   ]
 }

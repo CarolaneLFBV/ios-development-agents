@@ -46,7 +46,11 @@ yarn-error.log*
 # Documentation files (keep local only)
 *.md
 !README.md
+!FRAMEWORK_README.md
 !plugins/**/*.md
+!agents/**/*.md
+!commands/**/*.md
+!.claude/**/*.md
 
 # Keep LICENSE
 !LICENSE
