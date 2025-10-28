@@ -1,8 +1,9 @@
-# iOS Development Agents
+# iOS Development Framework
 
-> Ultra-granular AI agents for iOS development with Swift 6.2, SwiftUI, and SwiftData
+> Unified iOS development framework with 13 specialized commands and 5 expert agents for Swift 6.2, SwiftUI, and SwiftData
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/Version-2.0.0-brightgreen.svg)](https://github.com/CarolaneLFBV/ios-development-agents)
 [![Swift 6.2](https://img.shields.io/badge/Swift-6.2-orange.svg)](https://swift.org)
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-Latest-blue.svg)](https://developer.apple.com/swiftui/)
 [![SwiftData](https://img.shields.io/badge/SwiftData-Latest-green.svg)](https://developer.apple.com/swiftdata/)
@@ -10,14 +11,14 @@
 
 ## 🌟 Features
 
-- 🎯 **7 Core Plugins** - Ultra-granular "1 plugin = 1 job" architecture
-- 🚀 **Swift 6.2 Support** - Latest language features (InlineArray, nonisolated async, Observations)
-- 📱 **SwiftUI & SwiftData** - Modern declarative UI and persistence
-- ⚡ **Token Efficient** - 75-90% token savings vs monolithic systems
-- 🎨 **Expert Agents** - Deep domain expertise for each specialized area
-- 🔮 **27 Plugins Roadmap** - Complete Apple ecosystem coverage planned
-- 🧩 **Composable** - Mix and match plugins for your needs
-- 📚 **Production-Ready** - Enterprise-grade code and architecture
+- 🎯 **Unified Framework** - Single powerful plugin with comprehensive iOS development capabilities
+- 🚀 **13 Specialized Commands** - Complete workflow coverage from design to deployment
+- 👥 **5 Expert Agents** - SwiftUI, Architecture, Performance, Testing, and Swift specialists
+- 📱 **Swift 6.2 Native** - Latest language features (InlineArray, nonisolated async, Observations)
+- ⚡ **Production-Ready** - Enterprise-grade code patterns and best practices
+- 🧩 **Integrated Workflow** - Seamless coordination between commands and agents
+- 🔧 **Complete Toolchain** - From implementation to App Store submission
+- 📚 **Modern Stack** - SwiftUI, SwiftData, CloudKit, and iOS 18 support
 
 ## 📦 Installation
 
@@ -27,184 +28,256 @@
 /plugin marketplace add CarolaneLFBV/ios-development-agents
 ```
 
-### Install Plugins
+### Install Framework
 
 ```bash
-# Install specific plugins
-/plugin install ios-architecture@ios-development
-/plugin install swift-language@ios-development
-/plugin install swift-concurrency@ios-development
-
-# Or install all 7 core plugins
-/plugin install ios-architecture swift-language swift-concurrency swiftui-views swiftui-state swiftdata-models ios-orchestration@ios-development
+# Install the unified iOS framework
+/plugin install ios-framework@ios-development
 ```
+
+That's it! The single `ios-framework` plugin provides all 13 commands and 5 expert agents.
 
 ## 🚀 Quick Start
-
-### Create a SwiftUI View
-
-```bash
-"Use view-composer to create a user profile card with avatar, name, and bio. Include smooth animations and proper layout."
-```
 
 ### Design App Architecture
 
 ```bash
-"Use ios-architect to design a habit tracking app with SwiftData persistence. Provide complete architecture with MVVM pattern."
+/ios-framework:design "habit tracking app with SwiftData persistence"
 ```
 
-### Implement Swift 6.2 Features
+### Implement a Feature
 
 ```bash
-"Use swift-specialist to refactor this array to use InlineArray for better performance"
-"Use concurrency-expert to add async/await with nonisolated async methods"
+/ios-framework:implement "user profile screen with avatar, name, bio, and edit button"
 ```
 
-### Complete Feature Workflow
+### Review and Improve Code
 
 ```bash
-"Use ios-orchestrator to coordinate building a todo list feature with SwiftUI views, SwiftData models, and proper state management"
+/ios-framework:review UserProfileView.swift
+/ios-framework:improve --focus performance
 ```
 
-## 📚 Available Plugins (Phase 1 - v1.0.0)
-
-### Architecture & Language (3 plugins)
-
-| Plugin | Agent | Description |
-|--------|-------|-------------|
-| **ios-architecture** | `ios-architect` | iOS architecture patterns specialist (MVVM, TCA, Clean Architecture ONLY) |
-| **swift-language** | `swift-specialist` | Swift 6.2 language features (generics, protocols, property wrappers, InlineArray, integer generic parameters) |
-| **swift-concurrency** | `concurrency-expert` | Swift 6.2 Concurrency (async/await, actors, @MainActor, nonisolated async, Observations framework) |
-
-### SwiftUI (2 plugins)
-
-| Plugin | Agent | Description |
-|--------|-------|-------------|
-| **swiftui-views** | `view-composer` | SwiftUI view composition specialist (layout, custom views, ViewBuilder ONLY) |
-| **swiftui-state** | `state-architect` | SwiftUI state management (@State, @Observable, @Binding ONLY) |
-
-### Data (1 plugin)
-
-| Plugin | Agent | Description |
-|--------|-------|-------------|
-| **swiftdata-models** | `model-architect` | SwiftData model architect (@Model, relationships, attributes ONLY) |
-
-### Orchestration (1 plugin)
-
-| Plugin | Agent | Description |
-|--------|-------|-------------|
-| **ios-orchestration** | `ios-orchestrator` | Multi-agent workflow coordination for complex features |
-
-## 🗺️ Roadmap (27 Plugins Planned)
-
-### Phase 2 - Priority 2 (7 plugins)
-- **swiftui-animations** - Animations and transitions
-- **swiftdata-queries** - Query and FetchDescriptor
-- **swiftdata-migrations** - Schema migrations
-- **cloudkit-sync** - CloudKit integration
-- **swiftui-custom-modifiers** - ViewModifiers
-- **project-structure** - Project organization
-- **dependency-management** - SPM and packages
-
-### Phase 3 - Priority 3 (6 plugins)
-- **widgets-extensions** - WidgetKit
-- **healthkit-integration** - HealthKit APIs
-- **mapkit-location** - MapKit and CoreLocation
-- **storekit-iap** - In-app purchases
-- **arkit-augmented** - ARKit
-- **passkit-wallet** - Wallet integration
-
-### Phase 4 - Priority 4 (7 plugins)
-- **ios-testing** - XCTest
-- **ios-performance** - Instruments profiling
-- **ios-accessibility** - Accessibility
-- **ios-security** - Security audit
-- **watchos-development** - watchOS
-- **macos-development** - macOS/AppKit
-- **visionos-development** - visionOS
-
-### Phase 5 - Priority 5 (7 plugins)
-- **mvvm-architecture** - MVVM implementation
-- **tca-architecture** - TCA implementation
-- **clean-architecture** - Clean arch implementation
-- **app-store-deployment** - App Store submission
-- **fastlane-automation** - Fastlane CI/CD
-- **xcode-cloud** - Xcode Cloud
-- **uikit-development** - UIKit legacy
-
-## 🎯 Usage Examples
-
-### Example 1: Swift 6.2 Language Features
+### Migrate to Modern Patterns
 
 ```bash
-"Use swift-specialist to refactor my fixed-size sprite array to use InlineArray for better performance"
+/ios-framework:migrate "UIKit to SwiftUI" --strategy incremental
 ```
 
-**Output**: Complete InlineArray implementation with compile-time size verification and optimal memory layout.
-
-### Example 2: Concurrency with Swift 6.2
+### Test Your App
 
 ```bash
-"Use concurrency-expert to add async/await support using nonisolated async methods and the Observations framework"
+/ios-framework:test --coverage --platform ios
 ```
 
-**Output**: Modern concurrency implementation with Swift 6.2 features, proper actor isolation, and streaming state changes.
-
-### Example 3: SwiftUI View Composition
+### Deploy to App Store
 
 ```bash
-"Use view-composer to create a user profile card with avatar, name, and bio using proper layout techniques"
+/ios-framework:publish --validate --screenshots
 ```
 
-**Output**: Complete SwiftUI view with ViewBuilder, custom layouts, and proper composition patterns.
+## 📚 Framework Components (v2.0.0)
 
-### Example 4: SwiftData Models
+### 13 Specialized Commands
+
+| Category | Commands | Description |
+|----------|----------|-------------|
+| **Development** | `implement`, `design`, `refactor` | Feature implementation, architecture design, code refactoring |
+| **Quality** | `review`, `improve`, `test` | Code review, quality improvement, testing workflows |
+| **Migration** | `migrate`, `optimize` | Framework migration, performance optimization |
+| **Analysis** | `analyze`, `debug` | Code analysis, debugging workflows |
+| **Delivery** | `accessibility`, `localize`, `publish` | Accessibility audit, i18n/l10n, App Store submission |
+
+### 5 Expert Agents
+
+| Agent | Specialization | Key Capabilities |
+|-------|---------------|------------------|
+| **swiftui-specialist** | UI/UX Development | View composition, state management, animations, custom modifiers |
+| **architecture-specialist** | System Design | MVVM, TCA, Clean Architecture, dependency injection, design patterns |
+| **performance-specialist** | Optimization | Instruments profiling, memory optimization, rendering performance, Core Web Vitals |
+| **testing-specialist** | Quality Assurance | XCTest, UI testing, snapshot testing, test coverage, CI/CD integration |
+| **swift-specialist** | Language Features | Swift 6.2 features, generics, protocols, concurrency, modern patterns |
+
+### Agent Activation
+
+Agents are **automatically activated** based on command context:
+- `/ios-framework:implement` → **swiftui-specialist** + **architecture-specialist**
+- `/ios-framework:optimize` → **performance-specialist**
+- `/ios-framework:review` → **architecture-specialist** + **testing-specialist**
+- `/ios-framework:test` → **testing-specialist**
+- `/ios-framework:refactor` → **swift-specialist** + **architecture-specialist**
+
+## 🗺️ Future Enhancements
+
+The unified framework can be extended with additional specialized commands and agents:
+
+### Potential Command Additions
+- **Advanced Testing**: Visual regression testing, performance testing, load testing
+- **Platform Extensions**: watchOS, macOS, tvOS, visionOS specific workflows
+- **Framework Integration**: WidgetKit, HealthKit, MapKit, StoreKit specialized commands
+- **DevOps**: Fastlane automation, Xcode Cloud integration, CI/CD workflows
+- **Advanced Analysis**: Security auditing, dependency analysis, technical debt tracking
+
+### Potential Agent Additions
+- **security-specialist**: Security audits, vulnerability scanning, compliance checks
+- **devops-specialist**: CI/CD automation, deployment workflows, release management
+- **platform-specialist**: Cross-platform development, multi-platform optimization
+- **localization-specialist**: i18n/l10n workflows, cultural adaptation, translation management
+
+## 🎯 Command Reference
+
+### Development Commands
+
+#### `/ios-framework:implement`
+Implements features, components, or functionality using SwiftUI, SwiftData, and modern iOS patterns.
 
 ```bash
-"Use model-architect to design data models for a recipe app with categories, ingredients, and cooking steps"
+/ios-framework:implement "user authentication with biometric support"
+/ios-framework:implement LoginView.swift --pattern MVVM
 ```
 
-**Output**: Complete @Model definitions, relationships, ModelContainer setup, and best practices.
-
-### Example 5: Complete Feature Orchestration
+#### `/ios-framework:design`
+Designs app architecture, data models, and system structure.
 
 ```bash
-"Use ios-orchestrator to coordinate building a todo list feature with architecture, views, state management, and data models"
+/ios-framework:design "e-commerce app with product catalog and cart"
+/ios-framework:design --pattern TCA --focus scalability
 ```
 
-**Output**: Complete multi-agent workflow coordinating ios-architect, view-composer, state-architect, and model-architect for end-to-end feature implementation.
+#### `/ios-framework:refactor`
+Refactors code to modern patterns, improves structure, reduces technical debt.
+
+```bash
+/ios-framework:refactor LegacyViewController.swift --to SwiftUI
+/ios-framework:refactor --pattern @Observable
+```
+
+### Quality Commands
+
+#### `/ios-framework:review`
+Comprehensive code review covering architecture, quality, security, and best practices.
+
+```bash
+/ios-framework:review UserManager.swift
+/ios-framework:review --focus security --comprehensive
+```
+
+#### `/ios-framework:improve`
+Improves code quality, performance, maintainability, and best practices adherence.
+
+```bash
+/ios-framework:improve --focus performance
+/ios-framework:improve NetworkLayer.swift --metrics
+```
+
+#### `/ios-framework:test`
+Generates tests, creates test strategies, and improves test coverage.
+
+```bash
+/ios-framework:test AuthenticationService.swift
+/ios-framework:test --coverage --ui-tests
+```
+
+### Migration Commands
+
+#### `/ios-framework:migrate`
+Migrates between frameworks, patterns, or iOS versions.
+
+```bash
+/ios-framework:migrate "UIKit to SwiftUI" --incremental
+/ios-framework:migrate "CoreData to SwiftData"
+```
+
+#### `/ios-framework:optimize`
+Optimizes performance using Instruments profiling and best practices.
+
+```bash
+/ios-framework:optimize --profile memory
+/ios-framework:optimize ListView.swift --rendering
+```
+
+### Analysis Commands
+
+#### `/ios-framework:analyze`
+Deep code analysis for quality, security, performance, and architecture.
+
+```bash
+/ios-framework:analyze --comprehensive
+/ios-framework:analyze AppDelegate.swift --focus security
+```
+
+#### `/ios-framework:debug`
+Advanced debugging workflows and crash analysis.
+
+```bash
+/ios-framework:debug crash-report.txt
+/ios-framework:debug --instruments --memory-leaks
+```
+
+### Delivery Commands
+
+#### `/ios-framework:accessibility`
+Comprehensive accessibility audit and implementation (VoiceOver, Dynamic Type, etc.).
+
+```bash
+/ios-framework:accessibility ProfileView.swift
+/ios-framework:accessibility --audit --wcag
+```
+
+#### `/ios-framework:localize`
+i18n/l10n implementation and string extraction.
+
+```bash
+/ios-framework:localize --extract-strings
+/ios-framework:localize --language fr --validate
+```
+
+#### `/ios-framework:publish`
+App Store submission preparation and validation.
+
+```bash
+/ios-framework:publish --validate --screenshots
+/ios-framework:publish --testflight --release-notes
+```
 
 ## 🏗️ Architecture Philosophy
 
-This system follows a **ultra-granular, "1 plugin = 1 job"** architecture inspired by [wshobson/agents](https://github.com/wshobson/agents):
+### Unified Framework Approach
 
-### Ultra-Granular Plugin System
-- **1 Plugin = 1 Job**: Each plugin has a single, well-defined responsibility
-- **Clear Boundaries**: Explicit documentation of what each plugin does and doesn't do
-- **Token Efficient**: 75-90% token savings vs monolithic systems
-- **Composable**: Mix and match only the plugins you need
-- **Maintainable**: Independent versioning and isolated evolution
+**iOS Framework v2.0.0** consolidates specialized capabilities into a single, powerful plugin:
 
-### Expert Agents
-- **Deep Specialization**: Each agent is an expert in one specific domain
-- **Delegation Matrix**: Agents know when to delegate to other specialists
-- **Production-Quality**: Enterprise-grade code and architecture patterns
-- **Swift 6.2 Native**: Built for the latest Swift language features
+- **Integrated Commands**: 13 specialized commands covering the complete iOS development lifecycle
+- **Expert Agents**: 5 domain specialists that activate automatically based on context
+- **Seamless Coordination**: Commands and agents work together without manual orchestration
+- **Production-Ready**: Enterprise-grade patterns and best practices built-in
+- **Swift 6.2 Native**: Leverages the latest language features and modern iOS APIs
 
-### Multi-Agent Orchestration
-- **Coordinated Workflows**: ios-orchestrator coordinates multiple specialists
-- **Context Preservation**: Context flows seamlessly between agents
-- **Quality Focus**: Each agent enforces domain-specific best practices
-- **Scalable**: Easy to add new specialized agents
+### Design Principles
+
+1. **Context-Aware Activation**: Agents activate automatically based on the command and task context
+2. **Comprehensive Coverage**: From architecture design to App Store submission
+3. **Quality-First**: Every command enforces best practices and modern patterns
+4. **Developer-Friendly**: Clear command syntax with intuitive parameters
+5. **Extensible**: Easy to add new commands and agents as the framework evolves
+
+### Agent Coordination
+
+Unlike fragmented plugin systems, the unified framework provides:
+
+- **Automatic Routing**: Commands select the right agents without manual configuration
+- **Shared Context**: Agents maintain full context across the workflow
+- **Consistent Quality**: Unified standards and best practices across all operations
+- **Efficient Execution**: Optimized coordination without redundant context switching
 
 ## 🤝 Contributing
 
-Contributions welcome! This is a modular system where you can:
+Contributions welcome! Ways to contribute:
 
-1. **Improve Existing Agents** - Enhance the 7 core agents with better examples
-2. **Add Phase 2-5 Plugins** - Help implement the 27 catalogued plugins
-3. **Create New Plugins** - Propose new specialized domains
-4. **Enhance Documentation** - Improve examples and guides
+1. **Enhance Commands** - Improve existing command workflows and capabilities
+2. **Add New Agents** - Create specialized agents for new domains
+3. **Expand Command Coverage** - Add new commands for additional workflows
+4. **Improve Documentation** - Better examples, guides, and tutorials
+5. **Report Issues** - Bug reports and feature requests
 
 ## 📝 License
 
@@ -212,19 +285,19 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Inspired by [wshobson/agents](https://github.com/wshobson/agents) ultra-granular architecture
 - Built for the [Claude Code](https://docs.claude.com/claude-code) ecosystem
-- Designed for Swift 6.2 and modern Apple platforms
+- Designed for Swift 6.2, SwiftUI, and modern Apple platforms
+- Inspired by best practices from the iOS development community
 
 ## 🔗 Links
 
 - [Repository](https://github.com/CarolaneLFBV/ios-development-agents)
 - [Issues](https://github.com/CarolaneLFBV/ios-development-agents/issues)
+- [Marketplace](https://github.com/CarolaneLFBV/ios-development-agents)
 - [Claude Code Docs](https://docs.claude.com/claude-code)
-- [Plugin Marketplaces](https://docs.claude.com/en/docs/claude-code/plugin-marketplaces)
 
 ---
 
 **Built with ❤️ for the iOS development community**
 
-*Version 1.0.0 • Swift 6.2 • SwiftUI • SwiftData • 7 Ultra-Granular Plugins*
+*Version 2.0.0 • Swift 6.2 • SwiftUI • SwiftData • 13 Commands • 5 Expert Agents*
