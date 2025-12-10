@@ -3,7 +3,7 @@
 > Unified iOS development framework with 13 specialized commands and 5 expert agents for Swift 6.2, SwiftUI, and SwiftData
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/Version-2.0.0-brightgreen.svg)](https://github.com/CarolaneLFBV/ios-development-agents)
+[![Version](https://img.shields.io/badge/Version-2.1.0-brightgreen.svg)](https://github.com/CarolaneLFBV/ios-development-agents)
 [![Swift 6.2](https://img.shields.io/badge/Swift-6.2-orange.svg)](https://swift.org)
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-Latest-blue.svg)](https://developer.apple.com/swiftui/)
 [![SwiftData](https://img.shields.io/badge/SwiftData-Latest-green.svg)](https://developer.apple.com/swiftdata/)
@@ -32,51 +32,51 @@
 
 ```bash
 # Install the unified iOS framework
-/plugin install ios-framework@ios-development
+/plugin install ios@ios-development
 ```
 
-That's it! The single `ios-framework` plugin provides all 13 commands and 5 expert agents.
+That's it! The single `ios` plugin provides all 13 commands and 5 expert agents.
 
 ## 🚀 Quick Start
 
 ### Design App Architecture
 
 ```bash
-/ios-framework:design "habit tracking app with SwiftData persistence"
+/ios:design "habit tracking app with SwiftData persistence"
 ```
 
 ### Implement a Feature
 
 ```bash
-/ios-framework:implement "user profile screen with avatar, name, bio, and edit button"
+/ios:implement "user profile screen with avatar, name, bio, and edit button"
 ```
 
 ### Review and Improve Code
 
 ```bash
-/ios-framework:review UserProfileView.swift
-/ios-framework:improve --focus performance
+/ios:review UserProfileView.swift
+/ios:improve --focus performance
 ```
 
 ### Migrate to Modern Patterns
 
 ```bash
-/ios-framework:migrate "UIKit to SwiftUI" --strategy incremental
+/ios:migrate "UIKit to SwiftUI" --strategy incremental
 ```
 
 ### Test Your App
 
 ```bash
-/ios-framework:test --coverage --platform ios
+/ios:test --coverage --platform ios
 ```
 
 ### Deploy to App Store
 
 ```bash
-/ios-framework:publish --validate --screenshots
+/ios:publish --validate --screenshots
 ```
 
-## 📚 Framework Components (v2.0.0)
+## 📚 Framework Components (v2.1.0)
 
 ### 13 Specialized Commands
 
@@ -101,11 +101,11 @@ That's it! The single `ios-framework` plugin provides all 13 commands and 5 expe
 ### Agent Activation
 
 Agents are **automatically activated** based on command context:
-- `/ios-framework:implement` → **swiftui-specialist** + **architecture-specialist**
-- `/ios-framework:optimize` → **performance-specialist**
-- `/ios-framework:review` → **architecture-specialist** + **testing-specialist**
-- `/ios-framework:test` → **testing-specialist**
-- `/ios-framework:refactor` → **swift-specialist** + **architecture-specialist**
+- `/ios:implement` → **swiftui-specialist** + **architecture-specialist**
+- `/ios:optimize` → **performance-specialist**
+- `/ios:review` → **architecture-specialist** + **testing-specialist**
+- `/ios:test` → **testing-specialist**
+- `/ios:refactor` → **swift-specialist** + **architecture-specialist**
 
 ## 🗺️ Future Enhancements
 
@@ -128,116 +128,116 @@ The unified framework can be extended with additional specialized commands and a
 
 ### Development Commands
 
-#### `/ios-framework:implement`
+#### `/ios:implement`
 Implements features, components, or functionality using SwiftUI, SwiftData, and modern iOS patterns.
 
 ```bash
-/ios-framework:implement "user authentication with biometric support"
-/ios-framework:implement LoginView.swift --pattern MVVM
+/ios:implement "user authentication with biometric support"
+/ios:implement LoginView.swift --pattern MVVM
 ```
 
-#### `/ios-framework:design`
+#### `/ios:design`
 Designs app architecture, data models, and system structure.
 
 ```bash
-/ios-framework:design "e-commerce app with product catalog and cart"
-/ios-framework:design --pattern TCA --focus scalability
+/ios:design "e-commerce app with product catalog and cart"
+/ios:design --pattern TCA --focus scalability
 ```
 
-#### `/ios-framework:refactor`
+#### `/ios:refactor`
 Refactors code to modern patterns, improves structure, reduces technical debt.
 
 ```bash
-/ios-framework:refactor LegacyViewController.swift --to SwiftUI
-/ios-framework:refactor --pattern @Observable
+/ios:refactor LegacyViewController.swift --to SwiftUI
+/ios:refactor --pattern @Observable
 ```
 
 ### Quality Commands
 
-#### `/ios-framework:review`
+#### `/ios:review`
 Comprehensive code review covering architecture, quality, security, and best practices.
 
 ```bash
-/ios-framework:review UserManager.swift
-/ios-framework:review --focus security --comprehensive
+/ios:review UserManager.swift
+/ios:review --focus security --comprehensive
 ```
 
-#### `/ios-framework:improve`
+#### `/ios:improve`
 Improves code quality, performance, maintainability, and best practices adherence.
 
 ```bash
-/ios-framework:improve --focus performance
-/ios-framework:improve NetworkLayer.swift --metrics
+/ios:improve --focus performance
+/ios:improve NetworkLayer.swift --metrics
 ```
 
-#### `/ios-framework:test`
+#### `/ios:test`
 Generates tests, creates test strategies, and improves test coverage.
 
 ```bash
-/ios-framework:test AuthenticationService.swift
-/ios-framework:test --coverage --ui-tests
+/ios:test AuthenticationService.swift
+/ios:test --coverage --ui-tests
 ```
 
 ### Migration Commands
 
-#### `/ios-framework:migrate`
+#### `/ios:migrate`
 Migrates between frameworks, patterns, or iOS versions.
 
 ```bash
-/ios-framework:migrate "UIKit to SwiftUI" --incremental
-/ios-framework:migrate "CoreData to SwiftData"
+/ios:migrate "UIKit to SwiftUI" --incremental
+/ios:migrate "CoreData to SwiftData"
 ```
 
-#### `/ios-framework:optimize`
+#### `/ios:optimize`
 Optimizes performance using Instruments profiling and best practices.
 
 ```bash
-/ios-framework:optimize --profile memory
-/ios-framework:optimize ListView.swift --rendering
+/ios:optimize --profile memory
+/ios:optimize ListView.swift --rendering
 ```
 
 ### Analysis Commands
 
-#### `/ios-framework:analyze`
+#### `/ios:analyze`
 Deep code analysis for quality, security, performance, and architecture.
 
 ```bash
-/ios-framework:analyze --comprehensive
-/ios-framework:analyze AppDelegate.swift --focus security
+/ios:analyze --comprehensive
+/ios:analyze AppDelegate.swift --focus security
 ```
 
-#### `/ios-framework:debug`
+#### `/ios:debug`
 Advanced debugging workflows and crash analysis.
 
 ```bash
-/ios-framework:debug crash-report.txt
-/ios-framework:debug --instruments --memory-leaks
+/ios:debug crash-report.txt
+/ios:debug --instruments --memory-leaks
 ```
 
 ### Delivery Commands
 
-#### `/ios-framework:accessibility`
+#### `/ios:accessibility`
 Comprehensive accessibility audit and implementation (VoiceOver, Dynamic Type, etc.).
 
 ```bash
-/ios-framework:accessibility ProfileView.swift
-/ios-framework:accessibility --audit --wcag
+/ios:accessibility ProfileView.swift
+/ios:accessibility --audit --wcag
 ```
 
-#### `/ios-framework:localize`
+#### `/ios:localize`
 i18n/l10n implementation and string extraction.
 
 ```bash
-/ios-framework:localize --extract-strings
-/ios-framework:localize --language fr --validate
+/ios:localize --extract-strings
+/ios:localize --language fr --validate
 ```
 
-#### `/ios-framework:publish`
+#### `/ios:publish`
 App Store submission preparation and validation.
 
 ```bash
-/ios-framework:publish --validate --screenshots
-/ios-framework:publish --testflight --release-notes
+/ios:publish --validate --screenshots
+/ios:publish --testflight --release-notes
 ```
 
 ## 🏗️ Architecture Philosophy
@@ -300,4 +300,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 **Built with ❤️ for the iOS development community**
 
-*Version 2.0.0 • Swift 6.2 • SwiftUI • SwiftData • 13 Commands • 5 Expert Agents*
+*Version 2.1.0 • Swift 6.2 • SwiftUI • SwiftData • 13 Commands • 5 Expert Agents*

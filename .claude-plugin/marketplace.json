@@ -1,6 +1,6 @@
 {
   "name": "ios-development",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "owner": {
     "name": "iOS Development Framework",
     "email": "carolanelefebvre@okorp.fr"
@@ -11,10 +11,10 @@
   "pluginRoot": "./",
   "plugins": [
     {
-      "name": "ios-framework",
+      "name": "ios",
       "source": "./",
       "description": "Complete iOS development framework with 13 commands and 5 specialized agents for Swift 6.2, SwiftUI, SwiftData, and modern iOS patterns",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "category": "iOS Development",
       "keywords": [
         "ios",
