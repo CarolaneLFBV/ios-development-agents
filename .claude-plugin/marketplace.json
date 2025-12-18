@@ -1,11 +1,11 @@
 {
   "name": "ios-development",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "owner": {
     "name": "iOS Development Framework",
     "email": "carolanelefebvre@okorp.fr"
   },
-  "description": "Comprehensive iOS development framework with 14 specialized commands and 5 expert agents for Swift, SwiftUI, and SwiftData development. Token-optimized for efficient context usage.",
+  "description": "Comprehensive iOS development framework with 15 specialized commands and 5 expert agents for Swift, SwiftUI, and SwiftData development. Token-optimized for efficient context usage.",
   "homepage": "https://github.com/CarolaneLFBV/ios-development-agents",
   "repository": "https://github.com/CarolaneLFBV/ios-development-agents",
   "pluginRoot": "./",
@@ -13,8 +13,8 @@
     {
       "name": "ios",
       "source": "./",
-      "description": "Complete iOS development framework with 14 commands and 5 specialized agents for Swift, SwiftUI, SwiftData, and modern iOS patterns. Token-optimized.",
-      "version": "2.3.1",
+      "description": "Complete iOS development framework with 15 commands and 5 specialized agents for Swift, SwiftUI, SwiftData, and modern iOS patterns. Token-optimized.",
+      "version": "2.4.0",
       "category": "iOS Development",
       "keywords": [
         "ios",
@@ -46,7 +46,8 @@
         "./commands/publish.md",
         "./commands/debug.md",
         "./commands/localize.md",
-        "./commands/troubleshoot.md"
+        "./commands/troubleshoot.md",
+        "./commands/brainstorm.md"
       ],
       "agents": [
         "./agents/swiftui-specialist.md",
