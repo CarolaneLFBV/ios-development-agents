@@ -1,11 +1,11 @@
 {
   "name": "ios-development",
-  "version": "2.2.0",
+  "version": "2.3.1",
   "owner": {
     "name": "iOS Development Framework",
     "email": "carolanelefebvre@okorp.fr"
   },
-  "description": "Comprehensive iOS development framework with 14 specialized commands, 5 expert agents, and complete orchestration system for Swift 6.2, SwiftUI, and SwiftData development.",
+  "description": "Comprehensive iOS development framework with 14 specialized commands and 5 expert agents for Swift, SwiftUI, and SwiftData development. Token-optimized for efficient context usage.",
   "homepage": "https://github.com/CarolaneLFBV/ios-development-agents",
   "repository": "https://github.com/CarolaneLFBV/ios-development-agents",
   "pluginRoot": "./",
@@ -13,8 +13,8 @@
     {
       "name": "ios",
       "source": "./",
-      "description": "Complete iOS development framework with 14 commands and 5 specialized agents for Swift 6.2, SwiftUI, SwiftData, and modern iOS patterns",
-      "version": "2.2.0",
+      "description": "Complete iOS development framework with 14 commands and 5 specialized agents for Swift, SwiftUI, SwiftData, and modern iOS patterns. Token-optimized.",
+      "version": "2.3.1",
       "category": "iOS Development",
       "keywords": [
         "ios",
@@ -25,8 +25,7 @@
         "tca",
         "xcode",
         "apple",
-        "mobile",
-        "swift62"
+        "mobile"
       ],
       "author": {
         "name": "iOS Development Framework"
