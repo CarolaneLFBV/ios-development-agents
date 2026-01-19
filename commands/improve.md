@@ -1,26 +1,22 @@
 ---
 allowed-tools: [Read, Grep, Glob, Edit, TodoWrite, Task]
 description: "Improve iOS code quality, performance, and maintainability"
-wave-enabled: true
-category: "Quality & Enhancement"
-auto-persona: ["swiftui-specialist", "performance-specialist", "swift-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[target] [--focus performance|accessibility|architecture]"
 ---
 
 # /ios:improve - iOS Code Improvement
 
-## Usage
-```bash
-/ios:improve [target] [--focus <area>] [--type <type>] [--<flags>]
-```
+Improve code from `$ARGUMENTS` for quality, performance, and maintainability.
 
 ## Arguments
-- `[target]` - Files, directories, or components to improve
 - `--focus performance|accessibility|architecture|quality` - Improvement focus
 - `--type swift-modern|swiftui|swiftdata|patterns` - Specific improvement type
 - `--safe` - Apply only safe, low-risk improvements
 - `--preview` - Show improvements without applying
 - `--iterative` - Apply improvements in multiple passes
+- `--to observable|swiftdata|async|actor` - Refactor to modern pattern
+- `--extract` - Extract components, protocols, or modules
+- `--rename` - Rename with codebase-wide updates
 
 ## Auto-Activation
 - **performance-specialist**: Performance optimization
@@ -124,12 +120,79 @@ final class DataService: DataServiceProtocol {
 - Improve naming for clarity
 - Apply SOLID principles
 
+## Refactoring Patterns (--to)
+
+### To Observable (--to observable)
+```swift
+// Before:
+class ViewModel: ObservableObject {
+    @Published var items: [Item] = []
+}
+
+// After:
+@Observable
+class ViewModel {
+    var items: [Item] = []
+}
+```
+
+### To SwiftData (--to swiftdata)
+```swift
+// Before (Core Data):
+@objc(ItemEntity)
+class ItemEntity: NSManagedObject {
+    @NSManaged var name: String
+}
+
+// After (SwiftData):
+@Model
+final class Item {
+    var name: String
+    init(name: String) { self.name = name }
+}
+```
+
+### To Async/Await (--to async)
+```swift
+// Before:
+func fetchData(completion: @escaping (Result<Data, Error>) -> Void) {
+    URLSession.shared.dataTask(with: url) { data, _, error in
+        completion(error.map { .failure($0) } ?? .success(data!))
+    }.resume()
+}
+
+// After:
+func fetchData() async throws -> Data {
+    let (data, _) = try await URLSession.shared.data(from: url)
+    return data
+}
+```
+
+### To Actor (--to actor)
+```swift
+// Before:
+class DataCache {
+    private var cache: [String: Data] = [:]
+    private let lock = NSLock()
+    func get(_ key: String) -> Data? { lock.lock(); defer { lock.unlock() }; return cache[key] }
+}
+
+// After:
+actor DataCache {
+    private var cache: [String: Data] = [:]
+    func get(_ key: String) -> Data? { cache[key] }
+}
+```
+
 ## Examples
 ```bash
 /ios:improve Views/ --focus quality --safe --preview
 /ios:improve ProductListView.swift --focus performance --iterative
 /ios:improve . --focus accessibility
 /ios:improve Services/ --focus architecture --type patterns
+/ios:improve ViewModel.swift --to observable
+/ios:improve DataService.swift --to async
+/ios:improve Cache.swift --to actor
 ```
 
 ## Output Structure

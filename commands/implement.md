@@ -1,21 +1,14 @@
 ---
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, TodoWrite, Task]
 description: "iOS feature implementation with SwiftUI/UIKit and architectural patterns"
-wave-enabled: true
-category: "Development & Implementation"
-auto-persona: ["swiftui-specialist", "architecture-specialist", "swift-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[feature] [--framework swiftui|uikit] [--pattern mvvm|tca]"
 ---
 
 # /ios:implement - iOS Feature Implementation
 
-## Usage
-```bash
-/ios:implement [feature] [--framework <framework>] [--pattern <pattern>] [--<flags>]
-```
+Implement iOS features using `$ARGUMENTS` as the feature description.
 
 ## Arguments
-- `[feature]` - Feature description to implement
 - `--framework swiftui|uikit|hybrid` - UI framework (default: swiftui)
 - `--pattern mvvm|tca|clean` - Architecture pattern (default: mvvm)
 - `--swiftdata` - Include SwiftData integration

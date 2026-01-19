@@ -1,23 +1,14 @@
 ---
 allowed-tools: [Read, Write, Edit, Bash, TodoWrite, Task]
 description: "XCTest generation and test execution for iOS projects"
-category: "Testing & Quality"
-auto-persona: ["testing-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[target] [--type unit|ui|snapshot] [--generate]"
 ---
 
 # /ios:test - iOS Testing
 
-## Purpose
-Generate, run, and manage XCTest unit tests, UI tests, and snapshot tests for iOS applications.
-
-## Usage
-```bash
-/ios:test [target] [--type <type>] [--coverage]
-```
+Generate or run tests for `$ARGUMENTS`.
 
 ## Arguments
-- `[target]` - Class, file, or test suite to run/generate
 - `--type unit|ui|snapshot|performance|all` - Test type
 - `--coverage` - Generate code coverage report
 - `--generate` - Generate tests for existing code

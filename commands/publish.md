@@ -1,23 +1,14 @@
 ---
 allowed-tools: [Read, Write, Bash, TodoWrite]
 description: "App Store submission preparation and validation"
-category: "Deployment & Publishing"
-auto-persona: ["architecture-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[--validate] [--screenshots] [--metadata]"
 ---
 
 # /ios:publish - App Store Publishing
 
-## Purpose
-Prepare iOS app for App Store submission including validation, screenshots, and metadata.
-
-## Usage
-```bash
-/ios:publish [--validate] [--screenshots] [--metadata]
-```
+Prepare app for App Store submission: `$ARGUMENTS`.
 
 ## Arguments
-- `--validate` - Validate build for submission
 - `--screenshots` - Generate App Store screenshots
 - `--metadata` - Prepare App Store metadata
 - `--export` - Export IPA for submission

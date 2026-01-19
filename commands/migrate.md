@@ -1,23 +1,14 @@
 ---
 allowed-tools: [Read, Edit, TodoWrite, Task]
 description: "Migration paths for iOS (UIKit→SwiftUI, CoreData→SwiftData, Swift 5→6)"
-category: "Migration & Transformation"
-auto-persona: ["swift-specialist", "swiftui-specialist", "architecture-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[source] [target] [--strategy incremental|complete]"
 ---
 
 # /ios:migrate - iOS Migration
 
-## Purpose
-Migrate iOS projects between frameworks, patterns, and Swift versions.
-
-## Usage
-```bash
-/ios:migrate [source] [target] [--strategy <strategy>]
-```
+Migrate `$ARGUMENTS` between frameworks, patterns, and Swift versions.
 
 ## Arguments
-- `[source]` - Source framework/version
 - `[target]` - Target framework/version
 - `--strategy incremental|complete|hybrid` - Migration strategy
 - `--validate` - Validate migration

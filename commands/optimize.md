@@ -1,23 +1,14 @@
 ---
 allowed-tools: [Read, Edit, Bash, TodoWrite, Task]
 description: "Performance optimization with Instruments profiling"
-category: "Performance & Optimization"
-auto-persona: ["performance-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[target] [--metric launch|render|memory|battery]"
 ---
 
 # /ios:optimize - Performance Optimization
 
-## Purpose
-Profile and optimize iOS app performance using Instruments and best practices.
-
-## Usage
-```bash
-/ios:optimize [target] [--metric <metric>] [--goal <goal>]
-```
+Optimize `$ARGUMENTS` using Instruments profiling and best practices.
 
 ## Arguments
-- `[target]` - Component to optimize
 - `--metric launch|render|memory|battery` - Optimization metric
 - `--goal <value>` - Performance goal (e.g., "launch<2s")
 - `--instruments` - Use Xcode Instruments

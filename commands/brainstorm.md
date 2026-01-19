@@ -1,23 +1,14 @@
 ---
 allowed-tools: [Read, Write, Glob, Grep, TodoWrite, Task, WebSearch]
 description: "Structured idea generation and solution exploration for iOS development"
-category: "Planning & Ideation"
-auto-persona: ["architecture-specialist", "swiftui-specialist", "swift-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[topic] [--depth shallow|medium|deep] [--focus ui|architecture]"
 ---
 
 # /ios:brainstorm - Idea Generation
 
-## Purpose
-Generate structured ideas, explore solutions, and evaluate architectural approaches for iOS features and applications.
-
-## Usage
-```bash
-/ios:brainstorm [topic] [--depth <level>] [--format <format>] [--focus <area>]
-```
+Brainstorm `$ARGUMENTS` with structured ideas and solution exploration.
 
 ## Arguments
-- `[topic]` - Feature, problem, or concept to brainstorm
 - `--depth shallow|medium|deep` - Analysis depth (default: medium)
 - `--format list|mindmap|pros-cons|matrix` - Output format
 - `--focus ui|architecture|performance|data` - Primary focus area

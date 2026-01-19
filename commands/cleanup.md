@@ -1,23 +1,14 @@
 ---
 allowed-tools: [Read, Grep, Glob, Edit, Bash, TodoWrite, Task]
 description: "Clean up iOS code, find dead code, unused resources, and technical debt"
-category: "Quality & Enhancement"
-auto-persona: ["swift-specialist", "architecture-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[target] [--type dead-code|imports|resources] [--fix]"
 ---
 
 # /ios:cleanup - iOS Code Cleanup
 
-## Purpose
-Systematic code cleanup: dead code detection, unused resources, deprecated APIs, and technical debt reduction.
-
-## Usage
-```bash
-/ios:cleanup [target] [--type <type>] [--fix] [--report]
-```
+Clean up `$ARGUMENTS`: dead code detection, unused resources, deprecated APIs, technical debt.
 
 ## Arguments
-- `[target]` - Files, directories, or project to clean
 - `--type dead-code|imports|resources|deprecated|all` - Cleanup type (default: all)
 - `--fix` - Automatically remove detected issues
 - `--report` - Generate detailed cleanup report

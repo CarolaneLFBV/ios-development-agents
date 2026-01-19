@@ -1,23 +1,14 @@
 ---
 allowed-tools: [Read, Edit, TodoWrite]
 description: "Comprehensive accessibility audit and implementation (VoiceOver, Dynamic Type, etc.)"
-category: "Accessibility & Compliance"
-auto-persona: ["swiftui-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[target] [--level a|aa|aaa] [--fix]"
 ---
 
 # /ios:accessibility - Accessibility Compliance
 
-## Purpose
-Comprehensive accessibility audit and implementation for iOS apps including VoiceOver, Dynamic Type, and WCAG compliance.
-
-## Usage
-```bash
-/ios:accessibility [target] [--level <level>] [--fix]
-```
+Audit accessibility for `$ARGUMENTS` including VoiceOver, Dynamic Type, and WCAG compliance.
 
 ## Arguments
-- `[target]` - Views or screens to audit
 - `--level a|aa|aaa` - WCAG compliance level
 - `--fix` - Auto-fix accessibility issues
 - `--audit-only` - Audit without changes

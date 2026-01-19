@@ -1,25 +1,21 @@
 ---
 allowed-tools: [Read, Grep, Glob, Bash, TodoWrite, Task]
 description: "Diagnose and resolve iOS issues in code, builds, runtime, and system behavior"
-category: "Debugging & Troubleshooting"
-auto-persona: ["swift-specialist", "performance-specialist", "architecture-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[issue] [--type build|crash|performance|runtime]"
 ---
 
 # /ios:troubleshoot - iOS Issue Diagnosis
 
-## Usage
-```bash
-/ios:troubleshoot [issue] [--type <type>] [--trace] [--fix] [--<flags>]
-```
+Diagnose and resolve the issue from `$ARGUMENTS`.
 
 ## Arguments
-- `[issue]` - Problem description, error message, or crash log
 - `--type build|crash|performance|runtime|ui|data|deployment` - Issue category
 - `--trace` - Enable detailed investigation logging
 - `--fix` - Automatically apply safe fixes
 - `--xcode` - Include Xcode-specific diagnostics
 - `--instruments` - Include Instruments profiling recommendations
+- `--debug` - Interactive debugging mode with breakpoint suggestions
+- `--breakpoints` - Generate strategic breakpoint locations
 
 ## Issue Categories
 
@@ -183,6 +179,32 @@ struct ContentView: View {
 }
 ```
 
+## Debugging Techniques (--debug)
+
+### Strategic Breakpoints
+```swift
+// Conditional breakpoint for specific user
+// Breakpoint: user.id == "test-user-123"
+
+// Symbolic breakpoint for exceptions
+// Name: objc_exception_throw
+// Action: po $arg1
+
+// Data breakpoint for property changes
+// watchpoint set variable viewModel.state
+```
+
+### Runtime Inspection
+```swift
+// Print object details
+(lldb) po self.viewModel
+(lldb) expr -l Swift -- dump(self)
+
+// Modify values at runtime
+(lldb) expr self.isLoading = false
+(lldb) expr viewModel.items.append(testItem)
+```
+
 ## LLDB Commands
 ```lldb
 po view.recursiveDescription()     # View hierarchy
@@ -190,6 +212,10 @@ po _printHierarchy()               # SwiftUI inspection
 po view.constraints                # Check constraints
 thread backtrace all               # Thread analysis
 watchpoint set variable myVar      # Value changes
+expr -l Swift -- print(self)       # Swift expression
+frame variable                      # Local variables
+register read                       # CPU registers
+memory read --size 4 --format x    # Memory inspection
 ```
 
 ## Xcode Debug Tips

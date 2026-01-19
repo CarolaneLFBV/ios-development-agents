@@ -1,0 +1,16 @@
+{
+  "description": "iOS development best practices reminder when editing Swift files",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/ios_reminder_hook.py"
+          }
+        ],
+        "matcher": "Edit|Write"
+      }
+    ]
+  }
+}

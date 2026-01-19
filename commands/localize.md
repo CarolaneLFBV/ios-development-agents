@@ -1,23 +1,14 @@
 ---
 allowed-tools: [Read, Write, Edit, Bash, TodoWrite]
 description: "i18n/l10n implementation and string extraction"
-category: "Localization & i18n"
-auto-persona: ["swiftui-specialist"]
-mcp-servers: ["context7"]
+argument-hint: "[target] [--languages en,fr,es] [--extract]"
 ---
 
 # /ios:localize - Localization & i18n
 
-## Purpose
-Implement internationalization and localization for iOS apps including string extraction and translation management.
-
-## Usage
-```bash
-/ios:localize [target] [--languages <langs>] [--extract]
-```
+Localize `$ARGUMENTS` with string extraction and translation management.
 
 ## Arguments
-- `[target]` - Files or screens to localize
 - `--languages <langs>` - Target languages (e.g., "en,fr,es,de")
 - `--extract` - Extract localizable strings
 - `--generate` - Generate .strings files
