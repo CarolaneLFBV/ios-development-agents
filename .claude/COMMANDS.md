@@ -1,334 +1,269 @@
 # COMMANDS.md - iOS Framework Command Reference
 
-Complete command catalog for the iOS Development Framework.
+## Command Matrix (15 Commands)
 
-## Command Overview
+| Command | Category | Wave | Primary Agents | MCP |
+|---------|----------|------|----------------|-----|
+| `/ios:implement` | Development | ✅ | swiftui, architecture, swift | c7 |
+| `/ios:design` | Development | ✅ | swiftui, architecture | c7 |
+| `/ios:improve` | Quality | ✅ | varies by focus | c7 |
+| `/ios:test` | Quality | - | testing | c7 |
+| `/ios:cleanup` | Quality | - | swift, architecture | c7 |
+| `/ios:security` | Quality | - | security | c7, seq |
+| `/ios:document` | Documentation | - | architecture | c7 |
+| `/ios:migrate` | Migration | ✅ | architecture, swift | c7 |
+| `/ios:optimize` | Migration | - | performance | c7 |
+| `/ios:analyze` | Analysis | ✅ | varies by focus | c7 |
+| `/ios:troubleshoot` | Analysis | - | swift, performance | seq |
+| `/ios:accessibility` | Delivery | - | swiftui | c7 |
+| `/ios:localize` | Delivery | - | swiftui | c7 |
+| `/ios:publish` | Delivery | - | devops | c7 |
+| `/ios:brainstorm` | Planning | ✅ | architecture, swift | c7, seq |
 
-**13 specialized commands** organized by category for comprehensive iOS development workflows.
+## Categories
 
-## Command Categories
+- **Development** (2): implement, design
+- **Quality** (4): improve, test, cleanup, security
+- **Documentation** (1): document
+- **Migration** (2): migrate, optimize
+- **Analysis** (2): analyze, troubleshoot
+- **Delivery** (3): accessibility, localize, publish
+- **Planning** (1): brainstorm
 
-### Development & Implementation
-- **/ios:implement** - Feature implementation with SwiftUI/UIKit
-- **/ios:refactor** - Code refactoring to modern patterns
-
-### Quality & Enhancement
-- **/ios:improve** - Code quality, performance, and maintainability improvements
-- **/ios:review** - Comprehensive code review
-- **/ios:optimize** - Performance optimization with Instruments
-
-### Design & Architecture
-- **/ios:design** - UI/UX design with Apple HIG compliance
-
-### Testing & Quality Assurance
-- **/ios:test** - XCTest generation and execution
-
-### Analysis & Investigation
-- **/ios:analyze** - Deep code analysis
-- **/ios:debug** - Advanced debugging workflows
-
-### Migration & Transformation
-- **/ios:migrate** - Framework and version migrations
-
-### Accessibility & Compliance
-- **/ios:accessibility** - Accessibility audit and implementation
-
-### Deployment & Publishing
-- **/ios:publish** - App Store submission preparation
-
-### Localization
-- **/ios:localize** - i18n/l10n implementation
-
----
-
-## Detailed Command Reference
+## Command Details
 
 ### /ios:implement
-**Purpose**: Implement iOS features with modern patterns
-**Agents**: swiftui-specialist, architecture-specialist, swift-specialist
-**Flags**:
-- `--framework swiftui|uikit` - UI framework
-- `--pattern mvvm|tca|clean` - Architecture pattern
-- `--swiftdata` - Include SwiftData
-- `--with-tests` - Generate tests
-- `--accessibility` - Accessibility support
+**Wave-enabled** | **Agents**: swiftui, architecture, swift
 
-**Examples**:
-```bash
-/ios:implement LoginView --framework swiftui --pattern mvvm
-/ios:implement TaskManager --swiftdata --with-tests
-/ios:implement UserAuth --pattern tca --accessibility
+```yaml
+args:
+  --framework: swiftui|uikit|hybrid (default: swiftui)
+  --pattern: mvvm|tca|clean (default: mvvm)
+  --swiftdata: Include SwiftData
+  --cloudkit: Enable CloudKit
+  --with-tests: Generate XCTests
+  --accessibility: Full a11y support
+
+workflow:
+  1. Parse feature, detect context
+  2. Context7: Apple patterns
+  3. Generate Views, ViewModels, Models
+  4. Apply architecture pattern
+  5. Generate tests if requested
+  6. Validate quality gates
 ```
-
----
-
-### /ios:improve
-**Purpose**: Improve code quality and performance
-**Agents**: swiftui-specialist, performance-specialist, swift-specialist
-**Flags**:
-- `--focus performance|accessibility|architecture|quality`
-- `--type swift-modern|swiftui|swiftdata`
-- `--safe` - Safe improvements only
-- `--preview` - Preview changes
-
-**Examples**:
-```bash
-/ios:improve ContentView.swift --focus performance
-/ios:improve . --type swift-modern --safe
-/ios:improve Services/ --focus architecture
-```
-
----
-
-### /ios:review
-**Purpose**: Comprehensive code review
-**Agents**: All specialists
-**Flags**:
-- `--focus security|performance|quality|architecture`
-- `--format report|checklist|metrics`
-- `--export <path>` - Export results
-
-**Examples**:
-```bash
-/ios:review UserAuth/ --focus security
-/ios:review . --format report --export review.md
-```
-
----
-
-### /ios:refactor
-**Purpose**: Refactor to modern patterns
-**Agents**: architecture-specialist, swift-specialist
-**Flags**:
-- `--pattern mvvm|tca|clean` - Target pattern
-- `--to observable|swiftdata|async` - Specific refactoring
-- `--safe` - Conservative refactoring
-
-**Examples**:
-```bash
-/ios:refactor UserViewModel.swift --to observable
-/ios:refactor Models/ --to swiftdata
-/ios:refactor NetworkService.swift --to async
-```
-
----
 
 ### /ios:design
-**Purpose**: UI/UX design with Apple HIG
-**Agents**: swiftui-specialist, architecture-specialist
-**Flags**:
-- `--style minimal|bold|playful|professional`
-- `--platform ios|ipados|macos`
-- `--dark-mode` - Dark mode design
+**Wave-enabled** | **Agents**: swiftui, architecture
 
-**Examples**:
-```bash
-/ios:design OnboardingFlow --style minimal
-/ios:design Dashboard --platform ipados --dark-mode
+```yaml
+args:
+  --scope: ui|architecture|system
+  --pattern: mvvm|tca|clean
+  --modules: Module breakdown
+  --diagram: Generate diagram
+  --style: minimal|bold|professional
+
+scopes:
+  ui: Apple HIG, SwiftUI components
+  architecture: System design, patterns
+  system: Full system design (ui + architecture)
 ```
 
----
+### /ios:improve
+**Wave-enabled** | **Agents**: varies by focus
+
+```yaml
+args:
+  --focus: performance|accessibility|architecture|quality
+  --to: observable|async|actor|swiftdata
+  --safe: Conservative changes
+  --preview: Preview changes
+
+refactoring:
+  --to observable: ObservableObject → @Observable
+  --to async: Completion handlers → async/await
+  --to actor: Thread-unsafe → actor
+  --to swiftdata: CoreData → SwiftData
+```
 
 ### /ios:test
-**Purpose**: Testing and quality assurance
-**Agents**: testing-specialist
-**Flags**:
-- `--type unit|ui|snapshot|performance|all`
-- `--coverage` - Coverage report
-- `--generate` - Generate tests
-- `--fix` - Fix failing tests
+**Agents**: testing
 
-**Examples**:
-```bash
-/ios:test UserViewModel --generate --type unit
-/ios:test LoginFlow --type ui
-/ios:test . --coverage --type all
+```yaml
+args:
+  --type: unit|ui|snapshot|performance|all
+  --coverage: Coverage report
+  --generate: Generate tests
+  --fix: Fix failing tests
 ```
 
----
+### /ios:cleanup
+**Agents**: swift, architecture
+
+```yaml
+args:
+  --scope: file|module|project
+  --dry-run: Preview only
+  --report: Generate report
+
+detects:
+  - Unused imports
+  - Dead code
+  - Unreachable code
+  - Unused assets
+```
+
+### /ios:security
+**Agents**: security | **MCP**: c7, sequential
+
+```yaml
+args:
+  --owasp: OWASP checklist
+  --keychain: Keychain audit
+  --biometric: Biometric review
+  --report: Generate report
+
+checks:
+  - Data storage (Keychain vs UserDefaults)
+  - Network security (ATS, certificate pinning)
+  - Authentication flows
+  - Encryption usage
+```
+
+### /ios:document
+**Agents**: architecture
+
+```yaml
+args:
+  --type: readme|api|docc|inline
+  --update: Update existing
+  --export: Export path
+```
 
 ### /ios:migrate
-**Purpose**: Framework and version migrations
-**Agents**: swift-specialist, swiftui-specialist, architecture-specialist
-**Flags**:
-- `--strategy incremental|complete|hybrid`
-- `--validate` - Validate migration
-- `--backup` - Backup before migration
+**Wave-enabled** | **Agents**: architecture, swift, swiftui
 
-**Examples**:
-```bash
-/ios:migrate uikit swiftui --strategy incremental
-/ios:migrate coredata swiftdata --backup
-/ios:migrate swift5 swift6 --validate
+```yaml
+args:
+  --strategy: incremental|complete|hybrid
+  --validate: Validate migration
+  --backup: Backup first
+  --adr: Create ADR
+
+migrations:
+  uikit → swiftui
+  coredata → swiftdata
+  observableobject → observable
+  completion → async
+  swift5 → swift6
 ```
-
----
-
-### /ios:analyze
-**Purpose**: Deep code analysis
-**Agents**: performance-specialist, architecture-specialist
-**Flags**:
-- `--focus performance|security|architecture|quality`
-- `--instruments` - Instruments profiling
-- `--export <path>` - Export results
-
-**Examples**:
-```bash
-/ios:analyze . --focus security
-/ios:analyze ProductList.swift --focus performance --instruments
-```
-
----
 
 ### /ios:optimize
-**Purpose**: Performance optimization
-**Agents**: performance-specialist
-**Flags**:
-- `--metric launch|render|memory|battery`
-- `--goal <value>` - Performance goal
-- `--instruments` - Use Instruments
+**Agents**: performance
 
-**Examples**:
-```bash
-/ios:optimize App --metric launch --goal "launch<1s"
-/ios:optimize ProductList --metric render
-/ios:optimize . --metric memory --instruments
+```yaml
+args:
+  --metric: launch|render|memory|battery
+  --goal: Performance target
+  --instruments: Use Instruments
 ```
 
----
+### /ios:analyze
+**Wave-enabled** | **Agents**: varies by focus
+
+```yaml
+args:
+  --focus: security|performance|quality|architecture
+  --review: Code review mode
+  --checklist: Review checklist
+  --score: Quality score (0-100)
+  --pr: PR review format
+  --export: Export path
+
+modes:
+  default: Deep analysis
+  --review: Code review with suggestions
+  --checklist: Structured checklist output
+  --score: Numeric quality assessment
+```
+
+### /ios:troubleshoot
+**Agents**: swift, performance | **MCP**: sequential
+
+```yaml
+args:
+  --type: crash|hang|memory|ui
+  --debug: Debug mode
+  --breakpoints: Generate breakpoints
+  --trace: Detailed trace
+  --reproduce: Reproduction steps
+```
 
 ### /ios:accessibility
-**Purpose**: Accessibility compliance
-**Agents**: swiftui-specialist
-**Flags**:
-- `--level a|aa|aaa` - WCAG level
-- `--fix` - Auto-fix issues
-- `--audit-only` - Audit without changes
+**Agents**: swiftui
 
-**Examples**:
-```bash
-/ios:accessibility LoginView.swift --level aa --fix
-/ios:accessibility . --audit-only
+```yaml
+args:
+  --level: a|aa|aaa (WCAG level)
+  --fix: Auto-fix issues
+  --audit-only: Audit without changes
+
+checks:
+  - VoiceOver labels
+  - Dynamic Type
+  - Color contrast
+  - Keyboard navigation
 ```
-
----
-
-### /ios:publish
-**Purpose**: App Store publishing
-**Agents**: architecture-specialist
-**Flags**:
-- `--validate` - Validate build
-- `--screenshots` - Generate screenshots
-- `--metadata` - Prepare metadata
-
-**Examples**:
-```bash
-/ios:publish --validate
-/ios:publish --screenshots --metadata
-```
-
----
-
-### /ios:debug
-**Purpose**: Advanced debugging
-**Agents**: swift-specialist, performance-specialist
-**Flags**:
-- `--type crash|hang|memory|ui`
-- `--reproduce` - Reproduction steps
-- `--fix` - Suggest fixes
-
-**Examples**:
-```bash
-/ios:debug "App crashes on login" --type crash
-/ios:debug crash.log --reproduce --fix
-```
-
----
 
 ### /ios:localize
-**Purpose**: i18n/l10n implementation
-**Agents**: swiftui-specialist
-**Flags**:
-- `--languages <langs>` - Target languages
-- `--extract` - Extract strings
-- `--generate` - Generate .strings files
+**Agents**: swiftui
 
-**Examples**:
-```bash
-/ios:localize . --extract --languages "en,fr,es"
-/ios:localize LoginView.swift --generate
+```yaml
+args:
+  --languages: Target languages
+  --extract: Extract strings
+  --generate: Generate .strings
 ```
 
----
+### /ios:publish
+**Agents**: devops
 
-## Command Workflows
-
-### Full Feature Implementation
-```bash
-1. /ios:design UserProfile --style professional
-2. /ios:implement UserProfile --pattern mvvm --swiftdata --with-tests
-3. /ios:accessibility UserProfile --level aa --fix
-4. /ios:test UserProfile --type all --coverage
-5. /ios:review UserProfile
+```yaml
+args:
+  --validate: Validate build
+  --screenshots: Generate screenshots
+  --metadata: Prepare metadata
 ```
 
-### Performance Optimization Workflow
-```bash
-1. /ios:analyze App --focus performance --instruments
-2. /ios:optimize App --metric launch --goal "launch<1s"
-3. /ios:test App --type performance
+### /ios:brainstorm
+**Wave-enabled** | **Agents**: architecture, swift
+
+```yaml
+args:
+  --format: json|markdown|mindmap
+  --depth: shallow|deep|comprehensive
+  --export: Export path
 ```
 
-### Migration Workflow
+## Workflow Examples
+
+### Feature Implementation
 ```bash
-1. /ios:analyze . --focus architecture
-2. /ios:migrate uikit swiftui --strategy incremental --backup
-3. /ios:test . --type all
-4. /ios:review . --focus quality
+/ios:implement UserProfile --pattern mvvm --swiftdata --with-tests
 ```
 
----
+### Code Review
+```bash
+/ios:analyze UserView.swift --review --checklist --score
+```
 
-## Auto-Activation Matrix
+### Migration
+```bash
+/ios:migrate uikit swiftui --strategy incremental --backup
+```
 
-| Command | Primary Agent | Secondary Agents | MCP Servers |
-|---------|---------------|------------------|-------------|
-| implement | swiftui-specialist | architecture, swift | context7 |
-| improve | Varies by focus | performance, swift | context7 |
-| review | All agents | - | context7 |
-| refactor | architecture | swift, swiftui | context7 |
-| design | swiftui | architecture | context7 |
-| test | testing | - | context7 |
-| migrate | Varies by migration | All relevant | context7 |
-| analyze | performance | architecture | context7 |
-| optimize | performance | - | context7 |
-| accessibility | swiftui | - | context7 |
-| publish | architecture | - | context7 |
-| debug | swift | performance | context7 |
-| localize | swiftui | - | context7 |
-
----
-
-## Best Practices
-
-### Command Selection
-- Use **/ios:implement** for new features
-- Use **/ios:improve** for enhancements
-- Use **/ios:refactor** for pattern changes
-- Use **/ios:optimize** for performance issues
-
-### Flag Usage
-- Always use `--safe` for production code
-- Use `--preview` to review changes
-- Include `--with-tests` for critical features
-- Use `--accessibility` for user-facing features
-
-### Workflow Integration
-- Run /ios:review before merging
-- Use /ios:test for CI/CD
-- Apply /ios:accessibility for compliance
-- Use /ios:debug for troubleshooting
-
----
-
-For detailed command documentation, see individual command files in `commands/` directory.
+### Security Audit
+```bash
+/ios:security . --owasp --report
+```

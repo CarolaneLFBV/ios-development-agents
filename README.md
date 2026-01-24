@@ -1,30 +1,32 @@
 # iOS Development Framework
 
-> Unified iOS development framework with 15 specialized commands, 7 expert Opus agents, 4 auto-injected skills, and smart hooks for Swift, SwiftUI, and SwiftData
+> Unified iOS development framework with 15 commands, 7 Opus agents with MCP integration, smart auto-activation, and BMAD workflows for Swift, SwiftUI, and SwiftData
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/Version-3.0.0-brightgreen.svg)](https://github.com/CarolaneLFBV/ios-development-agents)
+[![Version](https://img.shields.io/badge/Version-4.0.0-brightgreen.svg)](https://github.com/CarolaneLFBV/ios-development-agents)
 [![Swift](https://img.shields.io/badge/Swift-6.2-orange.svg)](https://swift.org)
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-Latest-blue.svg)](https://developer.apple.com/swiftui/)
 [![SwiftData](https://img.shields.io/badge/SwiftData-Latest-green.svg)](https://developer.apple.com/swiftdata/)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-8A2BE2.svg)](https://claude.com/code)
 
-## What's New in v3.0.0
+## What's New in v4.0.0
 
-- **Opus Agents**: All 7 expert agents now use Claude Opus for maximum intelligence
-- **Streamlined Commands**: 15 focused commands (consolidated from 19)
-- **4 Auto-Injected Skills**: SwiftData, SwiftUI, Concurrency, and Testing patterns
-- **Smart Hooks**: Best practices reminders when editing Swift files
-- **Token Optimized**: ~70% reduction in agent size
+- **WD Framework Architecture**: 7 core files in `.claude/` (~850 lines total)
+- **~80% Token Reduction**: Optimized structure and patterns integrated into agents
+- **MCP Integration**: Context7 (REQUIRED before implementation) + Sequential coordination
+- **Development Tracks**: Quick, Standard, Enterprise workflows
+- **BMAD Integration**: Story File Pattern + ADR support
+- **Wave Orchestration**: Auto-activation on complexity ≥0.7
+- **Skills Integrated**: Patterns now embedded in specialist agents (no separate skills/)
 
 ## Features
 
 - **15 Specialized Commands** - Complete workflow from design to deployment
-- **7 Expert Opus Agents** - SwiftUI, Architecture, Performance, Testing, Swift, Security, and DevOps specialists
-- **4 Auto-Injected Skills** - Context-aware pattern injection
-- **Smart Hooks** - Automatic best practices reminders
-- **Swift 6.2 Native** - Latest language features and modern iOS APIs
-- **Production-Ready** - Enterprise-grade code patterns
+- **7 Expert Opus Agents** - SwiftUI, Architecture, Performance, Testing, Swift, Security, DevOps with MCP integration
+- **7 Core Framework Files** - Optimized routing, flags, capabilities, workflows
+- **Smart Auto-Activation** - Keyword-based persona and agent routing
+- **Context7 Required** - Always consult official documentation before implementation
+- **Production-Ready** - Enterprise-grade code patterns with quality gates
 
 ## Installation
 
@@ -55,6 +57,24 @@
 /ios:improve ViewModel.swift --to observable
 ```
 
+## Architecture
+
+```
+.claude/                       # 7 core framework files (~850 lines)
+├── CLAUDE.md                  # Entry point with references
+├── CORE.md                    # Principles, rules, symbols
+├── ROUTING.md                 # Detection engine, orchestration
+├── CAPABILITIES.md            # 7 agents + MCP coordination
+├── COMMANDS.md                # 15 command matrix
+├── FLAGS.md                   # iOS-specific flags
+└── WORKFLOWS.md               # Development tracks, BMAD, ADR
+
+.claude-plugin/plugin.json     # Plugin configuration
+commands/                      # 15 specialized commands
+agents/                        # 7 Opus expert agents (with integrated skills)
+hooks/                         # Smart hooks for best practices
+```
+
 ## Components
 
 ### 15 Commands
@@ -71,24 +91,23 @@
 
 ### 7 Opus Agents
 
-| Agent | Model | Expertise |
-|-------|-------|-----------|
-| **swift-specialist** | Opus | Generics, protocols, async/await, actors, memory |
-| **swiftui-specialist** | Opus | Views, layouts, state, navigation, animations |
-| **architecture-specialist** | Opus | MVVM, TCA, Clean Architecture, SwiftData, DI |
-| **performance-specialist** | Opus | Instruments, memory, rendering, launch time |
-| **testing-specialist** | Opus | XCTest, UI testing, snapshot testing, TDD |
-| **security-specialist** | Opus | OWASP, Keychain, authentication, encryption, ATS |
-| **devops-specialist** | Opus | CI/CD, Xcode Cloud, GitHub Actions, Fastlane |
+| Agent | Domain | MCP Servers |
+|-------|--------|-------------|
+| **swift-specialist** | Generics, protocols, async/await, actors | Context7, Sequential |
+| **swiftui-specialist** | Views, layouts, state, navigation | Context7, Sequential |
+| **architecture-specialist** | MVVM, TCA, SwiftData, DI | Context7, Sequential |
+| **performance-specialist** | Instruments, memory, rendering | Sequential, Context7 |
+| **testing-specialist** | XCTest, UI testing, TDD | Sequential, Context7 |
+| **security-specialist** | OWASP, Keychain, encryption, ATS | Sequential, Context7 |
+| **devops-specialist** | CI/CD, Xcode Cloud, Fastlane | Sequential, Context7 |
 
-### 4 Auto-Injected Skills
+### Development Tracks
 
-| Skill | Auto-Inject When |
-|-------|------------------|
-| **swiftdata-patterns** | `@Model` or SwiftData imports detected |
-| **swiftui-components** | SwiftUI View detected |
-| **concurrency-patterns** | `async/await` or `actor` detected |
-| **testing-patterns** | XCTest or test files detected |
+| Track | Complexity | Workflow |
+|-------|------------|----------|
+| **Quick** | <0.3, <5 files | Plan → Implement |
+| **Standard** | 0.3-0.7 | Context7 → Analyze → Plan → Implement → Test |
+| **Enterprise** | >0.7, >20 files | Context7 → Full Analysis → ADR → Wave → Validate |
 
 ### Smart Hooks
 
@@ -155,23 +174,25 @@
 /ios:brainstorm "offline-first sync" --depth deep --focus data
 ```
 
-## Architecture
+## Quality Gates
 
-```
-.claude-plugin/plugin.json     # Plugin configuration
-commands/                      # 15 specialized commands
-agents/                        # 7 Opus expert agents
-skills/                        # 4 auto-injected skills
-hooks/                         # Smart hooks for best practices
-```
+8-step validation cycle:
+1. **Syntax** - Language parsers, Context7 validation
+2. **Types** - Type compatibility, context-aware suggestions
+3. **Lint** - Context7 rules, quality analysis
+4. **Security** - Vulnerability assessment, OWASP compliance
+5. **Tests** - Coverage ≥80% unit, ≥70% integration
+6. **Performance** - Benchmarking, optimization
+7. **Documentation** - Completeness, accuracy
+8. **Integration** - Deployment validation
 
 ## Contributing
 
 Contributions welcome:
 1. Enhance commands or agents
-2. Add new skills for common patterns
-3. Improve hooks with more best practices
-4. Better documentation and examples
+2. Improve MCP server integration
+3. Better documentation and examples
+4. Add new patterns to agent specializations
 
 ## License
 
@@ -181,4 +202,4 @@ MIT License - see [LICENSE](LICENSE) file.
 
 **Built with ❤️ for the iOS development community**
 
-*Version 3.0.0 • Swift 6.2 • SwiftUI • SwiftData • 15 Commands • 7 Opus Agents • 4 Skills • Hooks*
+*Version 4.0.0 • Swift 6.2 • SwiftUI • SwiftData • 15 Commands • 7 Opus Agents • MCP Integration • BMAD Workflows*

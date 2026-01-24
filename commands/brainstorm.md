@@ -2,6 +2,10 @@
 allowed-tools: [Read, Write, Glob, Grep, TodoWrite, Task, WebSearch]
 description: "Structured idea generation and solution exploration for iOS development"
 argument-hint: "[topic] [--depth shallow|medium|deep] [--focus ui|architecture]"
+wave-enabled: true
+category: "Planning"
+auto-persona: ["architecture-specialist", "swiftui-specialist", "swift-specialist"]
+mcp-servers: ["context7", "sequential"]
 ---
 
 # /ios:brainstorm - Idea Generation
@@ -9,31 +13,22 @@ argument-hint: "[topic] [--depth shallow|medium|deep] [--focus ui|architecture]"
 Brainstorm `$ARGUMENTS` with structured ideas and solution exploration.
 
 ## Arguments
-- `--depth shallow|medium|deep` - Analysis depth (default: medium)
-- `--format list|mindmap|pros-cons|matrix` - Output format
-- `--focus ui|architecture|performance|data` - Primary focus area
-- `--constraints <text>` - Project constraints to consider
-- `--export <path>` - Export results to file
+
+| Flag | Values | Default | Description |
+|------|--------|---------|-------------|
+| `--depth` | shallow\|medium\|deep | medium | Analysis depth |
+| `--format` | list\|mindmap\|pros-cons\|matrix | list | Output format |
+| `--focus` | ui\|architecture\|performance\|data | - | Primary focus area |
+| `--constraints` | `<text>` | - | Project constraints |
+| `--export` | `<path>` | - | Export results |
 
 ## Depth Levels
 
-### Shallow (~5 min)
-- Quick ideation
-- Top 3-5 approaches
-- High-level trade-offs
-
-### Medium (~15 min)
-- Detailed exploration
-- Architecture options
-- SwiftUI patterns
-- Code structure suggestions
-
-### Deep (~30 min)
-- Comprehensive analysis
-- Multiple architecture comparisons
-- Performance considerations
-- Testing strategies
-- Migration paths
+| Depth | Duration | Output |
+|-------|----------|--------|
+| `shallow` | ~5 min | Top 3-5 approaches, high-level trade-offs |
+| `medium` | ~15 min | Detailed exploration, architecture options |
+| `deep` | ~30 min | Comprehensive analysis, migration paths |
 
 ## Focus Areas
 
@@ -52,12 +47,10 @@ Brainstorm `$ARGUMENTS` with structured ideas and solution exploration.
 1. **Approach A** - Description
    - Pros: ...
    - Cons: ...
-2. **Approach B** - Description
 ```
 
 ### pros-cons
 ```markdown
-## Option Analysis
 | Option | Pros | Cons | Effort |
 |--------|------|------|--------|
 | A | ... | ... | Low |
@@ -65,10 +58,9 @@ Brainstorm `$ARGUMENTS` with structured ideas and solution exploration.
 
 ### matrix
 ```markdown
-## Decision Matrix
-| Criteria | Weight | Opt A | Opt B | Opt C |
-|----------|--------|-------|-------|-------|
-| Maintainability | 30% | 8 | 9 | 7 |
+| Criteria | Weight | Opt A | Opt B |
+|----------|--------|-------|-------|
+| Maintainability | 30% | 8 | 9 |
 ```
 
 ## Examples
@@ -81,7 +73,7 @@ Brainstorm `$ARGUMENTS` with structured ideas and solution exploration.
 /ios:brainstorm "offline-first sync" --depth deep --focus data
 
 # UI pattern exploration with constraints
-/ios:brainstorm "dashboard layout" --focus ui --constraints "iPad support, accessibility"
+/ios:brainstorm "dashboard layout" --focus ui --constraints "iPad support"
 
 # Compare approaches with decision matrix
 /ios:brainstorm "state management" --format matrix --focus architecture
@@ -94,6 +86,12 @@ Brainstorm `$ARGUMENTS` with structured ideas and solution exploration.
 3. **Analyze** - Evaluate trade-offs for iOS context
 4. **Converge** - Recommend best options with rationale
 
----
+## Output
 
-**Delegates to**: architecture-specialist (patterns), swiftui-specialist (UI), swift-specialist (implementation)
+```markdown
+# Brainstorm: [Topic]
+## Focus: ui | architecture | performance | data
+## Depth: shallow | medium | deep
+## Ideas: [Generated approaches]
+## Recommendation: [Best option with rationale]
+```

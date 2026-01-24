@@ -1,7 +1,11 @@
 ---
 allowed-tools: [Read, Grep, Glob, Bash, TodoWrite, Task]
 description: "Diagnose and resolve iOS issues in code, builds, runtime, and system behavior"
-argument-hint: "[issue] [--type build|crash|performance|runtime]"
+argument-hint: "[issue] [--type crash|build|performance] [--debug]"
+wave-enabled: false
+category: "Analysis"
+auto-persona: ["swift-specialist", "performance-specialist"]
+mcp-servers: ["sequential"]
 ---
 
 # /ios:troubleshoot - iOS Issue Diagnosis
@@ -9,231 +13,77 @@ argument-hint: "[issue] [--type build|crash|performance|runtime]"
 Diagnose and resolve the issue from `$ARGUMENTS`.
 
 ## Arguments
-- `--type build|crash|performance|runtime|ui|data|deployment` - Issue category
-- `--trace` - Enable detailed investigation logging
-- `--fix` - Automatically apply safe fixes
-- `--xcode` - Include Xcode-specific diagnostics
-- `--instruments` - Include Instruments profiling recommendations
-- `--debug` - Interactive debugging mode with breakpoint suggestions
-- `--breakpoints` - Generate strategic breakpoint locations
+
+| Flag | Values | Default | Description |
+|------|--------|---------|-------------|
+| `--type` | build\|crash\|performance\|runtime\|ui\|data\|deployment | runtime | Issue category |
+| `--debug` | - | - | Interactive debugging mode |
+| `--breakpoints` | - | - | Generate strategic breakpoints |
+| `--trace` | - | - | Enable detailed investigation |
+| `--xcode` | - | - | Include Xcode-specific diagnostics |
+| `--instruments` | - | - | Include Instruments recommendations |
+| `--fix` | - | - | Automatically apply safe fixes |
 
 ## Issue Categories
 
-### Build Issues (--type build)
-```bash
-/ios:troubleshoot "Build failed" --type build --xcode
-```
-**Common**: Swift compiler errors, missing dependencies, code signing, framework linking
+| Type | Common Issues |
+|------|---------------|
+| `build` | Compiler errors, dependencies, signing |
+| `crash` | EXC_BAD_ACCESS, SIGABRT, OOM |
+| `performance` | Slow rendering, memory leaks |
+| `runtime` | Data not updating, state issues |
+| `ui` | Layout, Safe Area, Dark mode |
+| `data` | SwiftData sync, persistence |
+| `deployment` | App rejection, entitlements |
+
+## Common Fixes
 
 ```swift
-// Module Not Found Resolution
-// 1. Verify iOS deployment target (iOS 17.0+ for SwiftData)
-// 2. Check import statement
-import SwiftData  // Requires iOS 17.0+
-// 3. Link framework in Target > General > Frameworks
-```
-
-### Crash Issues (--type crash)
-```bash
-/ios:troubleshoot "EXC_BAD_ACCESS" --type crash --trace
-```
-**Common**: EXC_BAD_ACCESS, SIGABRT, watchdog timeout, OOM
-
-```swift
-// Force Unwrap Crash Fix
+// Force Unwrap Crash
 // Before:
 let user = users.first!
-
 // After:
 guard let user = users.first else { return }
-```
 
-### Performance Issues (--type performance)
-```bash
-/ios:troubleshoot "List stutters" --type performance --instruments
-```
-
-```swift
-// List Scrolling Fix
-// Before (frame drops):
-VStack { ForEach(items) { ExpensiveView(item: $0) } }
-
-// After (smooth):
-LazyVStack(spacing: 8) {
-    ForEach(items, id: \.id) { ItemView(item: $0).id($0.id) }
-}
-```
-
-### Runtime Issues (--type runtime)
-```bash
-/ios:troubleshoot "Data not updating" --type runtime --trace
-```
-
-```swift
-// @Observable Not Updating Fix
+// @Observable Not Updating
 // Before:
 class UserViewModel { var user: User? }
-
 // After:
-@Observable
-class UserViewModel { var user: User? }
+@Observable class UserViewModel { var user: User? }
 
-// Main Actor Issues Fix
-@MainActor @Observable
-class ViewModel {
-    var data: [Item] = []
-    func loadData() async { data = await fetchItems() }
-}
-```
-
-### UI Issues (--type ui)
-```bash
-/ios:troubleshoot "View not appearing" --type ui
-```
-**Common**: Layout constraints, Safe Area violations, Dark mode, Dynamic Type
-
-```swift
-// Safe Area Fix
-.safeAreaInset(edge: .top) { Color.clear.frame(height: 0) }
-.ignoresSafeArea(.keyboard, edges: .bottom)
-```
-
-### Data Issues (--type data)
-```bash
-/ios:troubleshoot "SwiftData not syncing" --type data --trace
-```
-
-```swift
-// SwiftData Save Fix
-func saveItem(_ item: Item) throws {
-    modelContext.insert(item)
-    do { try modelContext.save() }
-    catch { throw DataServiceError.saveFailed }
-}
-
-// CloudKit Setup
-let config = ModelConfiguration(cloudKitDatabase: .automatic)
-let container = try ModelContainer(for: schema, configurations: [config])
-```
-
-### Deployment Issues (--type deployment)
-```bash
-/ios:troubleshoot "App rejected" --type deployment
-```
-**Common**: Code signing, privacy manifests, entitlements
-
-## Execution Workflow
-
-### Phase 1: Analysis
-1. Parse issue and categorize type
-2. Identify affected components
-3. Gather logs and stack traces
-
-### Phase 2: Investigation
-1. Analyze error patterns
-2. Search codebase for related issues
-3. Check recent changes (git diff)
-4. Consult Apple documentation
-
-### Phase 3: Resolution
-1. Identify potential fixes
-2. Apply safest fix first
-3. Verify resolution
-4. Document changes
-
-## Common Patterns
-
-### Concurrency Issues
-```swift
-// Data Race Fix
-// Before:
-class DataManager { var cache: [String: Data] = [:] }
-
-// After:
-actor DataManager {
-    var cache: [String: Data] = [:]
-    func getData(for key: String) -> Data? { cache[key] }
-}
-```
-
-### Memory Leaks
-```swift
-// Strong Reference Cycle Fix
+// Memory Leak
 // Before:
 completion = { self.doSomething() }
-
 // After:
 completion = { [weak self] in self?.doSomething() }
 ```
 
-### View Update Issues
-```swift
-// Before:
-struct ContentView: View {
-    var viewModel: ViewModel  // Not observed
-}
-
-// After:
-struct ContentView: View {
-    @State private var viewModel = ViewModel()
-}
-```
-
-## Debugging Techniques (--debug)
-
-### Strategic Breakpoints
-```swift
-// Conditional breakpoint for specific user
-// Breakpoint: user.id == "test-user-123"
-
-// Symbolic breakpoint for exceptions
-// Name: objc_exception_throw
-// Action: po $arg1
-
-// Data breakpoint for property changes
-// watchpoint set variable viewModel.state
-```
-
-### Runtime Inspection
-```swift
-// Print object details
-(lldb) po self.viewModel
-(lldb) expr -l Swift -- dump(self)
-
-// Modify values at runtime
-(lldb) expr self.isLoading = false
-(lldb) expr viewModel.items.append(testItem)
-```
-
 ## LLDB Commands
+
 ```lldb
 po view.recursiveDescription()     # View hierarchy
-po _printHierarchy()               # SwiftUI inspection
-po view.constraints                # Check constraints
 thread backtrace all               # Thread analysis
 watchpoint set variable myVar      # Value changes
 expr -l Swift -- print(self)       # Swift expression
-frame variable                      # Local variables
-register read                       # CPU registers
-memory read --size 4 --format x    # Memory inspection
 ```
 
-## Xcode Debug Tips
-- **Zombie Objects**: Scheme > Diagnostics > Zombie Objects
-- **Memory Graph**: Debug Navigator > Memory Graph (cube icon)
-- **View Debugger**: Debug > View Debugging > Capture View Hierarchy
-- **Network**: Add `-com.apple.URLSessionDebugLogging 1` to scheme
+## Examples
 
-## Output Structure
+```bash
+/ios:troubleshoot "Build failed" --type build --xcode
+/ios:troubleshoot "EXC_BAD_ACCESS" --type crash --trace
+/ios:troubleshoot "List stutters" --type performance --instruments
+/ios:troubleshoot "Data not updating" --type runtime --debug
+/ios:troubleshoot "App rejected" --type deployment
+```
+
+## Output
+
 ```markdown
 # Troubleshooting: [Issue]
-## Classification: Type | Severity | Components | iOS Version
+## Classification: Type | Severity | Components
 ## Root Cause: [Explanation]
 ## Solution: [Fix with code]
 ## Prevention: [Recommendations]
 ## Verification: [Test steps]
 ```
-
----
-
-**Delegates to**: swift-specialist (language), performance-specialist (perf/memory), architecture-specialist (design)
