@@ -3,27 +3,26 @@
 > Unified iOS development framework with 15 commands, 7 Opus agents with MCP integration, smart auto-activation, and BMAD workflows for Swift, SwiftUI, and SwiftData
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/Version-4.0.0-brightgreen.svg)](https://github.com/CarolaneLFBV/ios-development-agents)
+[![Version](https://img.shields.io/badge/Version-5.0.0-brightgreen.svg)](https://github.com/CarolaneLFBV/ios-development-agents)
 [![Swift](https://img.shields.io/badge/Swift-6.2-orange.svg)](https://swift.org)
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-Latest-blue.svg)](https://developer.apple.com/swiftui/)
 [![SwiftData](https://img.shields.io/badge/SwiftData-Latest-green.svg)](https://developer.apple.com/swiftdata/)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-8A2BE2.svg)](https://claude.com/code)
 
-## What's New in v4.0.0
+## What's New in v5.0.0
 
-- **WD Framework Architecture**: 7 core files in `.claude/` (~850 lines total)
-- **~80% Token Reduction**: Optimized structure and patterns integrated into agents
+- **Lean Framework**: 3 core files in `.claude/` (~316 lines session-loaded)
+- **-74% Context Reduction**: From 1,228 to 316 lines (7 core files consolidated into 3)
+- **Simplified Core**: ROUTING.md, CAPABILITIES.md, COMMANDS.md, FLAGS.md absorbed into CORE.md
+- **Trimmed Agents**: Redundant sections removed from all 7 Opus agents
 - **MCP Integration**: Context7 (REQUIRED before implementation) + Sequential coordination
 - **Development Tracks**: Quick, Standard, Enterprise workflows
-- **BMAD Integration**: Story File Pattern + ADR support
-- **Wave Orchestration**: Auto-activation on complexity ≥0.7
-- **Skills Integrated**: Patterns now embedded in specialist agents (no separate skills/)
 
 ## Features
 
 - **15 Specialized Commands** - Complete workflow from design to deployment
 - **7 Expert Opus Agents** - SwiftUI, Architecture, Performance, Testing, Swift, Security, DevOps with MCP integration
-- **7 Core Framework Files** - Optimized routing, flags, capabilities, workflows
+- **3 Core Framework Files** - Lean architecture with consolidated core
 - **Smart Auto-Activation** - Keyword-based persona and agent routing
 - **Context7 Required** - Always consult official documentation before implementation
 - **Production-Ready** - Enterprise-grade code patterns with quality gates
@@ -60,18 +59,14 @@
 ## Architecture
 
 ```
-.claude/                       # 7 core framework files (~850 lines)
+.claude/                       # 3 core framework files (~316 lines)
 ├── CLAUDE.md                  # Entry point with references
-├── CORE.md                    # Principles, rules, symbols
-├── ROUTING.md                 # Detection engine, orchestration
-├── CAPABILITIES.md            # 7 agents + MCP coordination
-├── COMMANDS.md                # 15 command matrix
-├── FLAGS.md                   # iOS-specific flags
-└── WORKFLOWS.md               # Development tracks, BMAD, ADR
+├── CORE.md                    # Principles, rules, agents, flags, MCP
+└── WORKFLOWS.md               # Development tracks, ADR templates
 
 .claude-plugin/plugin.json     # Plugin configuration
 commands/                      # 15 specialized commands
-agents/                        # 7 Opus expert agents (with integrated skills)
+agents/                        # 7 Opus expert agents
 hooks/                         # Smart hooks for best practices
 ```
 
@@ -202,4 +197,4 @@ MIT License - see [LICENSE](LICENSE) file.
 
 **Built with ❤️ for the iOS development community**
 
-*Version 4.0.0 • Swift 6.2 • SwiftUI • SwiftData • 15 Commands • 7 Opus Agents • MCP Integration • BMAD Workflows*
+*Version 5.0.0 • Swift 6.2 • SwiftUI • SwiftData • 15 Commands • 7 Opus Agents • MCP Integration*
