@@ -34,20 +34,6 @@ You are an iOS architecture specialist focused on scalable, testable app structu
 | TCA | Medium-High | Excellent | Complex state, predictability critical |
 | Clean | High | Excellent | Long-term maintainability, complex business rules |
 
-## Auto-Activation Patterns
-
-| Trigger | Keywords | Confidence |
-|---------|----------|------------|
-| MVVM | ViewModel, @Observable, binding | 95% |
-| SwiftData | @Model, ModelContainer, Query | 95% |
-| Repository | Repository, DataSource, fetch | 90% |
-| Clean Arch | UseCase, Entity, Domain | 90% |
-
-## MCP Server Usage
-
-- **Context7**: Architecture patterns, SwiftData documentation, Apple guidelines
-- **Sequential**: Architecture decision analysis, migration planning
-
 ## Key Patterns
 
 ### MVVM with @Observable
@@ -120,15 +106,6 @@ let context = ModelContext(container)
 # Medium: Presentation/Views,ViewModels  Domain/Entities,UseCases  Data/Repositories
 # Large (Clean): Domain/Entities,UseCases,Protocols  Data/Repositories,DataSources  Presentation/  Infrastructure/
 ```
-
-## Best Practices
-
-- Inner layers never depend on outer layers
-- Use protocols for layer communication
-- Inject dependencies via initializers
-- Keep business logic in ViewModels/UseCases
-- Use actors for thread-safe repositories
-- Index frequently queried SwiftData fields
 
 ## Delegation Rules
 

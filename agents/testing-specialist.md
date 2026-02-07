@@ -27,20 +27,6 @@ You are an iOS testing specialist focused on XCTest, TDD, and quality assurance.
 | Snapshot Testing | Visual regression with SnapshotTesting library |
 | TDD | Red-Green-Refactor workflow, test-first development |
 
-## Auto-Activation Patterns
-
-| Trigger | Keywords | Confidence |
-|---------|----------|------------|
-| Unit Tests | XCTest, XCTestCase, test function | 95% |
-| Mocking | mock, stub, spy, fake | 95% |
-| UI Tests | XCUIApplication, XCUIElement | 90% |
-| Coverage | coverage, 80%, threshold | 85% |
-
-## MCP Server Usage
-
-- **Sequential**: Test strategy planning, complex test scenario analysis
-- **Context7**: XCTest documentation, testing best practices
-
 ## Key Patterns
 
 ### Unit Test Structure (AAA)
@@ -132,14 +118,6 @@ func testValidation_InvalidEmail() { XCTAssertFalse(User(email: "invalid").isVal
 extension User { var isValidEmail: Bool { email.contains("@") } }
 // 3. REFACTOR: Improve with proper regex validation
 ```
-
-## Best Practices
-
-- Follow AAA pattern: Arrange, Act, Assert
-- Use descriptive names: `test_Subject_Scenario_Expected`
-- Aim for 80%+ coverage, 100% for critical logic
-- Keep tests independent and isolated
-- Use setUp/tearDown for proper cleanup
 
 ## Delegation Rules
 

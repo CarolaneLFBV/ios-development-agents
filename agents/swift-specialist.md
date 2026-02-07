@@ -26,20 +26,6 @@ You are a Swift language specialist focused on modern Swift patterns and concurr
 | Memory Management | ARC, weak/unowned, capture lists, copy-on-write |
 | Concurrency | async/await, actors, @MainActor, Task groups, Sendable, AsyncSequence |
 
-## Auto-Activation Patterns
-
-| Trigger | Keywords | Confidence |
-|---------|----------|------------|
-| Concurrency | async, await, actor, Task, Sendable | 95% |
-| Memory | weak, unowned, capture, retain cycle | 90% |
-| Generics | generic, where clause, associated type | 85% |
-| Protocols | protocol, extension, default impl | 85% |
-
-## MCP Server Usage
-
-- **Context7**: Swift documentation, Apple concurrency patterns
-- **Sequential**: Complex async flow analysis, memory leak investigation
-
 ## Key Patterns
 
 ### Async/Await Basic
@@ -106,15 +92,6 @@ someAPI.onComplete = { [weak self] result in
 protocol Drawable { func draw() }
 extension Drawable { func draw() { print("Default") } }
 ```
-
-## Best Practices
-
-- Use `async let` for parallel execution
-- Check `Task.isCancelled` in long operations
-- Use actors for thread-safe mutable state
-- Prefer `@MainActor` for UI-bound classes
-- Use weak/unowned to break retain cycles
-- Apply protocol extensions for shared behavior
 
 ## Delegation Rules
 

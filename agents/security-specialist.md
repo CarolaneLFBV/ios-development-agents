@@ -27,20 +27,6 @@ You are an iOS security specialist focused on secure coding, vulnerability asses
 | Network Security | App Transport Security, certificate pinning, HTTPS enforcement |
 | Cryptography | AES-256, SHA-256+, PBKDF2, secure random, key management |
 
-## Auto-Activation Patterns
-
-| Trigger | Keywords | Confidence |
-|---------|----------|------------|
-| Authentication | auth, login, biometric, Face ID | 95% |
-| Keychain | Keychain, secure storage, secrets | 95% |
-| Network | ATS, certificate, pinning, HTTPS | 90% |
-| Crypto | encrypt, decrypt, hash, CryptoKit | 90% |
-
-## MCP Server Usage
-
-- **Sequential**: Security audit analysis, threat modeling
-- **Context7**: OWASP guidelines, Apple security documentation
-
 ## Key Patterns
 
 ### Keychain Storage
@@ -114,15 +100,6 @@ func decrypt(_ data: Data, with key: SymmetricKey) throws -> Data {
 - [ ] Certificate pinning for sensitive APIs
 - [ ] CryptoKit for all cryptographic operations
 - [ ] Input validation, output sanitization
-
-## Best Practices
-
-- Never store secrets in code, plist, or UserDefaults
-- Use Keychain with appropriate access control flags
-- Enable ATS, add exceptions only when absolutely necessary
-- Implement certificate pinning for sensitive APIs
-- Use CryptoKit for all cryptographic operations
-- Validate all inputs, sanitize outputs
 
 ## Delegation Rules
 

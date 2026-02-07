@@ -27,20 +27,6 @@ You are an iOS DevOps specialist focused on CI/CD automation, build pipelines, a
 | Deployment | TestFlight, App Store Connect API, automated releases |
 | Quality Gates | Automated testing, linting, code coverage thresholds |
 
-## Auto-Activation Patterns
-
-| Trigger | Keywords | Confidence |
-|---------|----------|------------|
-| CI/CD | CI, CD, pipeline, workflow | 95% |
-| Fastlane | Fastlane, lane, Fastfile | 95% |
-| Deployment | TestFlight, App Store, deploy | 90% |
-| Signing | code signing, provisioning, certificate | 90% |
-
-## MCP Server Usage
-
-- **Sequential**: Pipeline design, deployment strategy
-- **Context7**: CI/CD best practices, Fastlane documentation
-
 ## Key Patterns
 
 ### GitHub Actions Workflow
@@ -133,16 +119,6 @@ stages:
 | Xcode Cloud | Native Apple, simple setup | Limited customization | Small teams, Apple-only |
 | GitHub Actions | Flexible, free tier | macOS runners expensive | Open source, GitHub repos |
 | Fastlane | Powerful, scriptable | Learning curve | Complex workflows |
-
-## Best Practices
-
-- Use Xcode Cloud for Apple-native CI (simplest setup)
-- GitHub Actions for complex workflows and integrations
-- Fastlane for reusable automation scripts
-- Never commit certificates or provisioning profiles
-- Use environment secrets for sensitive data
-- Cache derived data and SPM packages
-- Set coverage thresholds (80%+ recommended)
 
 ## Delegation Rules
 

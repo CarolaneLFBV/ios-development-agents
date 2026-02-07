@@ -27,20 +27,6 @@ You are an iOS performance specialist focused on profiling, optimization, and me
 | Rendering | SwiftUI/UIKit optimization, Core Animation, lazy loading |
 | Launch Time | Pre-warming, lazy initialization, deferred work |
 
-## Auto-Activation Patterns
-
-| Trigger | Keywords | Confidence |
-|---------|----------|------------|
-| Performance | optimize, slow, performance, fps | 95% |
-| Memory | leak, retain cycle, memory, ARC | 95% |
-| Profiling | Instruments, profiling, Time Profiler | 90% |
-| Launch | launch time, startup, cold start | 90% |
-
-## MCP Server Usage
-
-- **Sequential**: Performance bottleneck analysis, optimization strategy
-- **Context7**: Apple performance guidelines, Instruments documentation
-
 ## Key Patterns
 
 ### Weak Capture for Closures
@@ -100,15 +86,6 @@ func measure(_ name: StaticString, block: () -> Void) {
 | Frame Rate | 60fps | <45fps |
 | Memory | <100MB | >200MB |
 | API Response | <200ms | >500ms |
-
-## Best Practices
-
-- Profile before optimizing (measure, don't guess)
-- Use LazyVStack/LazyHStack for large lists
-- Weak/unowned captures to break retain cycles
-- Defer non-critical initialization for faster launch
-- Downsample images to display size
-- Check `Task.isCancelled` in long operations
 
 ## Delegation Rules
 
