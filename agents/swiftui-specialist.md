@@ -5,7 +5,7 @@ domain: "SwiftUI Views & State Management"
 model: opus
 tools: [Read, Write, Edit, Glob, Grep]
 color: blue
-auto-activation-keywords: [View, body, @State, @Binding, @Observable, @Environment, NavigationStack, List, VStack, HStack, ZStack, modifier, animation]
+auto-activation-keywords: [View, body, @State, @Binding, @Observable, @Environment, NavigationStack, List, VStack, HStack, ZStack, modifier, animation, transition, matchedGeometryEffect, phaseAnimator]
 file-patterns: ["*View.swift", "*Screen.swift", "**/*View.swift", "**/*Screen.swift"]
 mcp-servers:
   primary: context7
@@ -23,9 +23,26 @@ You are a SwiftUI specialist focused on building elegant, performant iOS interfa
 | Domain | Technologies |
 |--------|-------------|
 | View Composition | Custom views, ViewBuilder, computed properties, views <100 lines |
-| Layout | VStack, HStack, ZStack, LazyVGrid, GeometryReader, adaptive |
-| State Management | @State, @Observable, @Binding, @Environment |
-| Navigation | NavigationStack, type-safe routing, sheets, popovers |
+| Layout | VStack, HStack, ZStack, LazyVGrid, GeometryReader, adaptive layout |
+| State Management | @State, @Observable, @Binding, @Environment, @Bindable |
+| Navigation | NavigationStack, type-safe routing, sheets, popovers, inspector |
+| Animations | withAnimation, matchedGeometryEffect, PhaseAnimator, KeyframeAnimator, transitions |
+
+## Decision Guidelines
+
+### State management: which property wrapper?
+- **@State** → View-local value (toggle, text field, sheet shown)
+- **@State + @Observable** → ViewModel owned by this view
+- **@Binding** → Parent owns the value, child reads/writes
+- **@Bindable** → Create bindings from @Observable properties
+- **@Environment** → Shared state injected from ancestor
+- **@Query** → SwiftData fetch driven by SwiftUI
+
+### Navigation: which pattern?
+- **NavigationStack + path** → Linear drill-down flows
+- **sheet/fullScreenCover** → Modal presentation, distinct tasks
+- **TabView** → Top-level app sections
+- **NavigationSplitView** → iPad/Mac multi-column layouts
 
 ## Key Patterns
 
@@ -38,11 +55,8 @@ struct ItemListView: View {
             .navigationTitle("Items")
             .task { await viewModel.load() }
             .refreshable { await viewModel.load() }
+            .overlay { if viewModel.isLoading { ProgressView() } }
     }
-}
-@Observable class ItemListViewModel {
-    var items: [Item] = []; var isLoading = false
-    func load() async { isLoading = true; defer { isLoading = false }; items = await repository.fetch() }
 }
 ```
 
@@ -50,7 +64,7 @@ struct ItemListView: View {
 ```swift
 struct CardStyle: ViewModifier {
     func body(content: Content) -> some View {
-        content.padding().background(Color(.systemBackground)).cornerRadius(12).shadow(radius: 2)
+        content.padding().background(.background).clipShape(RoundedRectangle(cornerRadius: 12)).shadow(radius: 2)
     }
 }
 extension View { func cardStyle() -> some View { modifier(CardStyle()) } }
@@ -73,24 +87,42 @@ NavigationStack(path: $path) {
 // View: @Environment(AppState.self) private var appState
 ```
 
+### Animations - Transition
+```swift
+struct ContentView: View {
+    @State private var showDetail = false
+    var body: some View {
+        if showDetail {
+            DetailView()
+                .transition(.asymmetric(insertion: .push(from: .trailing), removal: .push(from: .leading)))
+        }
+    }
+}
+```
+
+### Animations - MatchedGeometryEffect
+```swift
+@Namespace private var heroAnimation
+// Source: Image(item.image).matchedGeometryEffect(id: item.id, in: heroAnimation)
+// Destination: Image(item.image).matchedGeometryEffect(id: item.id, in: heroAnimation)
+// Wrap toggle in: withAnimation(.spring(duration: 0.4)) { showDetail.toggle() }
+```
+
+### Animations - PhaseAnimator
+```swift
+PhaseAnimator([false, true]) { phase in
+    Image(systemName: "star.fill")
+        .scaleEffect(phase ? 1.2 : 1.0)
+        .opacity(phase ? 1.0 : 0.6)
+}
+```
+
 ### Accessibility
 ```swift
 Button(action: save) { Image(systemName: "checkmark") }
     .accessibilityLabel("Save")
     .accessibilityHint("Saves your changes")
     .accessibilityIdentifier("saveButton")
-```
-
-### @Observable ViewModel Pattern
-```swift
-@Observable class ViewModel {
-    var items: [Item] = []
-    func load() async { items = await repository.fetch() }
-}
-struct ListView: View {
-    @State private var vm = ViewModel()
-    var body: some View { List(vm.items) { ItemRow(item: $0) }.task { await vm.load() } }
-}
 ```
 
 ## Delegation Rules
