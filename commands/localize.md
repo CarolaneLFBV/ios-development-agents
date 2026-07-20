@@ -1,16 +1,16 @@
 ---
-allowed-tools: [Read, Write, Edit, Bash, TodoWrite]
+allowed-tools: [Read, Write, Edit, Bash, TodoWrite, Task]
 description: "i18n/l10n implementation and string extraction"
 argument-hint: "[target] [--languages en,fr,es] [--extract]"
-wave-enabled: false
-category: "Delivery"
-auto-persona: ["swiftui-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:localize - Localization & i18n
 
 Localize `$ARGUMENTS` with string extraction and translation management.
+
+## Delegation
+
+Executed by the **swiftui-specialist** (view-facing strings, RTL, Dynamic Type). Spawn it via the Task tool for extraction and .strings/.stringsdict generation.
 
 ## Arguments
 

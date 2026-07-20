@@ -2,15 +2,15 @@
 allowed-tools: [Read, Write, Edit, Bash, TodoWrite, Task]
 description: "XCTest generation and test execution for iOS projects"
 argument-hint: "[target] [--type unit|ui|snapshot] [--generate]"
-wave-enabled: false
-category: "Quality"
-auto-persona: ["testing-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:test - iOS Testing
 
 Generate or run tests for `$ARGUMENTS`.
+
+## Delegation
+
+Executed by the **testing-specialist**. Spawn it via the Task tool with `--type`/`--generate`; it writes Swift Testing / XCTest suites and reports coverage.
 
 ## Arguments
 

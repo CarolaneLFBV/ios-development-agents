@@ -1,16 +1,16 @@
 ---
-allowed-tools: [Read, Write, Bash, TodoWrite]
+allowed-tools: [Read, Write, Bash, TodoWrite, Task]
 description: "App Store submission preparation and validation"
 argument-hint: "[--validate] [--screenshots] [--metadata]"
-wave-enabled: false
-category: "Delivery"
-auto-persona: ["devops-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:publish - App Store Publishing
 
 Prepare app for App Store submission: `$ARGUMENTS`.
+
+## Delegation
+
+Executed by the **devops-specialist**. Spawn it via the Task tool for build validation, signing, screenshots, and App Store Connect metadata.
 
 ## Arguments
 

@@ -2,15 +2,15 @@
 allowed-tools: [Read, Edit, Bash, TodoWrite, Task]
 description: "Performance optimization with Instruments profiling"
 argument-hint: "[target] [--metric launch|render|memory|battery]"
-wave-enabled: false
-category: "Migration"
-auto-persona: ["performance-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:optimize - Performance Optimization
 
 Optimize `$ARGUMENTS` using Instruments profiling and best practices.
+
+## Delegation
+
+Executed by the **performance-specialist**. Spawn it via the Task tool with the `--metric` and `--goal`; it profiles, applies optimizations, and reports before/after measurements.
 
 ## Arguments
 

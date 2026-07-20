@@ -2,15 +2,18 @@
 allowed-tools: [Read, Write, Edit, Glob, TodoWrite, Task]
 description: "Design UI/UX and system architecture with Apple HIG compliance"
 argument-hint: "[component] [--scope ui|architecture|system] [--pattern mvvm]"
-wave-enabled: true
-category: "Development"
-auto-persona: ["swiftui-specialist", "architecture-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:design - UI/UX & Architecture Design
 
 Design `$ARGUMENTS` following Apple Human Interface Guidelines and iOS architecture best practices.
+
+## Delegation
+
+Route by `--scope` via the Task tool:
+- `ui` → **swiftui-specialist**
+- `architecture` → **architecture-specialist**
+- `system` → both in parallel, then synthesize the combined design.
 
 ## Arguments
 

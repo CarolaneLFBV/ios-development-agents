@@ -1,6 +1,6 @@
 {
   "name": "ios-development",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "owner": {
     "name": "iOS Development Framework",
     "email": "carolanelefebvre@okorp.fr"
@@ -14,7 +14,7 @@
       "name": "ios",
       "source": "./",
       "description": "Lean iOS development framework with 15 commands and 7 Opus agents for Swift, SwiftUI, SwiftData, and modern iOS patterns.",
-      "version": "5.1.0",
+      "version": "5.2.0",
       "category": "iOS Development",
       "keywords": [
         "ios",

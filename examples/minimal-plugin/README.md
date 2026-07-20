@@ -43,7 +43,7 @@ Create `agents/your-agent.md`:
 name: your-agent
 description: Brief description of what this agent does and when to use it. Use PROACTIVELY for specific scenarios.
 model: sonnet  # or opus for complex reasoning, haiku for simple tasks
-tools: read, write, edit, bash, grep, glob
+tools: Read, Write, Edit, Bash, Grep, Glob   # Capitalized; add mcp__<server>__<tool> to grant MCP
 ---
 
 # Your Agent Name
@@ -73,43 +73,38 @@ If you need orchestration, create `commands/your-command.md`:
 
 ```markdown
 ---
-name: Your Command Name
-description: What this command orchestrates
-version: 1.0
-
-required_parameters:
-  - name: param1
-    type: string
-    description: Parameter description
-
-optional_parameters:
-  - name: param2
-    type: boolean
-    default: false
-
-execution:
-  phases:
-    - phase_one
-    - phase_two
+allowed-tools: [Read, Write, Edit, Glob, Grep, Task]
+description: What this command orchestrates and when to use it
+argument-hint: "[target] [--option value]"
 ---
 
-# Your Command
+# /your-plugin:your-command
 
-## Phase 1: Description
+Do something with `$ARGUMENTS`.
 
-### Execution
-\`\`\`
-Use Task tool:
-- subagent_type: "your-agent"
-- prompt: """
-  Instructions for the agent using {{param1}}
-  """
-\`\`\`
+## Delegation
 
-## Phase 2: Description
+Spawn your specialist(s) via the Task tool (requires `Task` in `allowed-tools`):
+- condition A → **your-agent**
+- condition B → **another-agent** (run in parallel, then synthesize)
 
-[Continue with more phases]
+## Arguments
+
+| Flag | Values | Default | Description |
+|------|--------|---------|-------------|
+| `--option` | a\|b | a | What it controls |
+
+## Workflow
+
+1. Parse `$ARGUMENTS` (`$1`, `$2`… for positional args)
+2. Delegate the work to the relevant agent(s)
+3. Consolidate their output into the result
 ```
+
+> **Real format only.** Claude Code reads just `allowed-tools`, `description`,
+> `argument-hint`, and `model`. Fields like `version`, `required_parameters`,
+> or `execution.phases` are ignored, and there is no `{{var}}` templating —
+> use `$ARGUMENTS` / `$1`. Express phases and context-passing in the body text.
 
 ### Step 3: Add to Marketplace
 

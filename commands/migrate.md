@@ -2,15 +2,20 @@
 allowed-tools: [Read, Edit, Write, TodoWrite, Task]
 description: "Migration paths for iOS (UIKit→SwiftUI, CoreData→SwiftData, Swift 5→6)"
 argument-hint: "[source] [target] [--strategy incremental|complete]"
-wave-enabled: true
-category: "Migration"
-auto-persona: ["architecture-specialist", "swift-specialist", "swiftui-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:migrate - iOS Migration
 
 Migrate `$ARGUMENTS` between frameworks, patterns, and Swift versions.
+
+## Delegation
+
+Coordinated by the **architecture-specialist**; route the migration path to the owning specialist via the Task tool:
+- UIKit→SwiftUI → **swiftui-specialist**
+- CoreData→SwiftData / MVC→MVVM → **architecture-specialist**
+- Swift 5→6 / ObservableObject→@Observable / completion→async → **swift-specialist**
+
+With `--adr`, the architecture-specialist records the decision.
 
 ## Arguments
 

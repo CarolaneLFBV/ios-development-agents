@@ -1,16 +1,16 @@
 ---
-allowed-tools: [Read, Write, Edit, Glob, Grep, TodoWrite]
+allowed-tools: [Read, Write, Edit, Glob, Grep, TodoWrite, Task]
 description: "Generate documentation (README, API docs, DocC, inline comments)"
 argument-hint: "[target] [--type readme|api|docc|inline] [--export]"
-wave-enabled: false
-category: "Documentation"
-auto-persona: ["architecture-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:document - Documentation Generation
 
 Generate documentation for `$ARGUMENTS`.
+
+## Delegation
+
+Spawn the specialist owning the documented code via the Task tool for accurate DocC/API docs: **architecture-specialist** for ViewModels/services/models, **swiftui-specialist** for views.
 
 ## Arguments
 

@@ -2,15 +2,22 @@
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, TodoWrite, Task]
 description: "iOS feature implementation with SwiftUI/UIKit and architectural patterns"
 argument-hint: "[feature] [--framework swiftui|uikit] [--pattern mvvm|tca]"
-wave-enabled: true
-category: "Development"
-auto-persona: ["swiftui-specialist", "architecture-specialist", "swift-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:implement - iOS Feature Implementation
 
 Implement iOS features using `$ARGUMENTS` as the feature description.
+
+## Delegation
+
+Coordinate specialists via the Task tool (each queries context7 before writing):
+1. **architecture-specialist** → structure, @Observable ViewModels, SwiftData models, DI
+2. **swiftui-specialist** → views, navigation, state
+3. **swift-specialist** → concurrency, generics, networking
+4. **testing-specialist** → if `--with-tests`
+5. **swiftui-specialist** → accessibility pass if `--accessibility`
+
+Run independent specialists in parallel; sequence steps that depend on prior output.
 
 ## Arguments
 

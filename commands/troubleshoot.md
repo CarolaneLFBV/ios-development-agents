@@ -2,15 +2,19 @@
 allowed-tools: [Read, Grep, Glob, Bash, TodoWrite, Task]
 description: "Diagnose and resolve iOS issues in code, builds, runtime, and system behavior"
 argument-hint: "[issue] [--type crash|build|performance] [--debug]"
-wave-enabled: false
-category: "Analysis"
-auto-persona: ["swift-specialist", "performance-specialist"]
-mcp-servers: ["sequential"]
 ---
 
 # /ios:troubleshoot - iOS Issue Diagnosis
 
 Diagnose and resolve the issue from `$ARGUMENTS`.
+
+## Delegation
+
+Route by `--type` via the Task tool:
+- `crash` / `runtime` / `build` / `data` → **swift-specialist**
+- `performance` → **performance-specialist**
+- `ui` → **swiftui-specialist**
+- `deployment` → **devops-specialist**
 
 ## Arguments
 

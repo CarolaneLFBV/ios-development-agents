@@ -2,15 +2,19 @@
 allowed-tools: [Read, Grep, Glob, Bash, TodoWrite, Task]
 description: "Analyze iOS code for quality, performance, security, and review"
 argument-hint: "[target] [--focus performance|security] [--review] [--score]"
-wave-enabled: true
-category: "Analysis"
-auto-persona: ["swift-specialist", "architecture-specialist", "performance-specialist", "security-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:analyze - iOS Code Analysis & Review
 
 Analyze `$ARGUMENTS` for performance, architecture, security, quality, and code review.
+
+## Delegation
+
+Route by `--focus`, spawning specialists in parallel via the Task tool (one Task per specialist), then consolidate their findings into the output below:
+- `security` → **security-specialist**
+- `performance` → **performance-specialist**
+- `architecture` → **architecture-specialist**
+- `quality` (default) or `--review` → **swift-specialist** + **swiftui-specialist**
 
 ## Arguments
 

@@ -2,15 +2,15 @@
 allowed-tools: [Read, Grep, Glob, Edit, TodoWrite, Task]
 description: "Security audit (OWASP, Keychain, ATS, data protection, authentication)"
 argument-hint: "[target] [--focus auth|storage|network] [--owasp]"
-wave-enabled: false
-category: "Quality"
-auto-persona: ["security-specialist"]
-mcp-servers: ["context7", "sequential"]
 ---
 
 # /ios:security - Security Audit
 
 Audit security for `$ARGUMENTS`.
+
+## Delegation
+
+Executed by the **security-specialist**. Spawn it via the Task tool with `--focus`/`--owasp`; it audits, reports findings by severity, and applies safe fixes with `--fix`.
 
 ## Arguments
 

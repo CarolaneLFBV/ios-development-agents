@@ -54,7 +54,7 @@
 | architecture-specialist | MVVM, TCA, SwiftData, DI | context7 |
 | performance-specialist | Instruments, memory, rendering | context7 |
 | testing-specialist | XCTest, UI testing, TDD | context7 |
-| security-specialist | OWASP, Keychain, encryption | context7, sequential |
+| security-specialist | OWASP, Keychain, encryption | context7 |
 | devops-specialist | CI/CD, Xcode Cloud, Fastlane | context7 |
 
 ### Delegation Rules
@@ -111,14 +111,14 @@ Library IDs:
 - `/apple/combine` - Combine framework
 - `/pointfreeco/swift-composable-architecture` - TCA
 
-### Sequential (Complex Analysis)
+### Analysis Depth
 
-Multi-step reasoning for --think/--think-hard/--ultrathink, security audits, architecture decisions.
+Extended reasoning for security audits and architecture decisions, scaled via flags:
 
 ```yaml
---think:       4K tokens, module-level
---think-hard:  10K tokens, system-wide
---ultrathink:  32K tokens, critical analysis
+--think:       module-level analysis
+--think-hard:  system-wide analysis
+--ultrathink:  critical, deep analysis
 ```
 
 ## Key Flags

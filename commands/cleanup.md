@@ -2,15 +2,15 @@
 allowed-tools: [Read, Grep, Glob, Edit, Bash, TodoWrite, Task]
 description: "Clean up iOS code, find dead code, unused resources, and technical debt"
 argument-hint: "[target] [--type dead-code|imports|resources] [--fix]"
-wave-enabled: false
-category: "Quality"
-auto-persona: ["swift-specialist", "architecture-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:cleanup - iOS Code Cleanup
 
 Clean up `$ARGUMENTS`: dead code detection, unused resources, deprecated APIs.
+
+## Delegation
+
+Spawn the **swift-specialist** (dead code, unused language constructs) and, for structural cleanup, the **architecture-specialist** via the Task tool. Consolidate their reports before applying with `--fix`.
 
 ## Arguments
 

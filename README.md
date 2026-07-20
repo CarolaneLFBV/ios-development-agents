@@ -1,30 +1,29 @@
 # iOS Development Framework
 
-> Unified iOS development framework with 15 commands, 7 Opus agents with MCP integration, smart auto-activation, and BMAD workflows for Swift, SwiftUI, and SwiftData
+> iOS development framework with 15 commands and 7 Opus specialist agents that delegate automatically and consult Context7, for Swift 6, SwiftUI, and SwiftData
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/Version-5.0.0-brightgreen.svg)](https://github.com/CarolaneLFBV/ios-development-agents)
+[![Version](https://img.shields.io/badge/Version-5.2.0-brightgreen.svg)](https://github.com/CarolaneLFBV/ios-development-agents)
 [![Swift](https://img.shields.io/badge/Swift-6.2-orange.svg)](https://swift.org)
 [![SwiftUI](https://img.shields.io/badge/SwiftUI-Latest-blue.svg)](https://developer.apple.com/swiftui/)
 [![SwiftData](https://img.shields.io/badge/SwiftData-Latest-green.svg)](https://developer.apple.com/swiftdata/)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-8A2BE2.svg)](https://claude.com/code)
 
-## What's New in v5.0.0
+## What's New in v5.2.0
 
-- **Lean Framework**: 3 core files in `.claude/` (~316 lines session-loaded)
-- **-74% Context Reduction**: From 1,228 to 316 lines (7 core files consolidated into 3)
-- **Simplified Core**: ROUTING.md, CAPABILITIES.md, COMMANDS.md, FLAGS.md absorbed into CORE.md
-- **Trimmed Agents**: Redundant sections removed from all 7 Opus agents
-- **MCP Integration**: Context7 (REQUIRED before implementation) + Sequential coordination
-- **Development Tracks**: Quick, Standard, Enterprise workflows
+- **Agents that actually delegate**: every specialist now has a `description` that drives automatic delegation, and each of the 15 commands explicitly routes to the right specialist via the Task tool.
+- **Real Context7 access**: agents are granted the Context7 MCP tools and query it before writing non-trivial code.
+- **Leaner agents**: ~30% smaller system prompts — signature Swift 6 / SwiftData patterns kept, boilerplate removed.
+- **Cleaned metadata**: removed non-standard/decorative frontmatter and dead `Sequential` MCP references.
+- **Smarter hook**: reliable anti-pattern detection (ignores strings/comments), non-blocking `additionalContext` output.
 
 ## Features
 
 - **15 Specialized Commands** - Complete workflow from design to deployment
 - **7 Expert Opus Agents** - SwiftUI, Architecture, Performance, Testing, Swift, Security, DevOps with MCP integration
 - **3 Core Framework Files** - Lean architecture with consolidated core
-- **Smart Auto-Activation** - Keyword-based persona and agent routing
-- **Context7 Required** - Always consult official documentation before implementation
+- **Automatic Delegation** - Commands and the main agent route to specialists via rich `description` fields
+- **Context7 Integration** - Agents consult official documentation before implementation
 - **Production-Ready** - Enterprise-grade code patterns with quality gates
 
 ## Installation
@@ -59,12 +58,12 @@
 ## Architecture
 
 ```
-.claude/                       # 3 core framework files (~316 lines)
+.claude/                       # 3 core framework files (~280 lines)
 ├── CLAUDE.md                  # Entry point with references
 ├── CORE.md                    # Principles, rules, agents, flags, MCP
 └── WORKFLOWS.md               # Development tracks, ADR templates
 
-.claude-plugin/plugin.json     # Plugin configuration
+.claude-plugin/marketplace.json # Plugin + marketplace configuration
 commands/                      # 15 specialized commands
 agents/                        # 7 Opus expert agents
 hooks/                         # Smart hooks for best practices
@@ -86,15 +85,15 @@ hooks/                         # Smart hooks for best practices
 
 ### 7 Opus Agents
 
-| Agent | Domain | MCP Servers |
-|-------|--------|-------------|
-| **swift-specialist** | Generics, protocols, async/await, actors | Context7, Sequential |
-| **swiftui-specialist** | Views, layouts, state, navigation | Context7, Sequential |
-| **architecture-specialist** | MVVM, TCA, SwiftData, DI | Context7, Sequential |
-| **performance-specialist** | Instruments, memory, rendering | Sequential, Context7 |
-| **testing-specialist** | XCTest, UI testing, TDD | Sequential, Context7 |
-| **security-specialist** | OWASP, Keychain, encryption, ATS | Sequential, Context7 |
-| **devops-specialist** | CI/CD, Xcode Cloud, Fastlane | Sequential, Context7 |
+| Agent | Domain | MCP |
+|-------|--------|-----|
+| **swift-specialist** | Swift 6, concurrency, generics, protocols, memory/ownership | Context7 |
+| **swiftui-specialist** | Views, layouts, state, navigation, animations, a11y | Context7 |
+| **architecture-specialist** | MVVM, TCA, Clean, SwiftData, DI | Context7 |
+| **performance-specialist** | Instruments, memory, rendering | Context7 |
+| **testing-specialist** | Swift Testing, XCTest, UI testing, TDD | Context7 |
+| **security-specialist** | OWASP, Keychain, encryption, ATS | Context7 |
+| **devops-specialist** | CI/CD, Xcode Cloud, Fastlane | Context7 |
 
 ### Development Tracks
 
@@ -106,11 +105,12 @@ hooks/                         # Smart hooks for best practices
 
 ### Smart Hooks
 
-- **iOS Best Practices Hook**: Reminds you of modern patterns when editing Swift files
+- **iOS Best Practices Hook**: Non-blocking reminders when editing Swift files
   - Suggests `@Observable` over `ObservableObject`
-  - Warns about force unwrapping
-  - Recommends `LazyVStack` for lists
+  - Warns about force unwrap / `try!` / `as!`
+  - Recommends `LazyVStack`/`LazyHStack` for long `ForEach` content
   - Suggests `@MainActor` over `DispatchQueue.main`
+  - Flags secrets stored in `UserDefaults` (use Keychain)
 
 ## Command Examples
 
@@ -197,4 +197,4 @@ MIT License - see [LICENSE](LICENSE) file.
 
 **Built with ❤️ for the iOS development community**
 
-*Version 5.0.0 • Swift 6.2 • SwiftUI • SwiftData • 15 Commands • 7 Opus Agents • MCP Integration*
+*Version 5.2.0 • Swift 6 • SwiftUI • SwiftData • 15 Commands • 7 Opus Agents • Context7 MCP*

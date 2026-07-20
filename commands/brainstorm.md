@@ -2,15 +2,20 @@
 allowed-tools: [Read, Write, Glob, Grep, TodoWrite, Task, WebSearch]
 description: "Structured idea generation and solution exploration for iOS development"
 argument-hint: "[topic] [--depth shallow|medium|deep] [--focus ui|architecture]"
-wave-enabled: true
-category: "Planning"
-auto-persona: ["architecture-specialist", "swiftui-specialist", "swift-specialist"]
-mcp-servers: ["context7", "sequential"]
 ---
 
 # /ios:brainstorm - Idea Generation
 
 Brainstorm `$ARGUMENTS` with structured ideas and solution exploration.
+
+## Delegation
+
+Spawn the specialist matching `--focus` via the Task tool to ground ideas in domain expertise:
+- `ui` → **swiftui-specialist**
+- `architecture` / `data` → **architecture-specialist**
+- `performance` → **performance-specialist**
+
+For cross-cutting topics, spawn several in parallel and synthesize their input.
 
 ## Arguments
 

@@ -1,16 +1,16 @@
 ---
-allowed-tools: [Read, Edit, TodoWrite]
+allowed-tools: [Read, Edit, TodoWrite, Task]
 description: "Comprehensive accessibility audit and implementation (VoiceOver, Dynamic Type, etc.)"
 argument-hint: "[target] [--level a|aa|aaa] [--fix]"
-wave-enabled: false
-category: "Delivery"
-auto-persona: ["swiftui-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:accessibility - Accessibility Compliance
 
 Audit accessibility for `$ARGUMENTS` including VoiceOver, Dynamic Type, and WCAG compliance.
+
+## Delegation
+
+Executed by the **swiftui-specialist** (accessibility is its domain). Spawn it via the Task tool with the target and flags; relay its audit and applied fixes.
 
 ## Arguments
 

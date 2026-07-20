@@ -2,15 +2,21 @@
 allowed-tools: [Read, Grep, Glob, Edit, TodoWrite, Task]
 description: "Improve iOS code quality, performance, and maintainability"
 argument-hint: "[target] [--focus performance|accessibility] [--to observable]"
-wave-enabled: true
-category: "Quality"
-auto-persona: ["swift-specialist", "swiftui-specialist", "performance-specialist", "architecture-specialist"]
-mcp-servers: ["context7"]
 ---
 
 # /ios:improve - iOS Code Improvement
 
 Improve code from `$ARGUMENTS` for quality, performance, and maintainability.
+
+## Delegation
+
+Route by `--focus` / `--to` via the Task tool:
+- `performance` → **performance-specialist**
+- `accessibility` → **swiftui-specialist**
+- `architecture` / `--to swiftdata` → **architecture-specialist**
+- `quality` / `--to observable|async|actor` → **swift-specialist**
+
+With `--preview`, have the specialist report proposed changes before applying.
 
 ## Arguments
 

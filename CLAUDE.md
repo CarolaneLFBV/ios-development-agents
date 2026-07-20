@@ -6,9 +6,9 @@ This file provides guidance to Claude Code when working with this repository.
 
 ## Project Overview
 
-**iOS Development Framework v5.0.0** for Claude Code with 15 commands, 7 Opus agents with MCP integration.
+**iOS Development Framework v5.2.0** for Claude Code with 15 commands, 7 Opus agents with MCP integration.
 
-**Version**: v5.0.0
+**Version**: v5.2.0
 **Plugin Name**: `ios`
 **Repository**: CarolaneLFBV/ios-development-agents
 
