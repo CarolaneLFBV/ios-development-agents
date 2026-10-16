@@ -1,0 +1,32 @@
+---
+name: ios-testing
+description: "Write, repair, or run iOS unit, integration, UI, snapshot, and performance tests. Use for requested test work, test failures, or meaningful behavioral regression coverage."
+---
+
+# Testing
+
+Inspect the test target, toolchain and existing test style. Swift Testing ships
+with Swift 6/Xcode 16 tooling; do not decide framework availability solely from
+the app's iOS deployment target. Verify runtime/toolchain compatibility for the
+actual test target. Consult official documentation for unfamiliar testing APIs.
+
+- Prefer Swift Testing for suitable new unit tests; preserve existing XCTest
+  suites. Use XCTest/XCUITest for UI and XCTest performance measurements. Both
+  frameworks can coexist, but do not mix their assertion/lifecycle APIs in one test.
+- Test observable behavior, failure paths and meaningful state transitions. Avoid
+  tests of trivial accessors, framework internals, or implementation wording.
+  Respect the project's coverage policy; do not invent an 80% gate.
+- Swift Testing runs tests in parallel by default. Isolate fixtures, databases,
+  clocks and network doubles. Use `@MainActor` for UI-isolated fixtures; serialize
+  only when a shared resource genuinely requires it.
+- Synchronize async tests with controllable dependencies or supported expectations.
+  Creating a `Task` and immediately asserting a loading flag is racy. Avoid sleeps
+  as a substitute for a deterministic readiness signal.
+- Use a fresh SwiftData container per isolated store test and keep it alive for
+  the test. Test migrations with old on-disk stores; in-memory tests do not cover them.
+- Discover the real scheme, test plan and installed simulator before invoking
+  `xcodebuild`. Use `swift test` only for compatible package targets.
+
+Execute the requested tests directly without recursive delegation. Report commands,
+passed/failed/skipped counts from actual output and any environmental blockers.
+Report coverage only when measured; distinguish generated tests from executed tests.

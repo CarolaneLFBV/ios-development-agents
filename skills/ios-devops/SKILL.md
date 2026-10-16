@@ -1,0 +1,33 @@
+---
+name: ios-devops
+description: "Configure or troubleshoot iOS builds, signing, CI/CD, TestFlight, and App Store delivery. Use for build infrastructure and release preparation."
+---
+
+# Build and delivery
+
+Inspect existing scripts, lockfiles, CI, signing and release policy. Discover the
+installed Xcode, schemes, test plans and simulator destinations. Check current
+Apple and provider documentation when choosing SDKs, runner images, actions or
+submission requirements; Context7 is optional.
+
+- Separate compiler, SDK, deployment target, and App Store submission constraints.
+  Never assume a particular Xcode app path, simulator name or hosted runner image.
+  Respect pinned versions and update them only within the requested scope.
+- Follow existing CI conventions. Pin external actions/dependencies according to
+  repository policy, minimize token permissions, and isolate signing credentials
+  from untrusted pull requests. Do not print keys or provisioning secrets.
+- Match validation to the change: build/test affected targets, run existing lint
+  and coverage policy, retain useful result bundles. Do not add arbitrary coverage
+  thresholds or run a release pipeline for a documentation edit.
+- Preserve entitlements, bundle IDs, build numbering and export options. Test
+  signing on the intended distribution path; a simulator build does not prove
+  that archive/export or device signing succeeds.
+- Fetch current App Store SDK requirements, privacy manifest/required-reason API
+  guidance, screenshot specifications and metadata requirements when preparing
+  a submission. Avoid hardcoded device-size tables that become stale.
+- Prepare and validate release artifacts under existing authorization. Upload,
+  submit or release only when those external actions are within the user's request.
+
+Execute the scoped work directly without recursive delegation. Report commands,
+artifacts and verified outcomes; identify signing, device, account or runner checks
+that could not run. A successful local build is not an App Store approval.

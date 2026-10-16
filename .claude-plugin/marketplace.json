@@ -1,11 +1,11 @@
 {
   "name": "ios-development",
-  "version": "5.2.0",
+  "version": "6.0.0",
   "owner": {
     "name": "iOS Development Framework",
     "email": "carolanelefebvre@okorp.fr"
   },
-  "description": "Lean iOS development framework with 15 commands, 7 Opus agents, and MCP integration for Swift, SwiftUI, and SwiftData development.",
+  "description": "Portable iOS specialist instructions for Claude Code and Codex, with fifteen workflows.",
   "homepage": "https://github.com/CarolaneLFBV/ios-development-agents",
   "repository": "https://github.com/CarolaneLFBV/ios-development-agents",
   "pluginRoot": "./",
@@ -13,8 +13,8 @@
     {
       "name": "ios",
       "source": "./",
-      "description": "Lean iOS development framework with 15 commands and 7 Opus agents for Swift, SwiftUI, SwiftData, and modern iOS patterns.",
-      "version": "5.2.0",
+      "description": "Fifteen iOS workflows and seven specialists sharing portable Swift, SwiftUI, persistence, testing, security and delivery guidance.",
+      "version": "6.0.0",
       "category": "iOS Development",
       "keywords": [
         "ios",

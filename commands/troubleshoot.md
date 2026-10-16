@@ -1,93 +1,26 @@
 ---
-allowed-tools: [Read, Grep, Glob, Bash, TodoWrite, Task]
 description: "Diagnose and resolve iOS issues in code, builds, runtime, and system behavior"
 argument-hint: "[issue] [--type crash|build|performance] [--debug]"
 ---
 
-# /ios:troubleshoot - iOS Issue Diagnosis
+# /ios:troubleshoot
 
-Diagnose and resolve the issue from `$ARGUMENTS`.
+Diagnose `$ARGUMENTS`. Reproduce or capture evidence before asserting a root cause.
+Report by default; apply fixes when `--fix` or the user's request authorizes them.
+Work directly unless specialist delegation is explicitly requested.
 
-## Delegation
+- `--type build|crash|performance|runtime|ui|data|deployment` narrows scope (default: runtime).
+- `--debug` / `--breakpoints` / `--trace` request appropriate debugger/capture steps.
+- `--xcode` includes Xcode-specific diagnostics.
+- `--instruments` requests profiling steps or available captures.
+- `--fix` applies scoped fixes followed by relevant verification.
 
-Route by `--type` via the Task tool:
-- `crash` / `runtime` / `build` / `data` → **swift-specialist**
-- `performance` → **performance-specialist**
-- `ui` → **swiftui-specialist**
-- `deployment` → **devops-specialist**
+Use Swift expertise for language/runtime diagnostics, SwiftUI for UI/state,
+architecture for persistence, performance for profiling, and DevOps for CI/signing.
+Build errors can have different owners; classify from actual diagnostics.
 
-## Arguments
+Inspect logs, affected inputs, toolchain and recent changes. Do not rewrite state
+management, add weak captures everywhere, reset stores or clear caches as a generic
+fix. Preserve user data while narrowing the cause.
 
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--type` | build\|crash\|performance\|runtime\|ui\|data\|deployment | runtime | Issue category |
-| `--debug` | - | - | Interactive debugging mode |
-| `--breakpoints` | - | - | Generate strategic breakpoints |
-| `--trace` | - | - | Enable detailed investigation |
-| `--xcode` | - | - | Include Xcode-specific diagnostics |
-| `--instruments` | - | - | Include Instruments recommendations |
-| `--fix` | - | - | Automatically apply safe fixes |
-
-## Issue Categories
-
-| Type | Common Issues |
-|------|---------------|
-| `build` | Compiler errors, dependencies, signing |
-| `crash` | EXC_BAD_ACCESS, SIGABRT, OOM |
-| `performance` | Slow rendering, memory leaks |
-| `runtime` | Data not updating, state issues |
-| `ui` | Layout, Safe Area, Dark mode |
-| `data` | SwiftData sync, persistence |
-| `deployment` | App rejection, entitlements |
-
-## Common Fixes
-
-```swift
-// Force Unwrap Crash
-// Before:
-let user = users.first!
-// After:
-guard let user = users.first else { return }
-
-// @Observable Not Updating
-// Before:
-class UserViewModel { var user: User? }
-// After:
-@Observable class UserViewModel { var user: User? }
-
-// Memory Leak
-// Before:
-completion = { self.doSomething() }
-// After:
-completion = { [weak self] in self?.doSomething() }
-```
-
-## LLDB Commands
-
-```lldb
-po view.recursiveDescription()     # View hierarchy
-thread backtrace all               # Thread analysis
-watchpoint set variable myVar      # Value changes
-expr -l Swift -- print(self)       # Swift expression
-```
-
-## Examples
-
-```bash
-/ios:troubleshoot "Build failed" --type build --xcode
-/ios:troubleshoot "EXC_BAD_ACCESS" --type crash --trace
-/ios:troubleshoot "List stutters" --type performance --instruments
-/ios:troubleshoot "Data not updating" --type runtime --debug
-/ios:troubleshoot "App rejected" --type deployment
-```
-
-## Output
-
-```markdown
-# Troubleshooting: [Issue]
-## Classification: Type | Severity | Components
-## Root Cause: [Explanation]
-## Solution: [Fix with code]
-## Prevention: [Recommendations]
-## Verification: [Test steps]
-```
+Return evidence, confirmed cause or ranked hypotheses, corrections and verification.

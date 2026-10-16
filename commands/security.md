@@ -1,74 +1,26 @@
 ---
-allowed-tools: [Read, Grep, Glob, Edit, TodoWrite, Task]
 description: "Security audit (OWASP, Keychain, ATS, data protection, authentication)"
 argument-hint: "[target] [--focus auth|storage|network] [--owasp]"
 ---
 
-# /ios:security - Security Audit
+# /ios:security
 
-Audit security for `$ARGUMENTS`.
+Audit `$ARGUMENTS` using security specialist expertise. Report by default; work
+directly unless delegation is explicitly requested.
 
-## Delegation
+- `--focus auth|storage|network|crypto|all` selects scope (default: all).
+- `--fix` applies scoped fixes with behavior validation.
+- `--report` includes evidence and mitigations.
+- `--owasp` maps findings to the current Mobile Top 10 edition and relevant MASVS controls.
+- `--compliance` identifies technical privacy/compliance questions requiring further review; it does not certify compliance.
 
-Executed by the **security-specialist**. Spawn it via the Task tool with `--focus`/`--owasp`; it audits, reports findings by severity, and applies safe fixes with `--fix`.
+Check assets, threat boundaries, Keychain access policies, credential lifecycle,
+ATS/trust, cryptographic key/nonce handling and sensitive logs. Use current Apple
+and OWASP sources for security details. Pinning needs a justified threat model and
+rotation strategy rather than a blanket requirement.
 
-## Arguments
+The Mobile Top 10 2024 uses M9 for insecure storage, M5 for communication and M10
+for cryptography; do not reuse the 2016 numbering. Verify the current edition.
 
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--focus` | auth\|storage\|network\|crypto\|all | all | Security focus |
-| `--fix` | - | - | Auto-fix safe security issues |
-| `--report` | - | - | Generate detailed security report |
-| `--owasp` | - | - | Check against OWASP Mobile Top 10 |
-| `--compliance` | - | - | Check GDPR, HIPAA hints |
-
-## Security Areas
-
-| Focus | Checks |
-|-------|--------|
-| `auth` | Biometric, token storage, session mgmt |
-| `storage` | Keychain usage, no secrets in code |
-| `network` | ATS, certificate pinning, HTTPS |
-| `crypto` | Modern algorithms, secure random |
-
-## OWASP Mobile Top 10
-
-1. M1 - Improper Platform Usage
-2. M2 - Insecure Data Storage
-3. M3 - Insecure Communication
-4. M4 - Insecure Authentication
-5. M5 - Insufficient Cryptography
-6. M6 - Insecure Authorization
-7. M7 - Client Code Quality
-8. M8 - Code Tampering
-9. M9 - Reverse Engineering
-10. M10 - Extraneous Functionality
-
-## Common Fixes
-
-```swift
-// ❌ BAD: UserDefaults for sensitive data
-UserDefaults.standard.set(token, forKey: "authToken")
-
-// ✅ GOOD: Keychain
-try KeychainManager.save(token, for: "authToken")
-```
-
-## Examples
-
-```bash
-/ios:security . --owasp --report
-/ios:security AuthService.swift --focus auth --fix
-/ios:security . --focus storage --compliance
-/ios:security NetworkLayer/ --focus network
-```
-
-## Output
-
-```markdown
-# Security Audit: [Target]
-## Risk Level: Critical | High | Medium | Low
-## Findings: [Count by severity]
-## Vulnerabilities: ID | Severity | Category | Location | Fix
-## Recommendations: [Prioritized list]
-```
+Return severity-ranked findings with location, preconditions, impact, mitigation
+and verification. Redact sensitive values. State static/runtime coverage and gaps.

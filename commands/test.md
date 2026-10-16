@@ -1,71 +1,26 @@
 ---
-allowed-tools: [Read, Write, Edit, Bash, TodoWrite, Task]
-description: "XCTest generation and test execution for iOS projects"
+description: "Generate or run Swift Testing, XCTest, UI, snapshot, or performance tests"
 argument-hint: "[target] [--type unit|ui|snapshot] [--generate]"
 ---
 
-# /ios:test - iOS Testing
+# /ios:test
 
-Generate or run tests for `$ARGUMENTS`.
+Generate or run the tests requested in `$ARGUMENTS` using testing specialist
+expertise. Work directly unless delegation is explicitly requested.
 
-## Delegation
+- `--type unit|ui|snapshot|performance|all` selects tests (default: unit).
+- `--coverage` collects and reports coverage with available project tooling.
+- `--generate` adds meaningful regression tests for existing behavior.
+- `--fix` repairs demonstrated failures within scope, preserving intended behavior.
 
-Executed by the **testing-specialist**. Spawn it via the Task tool with `--type`/`--generate`; it writes Swift Testing / XCTest suites and reports coverage.
+Inspect target/toolchain compatibility and existing suites. Use Swift Testing for
+suitable new unit tests; preserve XCTest, and use XCTest/XCUITest for UI/performance.
+Do not choose framework availability from an iOS 17 cutoff. Do not add snapshot
+dependencies without checking the project's existing solution.
 
-## Arguments
+Keep fixtures isolated and async synchronization deterministic. Never start a Task
+and immediately assume its loading-state mutation ran. Discover actual schemes,
+test plans and installed simulators; use `swift test` for compatible packages.
 
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--type` | unit\|ui\|snapshot\|performance\|all | unit | Test type |
-| `--coverage` | - | - | Generate code coverage report |
-| `--generate` | - | - | Generate tests for existing code |
-| `--fix` | - | - | Fix failing tests |
-
-## Test Types
-
-| Type | Framework | Purpose |
-|------|-----------|---------|
-| `unit` | XCTest | ViewModels, Services, Logic |
-| `ui` | XCUITest | User flows, interactions |
-| `snapshot` | XCTest | Visual regression |
-| `performance` | XCTest | Performance baselines |
-
-## Test Patterns
-
-```swift
-// Unit Test
-func testViewModel_LoadUsers_SetsLoadingState() async {
-    // Given
-    let viewModel = UserViewModel()
-
-    // When
-    let task = Task { await viewModel.loadUsers() }
-
-    // Then
-    XCTAssertTrue(viewModel.isLoading)
-    await task.value
-}
-
-// SwiftData Test
-let config = ModelConfiguration(isStoredInMemoryOnly: true)
-let container = try ModelContainer(for: Task.self, configurations: config)
-let context = ModelContext(container)
-```
-
-## Examples
-
-```bash
-/ios:test UserViewModel --generate --type unit
-/ios:test LoginFlow --type ui
-/ios:test . --coverage --type all
-/ios:test . --fix
-```
-
-## Output
-
-```markdown
-# Test Results: [Target]
-## Coverage: X%
-## Tests: Passed | Failed | Skipped
-## Generated: New test files
-```
+Run relevant tests when possible. Report exact commands, passed/failed/skipped
+results, measured coverage and blockers. Generated tests are not automatically passed tests.

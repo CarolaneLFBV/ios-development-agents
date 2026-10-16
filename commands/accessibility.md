@@ -1,85 +1,23 @@
 ---
-allowed-tools: [Read, Edit, TodoWrite, Task]
 description: "Comprehensive accessibility audit and implementation (VoiceOver, Dynamic Type, etc.)"
 argument-hint: "[target] [--level a|aa|aaa] [--fix]"
 ---
 
-# /ios:accessibility - Accessibility Compliance
+# /ios:accessibility
 
-Audit accessibility for `$ARGUMENTS` including VoiceOver, Dynamic Type, and WCAG compliance.
+Audit `$ARGUMENTS` for VoiceOver, Dynamic Type, contrast, focus/keyboard behavior,
+Reduce Motion, hit targets, and adaptive layout. Use SwiftUI specialist expertise;
+work directly unless the user explicitly requests delegation.
 
-## Delegation
+- `--level a|aa|aaa` selects the WCAG reference level (default: aa).
+- `--audit-only` leaves files unchanged and overrides `--fix`.
+- `--fix` applies scoped, verifiable improvements.
 
-Executed by the **swiftui-specialist** (accessibility is its domain). Spawn it via the Task tool with the target and flags; relay its audit and applied fixes.
+Inspect actual labels, reading order, custom controls, images and error states.
+Semantic colors alone do not prove contrast; measure the rendered combinations.
+Use Accessibility Inspector and simulator/device assistive technology checks when
+available. Include large accessibility sizes and long localized text for affected UI.
+A static code review does not establish WCAG conformance.
 
-## Arguments
-
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--level` | a\|aa\|aaa | aa | WCAG compliance level |
-| `--fix` | - | - | Auto-fix accessibility issues |
-| `--audit-only` | - | - | Audit without changes |
-
-## Accessibility Areas
-
-| Area | Checks |
-|------|--------|
-| VoiceOver | Labels, hints, traits, grouping |
-| Dynamic Type | Font scaling, layout adaptation |
-| Color Contrast | WCAG ratios, semantic colors |
-| Keyboard | Focus management, shortcuts |
-| Motion | Reduced motion support |
-
-## Common Fixes
-
-```swift
-// Missing Label
-// Before:
-Button(action: save) { Image(systemName: "checkmark") }
-
-// After:
-Button(action: save) { Image(systemName: "checkmark") }
-    .accessibilityLabel("Save profile")
-    .accessibilityHint("Saves your profile changes")
-
-// Fixed Font Size
-// Before:
-Text("Title").font(.system(size: 24))
-
-// After:
-Text("Title").font(.title)
-
-// Color Contrast
-// Before:
-Text("Important").foregroundColor(.gray)
-
-// After:
-Text("Important").foregroundStyle(.primary)
-```
-
-## WCAG Levels
-
-| Level | Requirements |
-|-------|-------------|
-| A | Minimum accessibility |
-| AA | Standard (recommended) |
-| AAA | Enhanced accessibility |
-
-## Examples
-
-```bash
-/ios:accessibility LoginView.swift --level aa --fix
-/ios:accessibility . --audit-only
-/ios:accessibility ProfileScreen.swift --level aaa
-```
-
-## Output
-
-```markdown
-# Accessibility Audit: [Target]
-## Compliance Level: A | AA | AAA
-## VoiceOver: Issues found | Fixed
-## Dynamic Type: Support status
-## Color Contrast: Pass/Fail ratio
-## Recommendations: Prioritized fixes
-```
+Return prioritized findings with locations, changes, checks actually performed,
+and remaining manual checks.

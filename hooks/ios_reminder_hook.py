@@ -10,34 +10,66 @@ import json
 import re
 import sys
 
+STRING_START = re.compile(r'(#+)?("""|")')
+
+
+def code_mask(content: str) -> str:
+    """Mask common Swift strings/comments; this is a heuristic, not a parser.
+
+    Interpolated expressions and regex literals are not analyzed as Swift syntax.
+    Preserve positions/newlines so masking cannot join unrelated tokens.
+    """
+    result = list(content)
+    i = 0
+    while i < len(content):
+        start = i
+        if content.startswith("//", i):
+            end = content.find("\n", i)
+            i = len(content) if end < 0 else end
+        elif content.startswith("/*", i):
+            depth = 1
+            i += 2
+            while i < len(content) and depth:
+                if content.startswith("/*", i):
+                    depth += 1
+                    i += 2
+                elif content.startswith("*/", i):
+                    depth -= 1
+                    i += 2
+                else:
+                    i += 1
+        else:
+            match = STRING_START.match(content, i)
+            if not match:
+                i += 1
+                continue
+            hashes = match.group(1) or ""
+            delimiter = match.group(2) + hashes
+            escape = "\\" + hashes
+            i += len(match.group())
+            while i < len(content):
+                if content.startswith(escape, i):
+                    i += len(escape) + 1
+                elif content.startswith(delimiter, i):
+                    i += len(delimiter)
+                    break
+                else:
+                    i += 1
+        for index in range(start, min(i, len(content))):
+            if result[index] != "\n":
+                result[index] = " "
+    return "".join(result)
+
 
 def build_reminders(content: str) -> list[str]:
+    code = code_mask(content)
     reminders = []
-
-    # Legacy observation model
-    if "ObservableObject" in content and "@Observable" not in content:
-        reminders.append("Prefer @Observable (iOS 17+) over ObservableObject.")
-
-    # Force unwraps / force try / force cast — ignore `!=` and `!` in strings/comments
-    code = re.sub(r'"(?:\\.|[^"\\])*"', '""', content)   # blank out string literals
-    code = re.sub(r'//.*', '', code)                      # drop line comments
-    force_unwraps = len(re.findall(r'(?<![!=<>/*])!(?!=)', code))
-    if force_unwraps > 0 or re.search(r'\btry!\s', code) or re.search(r'\bas!\s', code):
-        reminders.append("Avoid force unwrap / try! / as! — use guard let, if let, or try?.")
-
-    # Manual main-thread hops inside async code
-    if "DispatchQueue.main" in content and ("async " in content or "await " in content):
-        reminders.append("Prefer @MainActor over DispatchQueue.main in async contexts.")
-
-    # Non-lazy stacks driving ForEach
-    if re.search(r'\b[VH]Stack\s*[({]', content) and "ForEach" in content \
-            and "Lazy" not in content and "List" not in content:
-        reminders.append("Consider LazyVStack/LazyHStack for long ForEach content.")
-
-    # Secrets in UserDefaults
-    if re.search(r'UserDefaults[^\n]*(token|password|secret|apiKey|api_key)', content, re.IGNORECASE):
-        reminders.append("Store secrets in the Keychain, not UserDefaults.")
-
+    if re.search(r'(?<=[\w)\]])!(?!=)|\b(?:try|as)\s*!', code):
+        reminders.append("Check force unwrap / try! / as!: justify the invariant or handle failure while preserving useful errors.")
+    if "DispatchQueue.main" in code and re.search(r'\b(?:async|await)\b', code):
+        reminders.append("Check actor isolation around DispatchQueue.main; use @MainActor where appropriate for the existing API.")
+    if re.search(r'UserDefaults[^\n]*(token|password|secret|apiKey|api_key)', code, re.IGNORECASE):
+        reminders.append("Store credentials in Keychain with an appropriate access policy, not UserDefaults.")
     return reminders
 
 
@@ -47,12 +79,18 @@ def main():
     except (json.JSONDecodeError, ValueError):
         return  # nothing to do; stay silent and non-blocking
 
+    if not isinstance(input_data, dict):
+        return
     tool_input = input_data.get("tool_input", {})
+    if not isinstance(tool_input, dict):
+        return
     file_path = tool_input.get("file_path", "")
-    if not file_path.endswith(".swift"):
+    if not isinstance(file_path, str) or not file_path.endswith(".swift"):
         return
 
     content = tool_input.get("content") or tool_input.get("new_string") or ""
+    if not isinstance(content, str):
+        return
     reminders = build_reminders(content)
     if not reminders:
         return

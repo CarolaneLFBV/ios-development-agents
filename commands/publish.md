@@ -1,74 +1,26 @@
 ---
-allowed-tools: [Read, Write, Bash, TodoWrite, Task]
 description: "App Store submission preparation and validation"
 argument-hint: "[--validate] [--screenshots] [--metadata]"
 ---
 
-# /ios:publish - App Store Publishing
+# /ios:publish
 
-Prepare app for App Store submission: `$ARGUMENTS`.
+Prepare `$ARGUMENTS` for App Store delivery with DevOps expertise. Work directly
+unless delegation is explicitly requested. Preparation/validation does not itself
+request upload, submission or release; perform those actions when explicitly in scope.
 
-## Delegation
+- `--validate` checks the intended build/distribution configuration.
+- `--screenshots` prepares screenshots for currently required device/display groups.
+- `--metadata` prepares App Store metadata.
+- `--export` exports an archive/IPA when signing and tooling are available.
 
-Executed by the **devops-specialist**. Spawn it via the Task tool for build validation, signing, screenshots, and App Store Connect metadata.
+Read current Apple submission requirements, screenshot specifications, privacy
+manifest/required-reason API guidance and metadata constraints. Inspect the app's
+bundle IDs, entitlements, SDK, deployment target, version/build numbers and export
+configuration. Do not assume Xcode paths, simulator names or stale screenshot tables.
 
-## Arguments
+Validate only what can actually be checked. A simulator build does not validate
+signing/export, a privacy manifest does not establish policy compliance, and source
+review does not prove TestFlight testing occurred.
 
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--validate` | - | - | Validate build for submission |
-| `--screenshots` | - | - | Generate App Store screenshots |
-| `--metadata` | - | - | Prepare App Store metadata |
-| `--export` | - | - | Export IPA for submission |
-
-## Pre-Submission Checklist
-
-### App Store Guidelines
-- [ ] Content guidelines compliance
-- [ ] Privacy policy URL
-- [ ] Data collection disclosure
-- [ ] Age rating accurate
-
-### Technical Requirements
-- [ ] App icons (all sizes)
-- [ ] Launch screen
-- [ ] iOS version compatibility
-- [ ] Device compatibility
-
-### Metadata
-- [ ] App description
-- [ ] Keywords (100 chars)
-- [ ] Screenshots (all device sizes)
-- [ ] Preview video (optional)
-
-### Testing
-- [ ] TestFlight testing complete
-- [ ] Crash-free rate acceptable
-- [ ] Performance validated
-
-## Screenshot Sizes
-
-| Device | Size |
-|--------|------|
-| iPhone 6.7" | 1290 x 2796 |
-| iPhone 6.5" | 1284 x 2778 |
-| iPhone 5.5" | 1242 x 2208 |
-| iPad Pro 12.9" | 2048 x 2732 |
-
-## Examples
-
-```bash
-/ios:publish --validate
-/ios:publish --screenshots --metadata
-/ios:publish --export
-```
-
-## Output
-
-```markdown
-# Publishing: [App Name]
-## Validation: Pass/Fail
-## Screenshots: Generated devices
-## Metadata: Completeness status
-## Next Steps: Submission actions
-```
+Return prepared artifacts, completed checks and concrete remaining submission steps.

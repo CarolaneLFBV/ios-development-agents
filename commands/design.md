@@ -1,73 +1,25 @@
 ---
-allowed-tools: [Read, Write, Edit, Glob, TodoWrite, Task]
 description: "Design UI/UX and system architecture with Apple HIG compliance"
 argument-hint: "[component] [--scope ui|architecture|system] [--pattern mvvm]"
 ---
 
-# /ios:design - UI/UX & Architecture Design
+# /ios:design
 
-Design `$ARGUMENTS` following Apple Human Interface Guidelines and iOS architecture best practices.
+Design the component/system described by `$ARGUMENTS`. Use existing product,
+platform and architecture constraints. Produce a design proposal; implementation
+requires implementation intent in the request. Work directly unless delegation is requested.
 
-## Delegation
+- `--scope ui|architecture|system` selects scope (default: ui).
+- `--style minimal|bold|professional` conveys visual preference (default: minimal).
+- `--platform ios|ipados|macos|visionos` selects platform (default: ios).
+- `--pattern mvvm|tca|clean|viper` requests a pattern; otherwise preserve existing architecture.
+- `--modules` explores useful module boundaries.
+- `--diagram` includes an appropriate architecture/data-flow diagram.
+- `--dark-mode` includes light/dark appearance behavior.
 
-Route by `--scope` via the Task tool:
-- `ui` → **swiftui-specialist**
-- `architecture` → **architecture-specialist**
-- `system` → both in parallel, then synthesize the combined design.
+Use SwiftUI expertise for UI and architecture expertise for boundaries/persistence.
+Check current Apple HIG and API availability where the design depends on them.
+Cover state ownership, errors, navigation and accessibility where relevant. Avoid
+mandatory abstraction layers, arbitrary file counts, or a universal spacing grid.
 
-## Arguments
-
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--scope` | ui\|architecture\|system | ui | Design scope |
-| `--style` | minimal\|bold\|professional | minimal | UI design style |
-| `--platform` | ios\|ipados\|macos\|visionos | ios | Target platform |
-| `--pattern` | mvvm\|tca\|clean\|viper | mvvm | Architecture pattern |
-| `--modules` | - | - | Modular architecture design |
-| `--diagram` | - | - | Generate architecture diagrams |
-| `--dark-mode` | - | - | Include dark mode design |
-
-## Scopes
-
-### UI (--scope ui)
-- Apple HIG compliance
-- Typography: SF Pro, Dynamic Type
-- Colors: System colors, semantic colors
-- Spacing: 8pt grid system
-- Safe Area handling
-
-### Architecture (--scope architecture)
-- MVVM, TCA, Clean Architecture patterns
-- Protocol-based abstractions
-- Dependency injection
-- Repository pattern
-
-### System (--scope system)
-- Full system design (UI + Architecture)
-- Modular architecture
-- Dependency management
-- Data flow
-
-## Examples
-
-```bash
-# UI/UX Design
-/ios:design "user profile screen" --scope ui --style minimal
-
-# Architecture Design
-/ios:design "e-commerce app" --scope architecture --pattern mvvm --modules
-
-# System Design
-/ios:design "banking app" --scope system --pattern clean --diagram
-```
-
-## Output
-
-```markdown
-# Design: [Component/System]
-## Overview: Purpose and scope
-## Architecture Diagram: [If --diagram]
-## Components: Detailed breakdown
-## Patterns: Applied patterns with rationale
-## Implementation Plan: Prioritized steps
-```
+Return the proposal, tradeoffs and actionable implementation steps.

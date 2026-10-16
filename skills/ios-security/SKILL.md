@@ -1,0 +1,33 @@
+---
+name: ios-security
+description: "Implement or review iOS secure storage, authentication, cryptography, network trust, and privacy controls. Use for security-sensitive changes or an explicit security audit."
+---
+
+# Security
+
+Identify assets, trust boundaries and the actual threat model. Verify security API
+details in current Apple documentation; use OWASP MASVS/MASTG for mobile controls.
+Context7 is optional; resolve its library IDs and confirm source relevance.
+
+- Store credentials in Keychain with accessibility, access group, synchronization
+  and biometric policies appropriate to the app. Distinguish biometric UI checks
+  from Keychain-enforced access control. Handle cancellation and all OSStatus errors.
+- Update existing Keychain items instead of deleting first and ignoring errors:
+  deletion can lose a credential if the following add fails. Never echo secrets
+  into logs or reports. A privileged server secret cannot be hidden in an app binary.
+- Preserve HTTPS and ATS. Choose pinning only for a justified threat model with
+  rotation and recovery; do not prescribe it for every sensitive endpoint.
+- Use platform authentication/session primitives and standard OAuth flows with
+  PKCE where appropriate. Plan token expiry, refresh, revocation and logout.
+- Use vetted platform crypto and secure randomness. Verify nonce, key storage,
+  authenticated encryption and error handling. Do not force unwrap sealed data or
+  invent cryptographic constructions.
+- Mobile Top 10 **2024** IDs differ from 2016: M1 credentials, M2 supply chain,
+  M3 authentication/authorization, M4 input/output validation, M5 communication,
+  M6 privacy, M7 binary protections, M8 configuration, M9 storage, M10 cryptography.
+  Check the current edition before labeling findings; a Top 10 scan is not certification.
+
+Handle scoped implementation/audits directly without recursive delegation. Findings
+need location, exploit preconditions, impact and mitigation. Validate relevant
+failure paths. Distinguish static review, runtime verification and unverified
+privacy/compliance obligations; never claim legal compliance from source inspection.

@@ -1,90 +1,27 @@
 ---
-allowed-tools: [Read, Edit, Write, TodoWrite, Task]
 description: "Migration paths for iOS (UIKit→SwiftUI, CoreData→SwiftData, Swift 5→6)"
 argument-hint: "[source] [target] [--strategy incremental|complete]"
 ---
 
-# /ios:migrate - iOS Migration
+# /ios:migrate
 
-Migrate `$ARGUMENTS` between frameworks, patterns, and Swift versions.
+Migrate the source/target described by `$ARGUMENTS`. Inspect compatibility,
+dependencies, store formats and public behavior before changing them. Work directly
+using the owning specialist's expertise unless delegation is explicitly requested.
 
-## Delegation
+- `--strategy incremental|complete|hybrid` selects approach (default: incremental).
+- `--validate` emphasizes compatibility and regression verification.
+- `--backup` creates a non-destructive backup appropriate to the affected data/files.
+- `--adr` records the decision and tradeoffs.
 
-Coordinated by the **architecture-specialist**; route the migration path to the owning specialist via the Task tool:
-- UIKit→SwiftUI → **swiftui-specialist**
-- CoreData→SwiftData / MVC→MVVM → **architecture-specialist**
-- Swift 5→6 / ObservableObject→@Observable / completion→async → **swift-specialist**
+Route UIKit/Observation UI work to SwiftUI expertise, data/architecture work to
+architecture expertise, and language/concurrency work to Swift expertise.
+Separate compiler upgrades from Swift language-mode and isolation-setting changes.
+Preserve error/cancellation behavior when converting callbacks to async.
 
-With `--adr`, the architecture-specialist records the decision.
+Do not default Core Data-to-SwiftData migrations to full replacement. Plan schema
+mapping, representative existing-store upgrade tests, CloudKit implications and
+recovery. Empty in-memory tests do not establish migration safety.
 
-## Arguments
-
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--strategy` | incremental\|complete\|hybrid | incremental | Migration strategy |
-| `--validate` | - | - | Validate migration |
-| `--backup` | - | - | Create backup before migration |
-| `--adr` | - | - | Create Architecture Decision Record |
-
-## Migration Paths
-
-| From | To | Strategy |
-|------|-----|----------|
-| UIKit | SwiftUI | incremental recommended |
-| CoreData | SwiftData | complete recommended |
-| ObservableObject | @Observable | complete |
-| Completion handlers | async/await | incremental |
-| Swift 5.x | Swift 6 | validate first |
-| MVC | MVVM/TCA | incremental |
-
-## Strategies
-
-| Strategy | Use When |
-|----------|----------|
-| `incremental` | Large codebase, risk mitigation |
-| `complete` | Small scope, full replacement |
-| `hybrid` | Mixed usage during transition |
-
-## Migration Workflow
-
-```yaml
-1. analysis:
-   - Assess current implementation
-   - Identify dependencies
-   - Estimate effort
-
-2. planning:
-   - Create migration plan
-   - Define milestones
-   - Set up feature flags if needed
-
-3. execution:
-   - Migrate in phases
-   - Maintain backward compatibility
-   - Update tests
-
-4. validation:
-   - Run full test suite
-   - Performance comparison
-   - User acceptance
-```
-
-## Examples
-
-```bash
-/ios:migrate uikit swiftui --strategy incremental
-/ios:migrate coredata swiftdata --backup
-/ios:migrate swift5 swift6 --validate
-/ios:migrate observableobject observable --strategy complete
-```
-
-## Output
-
-```markdown
-# Migration: [Source] → [Target]
-## Strategy: incremental | complete | hybrid
-## Files Affected: X files
-## Changes: Before → After
-## Validation: Tests | Performance | Compatibility
-## ADR: [If --adr]
-```
+Apply bounded steps and run relevant checks. Report changed behavior, preserved
+compatibility, validation evidence and unresolved rollout/data risks.

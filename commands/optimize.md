@@ -1,85 +1,26 @@
 ---
-allowed-tools: [Read, Edit, Bash, TodoWrite, Task]
 description: "Performance optimization with Instruments profiling"
 argument-hint: "[target] [--metric launch|render|memory|battery]"
 ---
 
-# /ios:optimize - Performance Optimization
+# /ios:optimize
 
-Optimize `$ARGUMENTS` using Instruments profiling and best practices.
+Investigate and optimize `$ARGUMENTS` with performance specialist expertise.
+Work directly unless delegation is explicitly requested.
 
-## Delegation
+- `--metric launch|render|memory|battery` selects the metric (default: render).
+- `--goal <value>` provides the user's explicit target and unit.
+- `--instruments` requests profiling using available Instruments tooling.
 
-Executed by the **performance-specialist**. Spawn it via the Task tool with the `--metric` and `--goal`; it profiles, applies optimizations, and reports before/after measurements.
+Capture a comparable baseline with workload, device, OS, build mode and method.
+Discover installed profiling templates. Find a demonstrated bottleneck, make a
+scoped change, then compare the same workload and check correctness. If tools or
+devices are unavailable, distinguish hypotheses from measurements and describe
+concrete capture steps.
 
-## Arguments
+Avoid universal launch/memory thresholds, forced lazy containers, claims that
+AsyncImage supplies an application cache, or assumptions that actor wrappers make
+all cached objects Sendable. Verify actual SDK and concurrency behavior.
 
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--metric` | launch\|render\|memory\|battery | render | Optimization metric |
-| `--goal` | `<value>` | - | Performance goal (e.g., "launch<2s") |
-| `--instruments` | - | - | Use Xcode Instruments |
-
-## Optimization Areas
-
-| Metric | Focus | Target |
-|--------|-------|--------|
-| `launch` | App startup time | <2s cold, <1s warm |
-| `render` | SwiftUI rendering | 60fps, no hitches |
-| `memory` | Memory usage | <100MB baseline |
-| `battery` | Energy efficiency | Low CPU usage |
-
-## Optimization Patterns
-
-```swift
-// List Performance
-// Before:
-VStack { ForEach(items) { ExpensiveView(item: $0) } }
-
-// After:
-LazyVStack(spacing: 8) {
-    ForEach(items, id: \.id) { ItemView(item: $0).id($0.id) }
-}
-
-// Image Loading
-// Before:
-Image(uiImage: loadImage())
-
-// After:
-AsyncImage(url: imageURL) { phase in
-    switch phase {
-    case .success(let image): image.resizable()
-    default: ProgressView()
-    }
-}
-```
-
-## Instruments Templates
-
-| Template | Use Case |
-|----------|----------|
-| Time Profiler | CPU usage, hot paths |
-| Allocations | Memory usage, leaks |
-| SwiftUI | View body evaluation |
-| Core Animation | Rendering performance |
-| Energy Log | Battery consumption |
-
-## Examples
-
-```bash
-/ios:optimize App --metric launch --goal "launch<1s"
-/ios:optimize ProductList --metric render
-/ios:optimize . --metric memory --instruments
-/ios:optimize ImageLoader --metric battery
-```
-
-## Output
-
-```markdown
-# Optimization: [Target]
-## Metric: launch | render | memory | battery
-## Before: Current measurements
-## After: Improved measurements
-## Changes: Applied optimizations
-## Instruments: Profile recommendations
-```
+Report measured before/after results only when collected, plus changes, tradeoffs
+and remaining checks. Stop when the requested performance problem is resolved.

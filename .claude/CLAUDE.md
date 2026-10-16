@@ -1,12 +1,8 @@
-# iOS Development Framework
+# iOS framework
 
-Advanced iOS Development Framework for Claude Code.
-7 Opus Agents + 15 Commands + MCP Integration.
+Version 6.0.0 supports Claude Code and Codex. Repository maintenance guidance is
+in the root `AGENTS.md` (imported by `CLAUDE.md`).
 
-- Version: 5.2.0
-- Platform: iOS 17+, Swift 6
-- Model: Opus (all agents)
-- Integration: Native Claude Code Plugin
-
-@CORE.md
-@WORKFLOWS.md
+Read [CORE.md](CORE.md) for framework conventions or
+[WORKFLOWS.md](WORKFLOWS.md) when changing workflow policy. These references are
+not required context for every task. Specialist instructions live in `skills/`.

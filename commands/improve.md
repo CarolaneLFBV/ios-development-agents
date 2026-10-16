@@ -1,72 +1,25 @@
 ---
-allowed-tools: [Read, Grep, Glob, Edit, TodoWrite, Task]
 description: "Improve iOS code quality, performance, and maintainability"
 argument-hint: "[target] [--focus performance|accessibility] [--to observable]"
 ---
 
-# /ios:improve - iOS Code Improvement
+# /ios:improve
 
-Improve code from `$ARGUMENTS` for quality, performance, and maintainability.
+Improve `$ARGUMENTS` within the requested scope. Inspect current behavior and
+preserve the project's architecture and compatibility. Work directly unless
+specialist delegation is explicitly requested.
 
-## Delegation
+- `--focus performance|accessibility|architecture|quality` selects expertise (default: quality).
+- `--to observable|swiftdata|async|actor` requests a specific migration.
+- `--safe` limits changes to low-risk improvements supported by evidence.
+- `--preview` reports a proposed diff/plan without editing.
+- `--iterative` permits small implementation/validation passes, stopping when the requested outcome is met.
 
-Route by `--focus` / `--to` via the Task tool:
-- `performance` → **performance-specialist**
-- `accessibility` → **swiftui-specialist**
-- `architecture` / `--to swiftdata` → **architecture-specialist**
-- `quality` / `--to observable|async|actor` → **swift-specialist**
+Use the relevant specialist guidance. Establish a baseline before performance
+claims. Observation does not provide actor isolation; async conversion must preserve
+cancellation/errors; actors introduce reentrancy; persistence migrations must protect
+existing data. Verify version support before adopting a newer API.
 
-With `--preview`, have the specialist report proposed changes before applying.
-
-## Arguments
-
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--focus` | performance\|accessibility\|architecture\|quality | quality | Improvement focus |
-| `--to` | observable\|swiftdata\|async\|actor | - | Refactor to modern pattern |
-| `--safe` | - | - | Apply only safe, low-risk improvements |
-| `--preview` | - | - | Show improvements without applying |
-| `--iterative` | - | - | Apply improvements in multiple passes |
-
-## Refactoring Patterns (--to)
-
-| Pattern | From | To |
-|---------|------|-----|
-| `--to observable` | ObservableObject | @Observable |
-| `--to async` | Completion handlers | async/await |
-| `--to actor` | NSLock/DispatchQueue | actor |
-| `--to swiftdata` | CoreData | SwiftData |
-
-## Focus Areas
-
-| Focus | Improvements |
-|-------|-------------|
-| `performance` | LazyVStack, image optimization, memory |
-| `accessibility` | VoiceOver labels, Dynamic Type, contrast |
-| `architecture` | Protocol abstractions, DI, separation |
-| `quality` | Naming, SOLID, error handling |
-
-## Examples
-
-```bash
-# Quality improvements
-/ios:improve Views/ --focus quality --safe --preview
-
-# Performance optimization
-/ios:improve ProductListView.swift --focus performance --iterative
-
-# Refactoring
-/ios:improve ViewModel.swift --to observable
-/ios:improve DataService.swift --to async
-/ios:improve Cache.swift --to actor
-```
-
-## Output
-
-```markdown
-# Improvements: [Target]
-## Summary: Files analyzed | Issues found | Applied | Risk level
-## Changes Made: File | Issue | Solution | Impact
-## Performance Impact: Before → After metrics
-## Next Steps: Tests, profiling, verification
-```
+Avoid broad style rewrites, mandatory protocol layers or automatic lazy containers.
+Run targeted regression checks after changes. Return applied/proposed changes,
+rationale, actual verification and material limitations.

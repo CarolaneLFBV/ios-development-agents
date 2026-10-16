@@ -1,76 +1,25 @@
 ---
-allowed-tools: [Read, Write, Edit, Bash, TodoWrite, Task]
 description: "i18n/l10n implementation and string extraction"
 argument-hint: "[target] [--languages en,fr,es] [--extract]"
 ---
 
-# /ios:localize - Localization & i18n
+# /ios:localize
 
-Localize `$ARGUMENTS` with string extraction and translation management.
+Localize `$ARGUMENTS` using the project's current resource strategy. Work directly
+with SwiftUI/localization expertise unless delegation is explicitly requested.
 
-## Delegation
+- `--languages <comma-separated locales>` selects target locales (default: en).
+- `--extract` identifies/extracts localizable strings using supported project tooling.
+- `--generate` creates or updates resources in the existing format; prefer String Catalogs for modern projects without an established format.
 
-Executed by the **swiftui-specialist** (view-facing strings, RTL, Dynamic Type). Spawn it via the Task tool for extraction and .strings/.stringsdict generation.
+Preserve stable keys and existing translations. Account for interpolation types,
+plural variations, translator comments, accessibility text and locale-aware
+number/date formatting. SwiftUI `Text` literals may already be localized; do not
+blindly turn them into opaque keys or concatenate translated fragments.
 
-## Arguments
+Use `.xcstrings`, `.strings` and `.stringsdict` according to target tooling.
+Treat proposed machine translations as needing language review. Verify catalog
+validity, missing entries and affected builds where tools are available; inspect
+RTL, long strings and accessibility sizes when relevant.
 
-| Flag | Values | Default | Description |
-|------|--------|---------|-------------|
-| `--languages` | `<langs>` | en | Target languages (comma-separated) |
-| `--extract` | - | - | Extract localizable strings |
-| `--generate` | - | - | Generate .strings files |
-
-## Features
-
-| Feature | Description |
-|---------|-------------|
-| String Extraction | Find hardcoded strings in code |
-| .strings Generation | Create localization files |
-| Plural Rules | Handle plural forms correctly |
-| RTL Support | Right-to-left layout support |
-| Date/Number | Locale-aware formatting |
-
-## Localization Patterns
-
-```swift
-// Basic String
-Text("Hello, World!")
-// Becomes:
-Text("greeting_hello", bundle: .main)
-
-// String with Variable
-Text("Welcome, \(username)")
-// Becomes:
-Text("greeting_welcome \(username)")
-
-// Plural
-// Localizable.stringsdict for proper pluralization
-```
-
-## .strings Format
-
-```
-/* Greeting shown on home screen */
-"greeting_hello" = "Hello, World!";
-
-/* Welcome message with username */
-"greeting_welcome %@" = "Welcome, %@!";
-```
-
-## Examples
-
-```bash
-/ios:localize . --extract --languages "en,fr,es"
-/ios:localize LoginView.swift --generate
-/ios:localize . --languages "en,de,ja,zh"
-```
-
-## Output
-
-```markdown
-# Localization: [Target]
-## Languages: List of target languages
-## Extracted Strings: Count
-## Generated Files: .strings, .stringsdict
-## RTL Support: Status
-```
+Report locales/resources changed, untranslated entries and checks actually run.

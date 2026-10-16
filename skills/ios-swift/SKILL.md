@@ -1,0 +1,30 @@
+---
+name: ios-swift
+description: "Implement or debug Swift language, concurrency, networking, and ownership behavior. Use for compiler isolation errors or language-level changes, rather than UI layout or persistence design."
+---
+
+# Swift language
+
+Read the affected code and toolchain settings first. Distinguish compiler version,
+Swift language mode, SDK, and deployment target; preserve existing conventions.
+Consult official Swift/Apple documentation for uncertain or version-sensitive APIs;
+use Context7 if available, resolving the library ID rather than assuming one.
+
+- Inspect strict concurrency, default actor isolation, and upcoming-feature settings.
+  With Swift 6.2's `NonisolatedNonsendingByDefault`, nonisolated async functions stay
+  on the caller's actor. Use `@concurrent` only where supported and necessary.
+  `async` and `Task {}` do not inherently move CPU work off the main actor.
+- Prefer structured child tasks (`async let`, task groups) for bounded parallel
+  work. For unstructured tasks, define ownership, cancellation, and error handling.
+  Propagate cancellation through callback bridges and clean up continuations once.
+- Use actor isolation for mutable shared state; account for reentrancy across
+  `await`. Do not silence diagnostics with unchecked sendability or detached tasks
+  without establishing the actual isolation contract.
+- Preserve useful errors and URLSession response validation. Add typed throws or
+  ownership modifiers only when they improve the API and the compiler supports them.
+- Use weak captures when a demonstrated retain cycle requires them. For noncopyable
+  resources, explicit close and `deinit` must not release the same handle twice.
+
+Implement the requested change directly; do not recursively delegate. Run the
+relevant build or regression tests when available. Return the result, evidence,
+and any checks that could not run; never infer success from code inspection alone.
