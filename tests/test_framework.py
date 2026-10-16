@@ -3,6 +3,7 @@ import contextlib
 import io
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -34,8 +35,7 @@ class BundleTests(unittest.TestCase):
             for name in ("agents", "codex", "commands", "skills", "examples", ".claude-plugin", "hooks"):
                 shutil.copytree(ROOT / name, snapshot / name,
                                 ignore=shutil.ignore_patterns("__pycache__"))
-            for name in ("README.md", "AGENTS.md", "CLAUDE.md", "LICENSE",
-                         ".claude/CLAUDE.md", ".claude/CORE.md", ".claude/WORKFLOWS.md"):
+            for name in ("README.md", "AGENTS.md", "CLAUDE.md", "LICENSE"):
                 destination = snapshot / name
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(ROOT / name, destination)
@@ -46,15 +46,30 @@ class BundleTests(unittest.TestCase):
                 framework.check()
                 framework.budget()
                 report = json.loads(output.getvalue().split("\n", 1)[1])
-                self.assertEqual(report["groups"]["skills"]["files"], 8)
+                self.assertEqual(report["groups"]["skills"]["files"], 10)
                 self.assertNotIn("baseline_tokens", report["groups"]["agents"])
                 framework.install(project, with_agents=True)
             self.assertFalse((snapshot / "docs").exists())
-            self.assertEqual(len(list((project / ".agents/skills").glob("*/SKILL.md"))), 8)
-            self.assertEqual(len(list((project / ".codex/agents").glob("*.toml"))), 7)
+            self.assertEqual(len(list((project / ".agents/skills").glob("*/SKILL.md"))), 10)
+            self.assertEqual(len(list((project / ".codex/agents").glob("*.toml"))), 8)
 
     def test_generated_bundle_matches_sources(self):
         framework.check()
+
+    def test_evaluation_cases_have_distributable_inputs(self):
+        catalog = json.loads((ROOT / "evals/cases.json").read_text())
+        identifiers = set()
+        for case in catalog["cases"]:
+            with self.subTest(case=case["id"]):
+                self.assertNotIn(case["id"], identifiers)
+                identifiers.add(case["id"])
+                fixture = (ROOT / case["fixture"]).resolve()
+                self.assertTrue(fixture.is_relative_to(ROOT / "evals/fixtures"))
+                self.assertTrue(fixture.is_file())
+                self.assertTrue(case["prompt"])
+                self.assertGreaterEqual(len(case["criteria"]), 3)
+                for skill in case["skills"]:
+                    self.assertTrue((ROOT / "skills" / skill / "SKILL.md").is_file())
 
     def test_agent_instructions_are_portable_and_synchronized(self):
         for domain in framework.COLORS:
@@ -63,8 +78,14 @@ class BundleTests(unittest.TestCase):
                 _, expected = framework.markdown(source)
                 codex = tomllib.loads((ROOT / "codex/agents" / f"{domain}-specialist.toml").read_text())
                 _, claude = framework.markdown(ROOT / "agents" / f"{domain}-specialist.md")
-                self.assertEqual(codex["developer_instructions"], expected)
-                self.assertTrue(claude.endswith(expected))
+                # Restore source-relative links to compare the substantive prompts.
+                native_body = codex["developer_instructions"].replace(f"../../.agents/skills/ios-{domain}/", "")
+                claude_body = claude.replace(f"../skills/ios-{domain}/", "")
+                self.assertTrue(native_body.endswith(expected))
+                self.assertTrue(claude_body.endswith(expected))
+                for target in re.findall(r"\]\(([^)]+)\)", claude):
+                    if "://" not in target and not target.startswith("#"):
+                        self.assertTrue((ROOT / "agents" / target).is_file(), target)
 
     def test_install_is_self_contained_and_idempotent(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -77,15 +98,21 @@ class BundleTests(unittest.TestCase):
             second = {p.relative_to(project): p.read_bytes() for p in project.rglob("*") if p.is_file()}
             self.assertEqual(first, second)
             self.assertEqual(instructions.read_text(), "Existing project policy\n")
-            self.assertEqual(len(list((project / ".codex/agents").glob("*.toml"))), 7)
-            self.assertEqual(len(list((project / ".agents/skills").glob("*/SKILL.md"))), 8)
+            self.assertEqual(len(list((project / ".codex/agents").glob("*.toml"))), 8)
+            self.assertEqual(len(list((project / ".agents/skills").glob("*/SKILL.md"))), 10)
             for name in framework.COMMANDS:
                 self.assertTrue((project / ".agents/skills/ios-workflow/references" / f"{name}.md").is_file())
             # Installed packages resolve references without the source repository.
-            import re
             for path in (project / ".agents/skills").rglob("*.md"):
                 for link in re.findall(r"\]\(([^)]+)\)", path.read_text()):
-                    self.assertTrue((path.parent / link).is_file(), f"Broken installed link: {link}")
+                    if "://" not in link and not link.startswith("#"):
+                        self.assertTrue((path.parent / link).is_file(), f"Broken installed link: {link}")
+            # A custom agent can find support files without this source checkout.
+            for path in (project / ".codex/agents").glob("*.toml"):
+                body = tomllib.loads(path.read_text())["developer_instructions"]
+                for link in re.findall(r"\]\(([^)]+)\)", body):
+                    if "://" not in link and not link.startswith("#"):
+                        self.assertTrue((path.parent / link).is_file(), f"Broken agent support link: {link}")
 
     def test_skills_only_install_does_not_add_agent_configuration(self):
         with tempfile.TemporaryDirectory() as directory:

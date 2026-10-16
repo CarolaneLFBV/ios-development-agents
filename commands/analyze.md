@@ -1,5 +1,5 @@
 ---
-description: "Analyze iOS code for quality, performance, security, and review"
+description: "Review iOS code for correctness, architecture, performance, and security."
 argument-hint: "[target] [--focus performance|security] [--review] [--score]"
 ---
 
@@ -18,8 +18,8 @@ Work directly unless the user explicitly requests parallel specialists.
 - `--export <path>` saves the report to that path.
 
 Use the relevant specialist expertise. Check deployment/toolchain compatibility,
-isolation, error paths, state identity and security where relevant. Avoid blanket
-ObservableObject migrations, mandatory protocols or lazy-stack substitutions.
+isolation, error paths, state identity and security where relevant. Prioritize
+behavioral risks over stylistic preferences.
 
 Report findings by severity with file/line, trigger, impact and suggested correction.
 State when there are no actionable findings and disclose validation gaps.

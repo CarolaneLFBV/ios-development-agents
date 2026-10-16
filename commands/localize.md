@@ -1,5 +1,5 @@
 ---
-description: "i18n/l10n implementation and string extraction"
+description: "Extract and maintain localized iOS strings and catalog variations."
 argument-hint: "[target] [--languages en,fr,es] [--extract]"
 ---
 

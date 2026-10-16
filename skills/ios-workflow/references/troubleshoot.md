@@ -6,7 +6,7 @@ Diagnose `$ARGUMENTS`. Reproduce or capture evidence before asserting a root cau
 Report by default; apply fixes when `--fix` or the user's request authorizes them.
 Work directly unless specialist delegation is explicitly requested.
 
-- `--type build|crash|performance|runtime|ui|data|deployment` narrows scope (default: runtime).
+- `--type build|crash|performance|runtime|ui|data|platform|purchase|deployment` narrows scope (default: runtime).
 - `--debug` / `--breakpoints` / `--trace` request appropriate debugger/capture steps.
 - `--xcode` includes Xcode-specific diagnostics.
 - `--instruments` requests profiling steps or available captures.
@@ -14,6 +14,9 @@ Work directly unless specialist delegation is explicitly requested.
 
 Use Swift expertise for language/runtime diagnostics, SwiftUI for UI/state,
 architecture for persistence, performance for profiling, and DevOps for CI/signing.
+Use platform expertise for lifecycle, background delivery, incoming events and
+extensions; StoreKit expertise for purchases and entitlement state. Keep UIKit/hybrid
+screen and wrapper behavior in the UI role.
 Build errors can have different owners; classify from actual diagnostics.
 
 Inspect logs, affected inputs, toolchain and recent changes. Do not rewrite state

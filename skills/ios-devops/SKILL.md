@@ -1,14 +1,15 @@
 ---
 name: ios-devops
-description: "Configure or troubleshoot iOS builds, signing, CI/CD, TestFlight, and App Store delivery. Use for build infrastructure and release preparation."
+description: "Configure or troubleshoot iOS builds, signing, CI/CD, TestFlight, and App Store delivery."
 ---
 
 # Build and delivery
 
-Inspect existing scripts, lockfiles, CI, signing and release policy. Discover the
-installed Xcode, schemes, test plans and simulator destinations. Check current
-Apple and provider documentation when choosing SDKs, runner images, actions or
-submission requirements; Context7 is optional.
+Follow existing scripts, lockfiles, CI and release policy. Discover installed Xcode,
+schemes, test plans and simulator destinations. Verify SDKs, runner images, actions
+and submission requirements in current Apple/provider documentation.
+Own the build/signing configuration of capabilities and extension targets. Platform
+integration owns their runtime contracts; security owns trust and privacy decisions.
 
 - Separate compiler, SDK, deployment target, and App Store submission constraints.
   Never assume a particular Xcode app path, simulator name or hosted runner image.
@@ -17,8 +18,7 @@ submission requirements; Context7 is optional.
   repository policy, minimize token permissions, and isolate signing credentials
   from untrusted pull requests. Do not print keys or provisioning secrets.
 - Match validation to the change: build/test affected targets, run existing lint
-  and coverage policy, retain useful result bundles. Do not add arbitrary coverage
-  thresholds or run a release pipeline for a documentation edit.
+  and coverage policy, and retain useful result bundles.
 - Preserve entitlements, bundle IDs, build numbering and export options. Test
   signing on the intended distribution path; a simulator build does not prove
   that archive/export or device signing succeeds.
@@ -28,6 +28,5 @@ submission requirements; Context7 is optional.
 - Prepare and validate release artifacts under existing authorization. Upload,
   submit or release only when those external actions are within the user's request.
 
-Execute the scoped work directly without recursive delegation. Report commands,
-artifacts and verified outcomes; identify signing, device, account or runner checks
-that could not run. A successful local build is not an App Store approval.
+Work directly without recursive delegation. Report commands, artifacts, outcomes
+and signing/device/account/runner checks that could not run.

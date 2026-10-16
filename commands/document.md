@@ -1,5 +1,5 @@
 ---
-description: "Generate documentation (README, API docs, DocC, inline comments)"
+description: "Create or update README, API, DocC, and inline documentation."
 argument-hint: "[target] [--type readme|api|docc|inline] [--export]"
 ---
 

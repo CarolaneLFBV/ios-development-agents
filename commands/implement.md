@@ -1,5 +1,5 @@
 ---
-description: "iOS feature implementation with SwiftUI/UIKit and architectural patterns"
+description: "Implement an iOS feature using the project's UI framework and architecture."
 argument-hint: "[feature] [--framework swiftui|uikit] [--pattern mvvm|tca]"
 ---
 
@@ -17,9 +17,11 @@ user explicitly requests specialists, sequencing dependent changes.
 - `--accessibility` requests a focused accessibility verification pass.
 
 Use relevant architecture, SwiftUI, Swift and testing expertise without loading every
-specialist. Verify uncertain APIs in primary documentation or an available MCP;
-resolve Context7 library IDs instead of assuming them.
+specialist. The UI role also owns UIKit/hybrid screens and its interop reference.
+Use platform expertise for background work, notifications and extensions, architecture
+for data/network policy, and StoreKit expertise for purchases and entitlements.
+Verify uncertain APIs in primary documentation or the installed SDK.
 
 Handle loading, errors, cancellation and applicable accessibility needs. Run
 checks for affected behavior and report files changed, verified results and
-remaining integration checks. Do not infer successful builds or accessibility from a template.
+remaining integration checks.

@@ -1,5 +1,5 @@
 ---
-description: "Structured idea generation and solution exploration for iOS development"
+description: "Compare implementation options and tradeoffs for an iOS feature."
 argument-hint: "[topic] [--depth shallow|medium|deep] [--focus ui|architecture]"
 ---
 

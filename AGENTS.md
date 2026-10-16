@@ -1,35 +1,32 @@
-# Working on this framework
+# Maintaining the iOS framework
 
-This repository distributes iOS instructions; it is not an iOS app. Do not assume
-there is an Xcode project or run an iOS build to validate instruction-only changes.
+This repository distributes prompts and tooling, not an iOS application.
+Shared repository instructions live here; `CLAUDE.md` is only a compatibility import.
 
-- `skills/ios-*/SKILL.md` contains the seven canonical specialist prompts and the
-  portable workflow router. Keep descriptions short and scopes distinct.
-- `commands/*.md` contains the fifteen canonical workflows. Flags describe intent;
-  do not imply that they configure model reasoning or invoke a real argument parser.
-- `agents/*.md`, `codex/agents/*.toml`, and
-  `skills/ios-workflow/references/*.md` are generated. Edit the corresponding
-  source, then run `python3 scripts/framework.py generate`.
-- `.claude-plugin/marketplace.json` preserves Claude plugin registration.
-  `hooks/` is a Claude-only, non-blocking reminder, not a Swift parser or Codex hook.
-- `scripts/framework.py install-codex` installs into an explicitly selected app
-  project. Do not install globally or replace that project's instructions by default.
+- Edit canonical skills in `skills/*/SKILL.md`, their conditional `references/`,
+  or workflows in `commands/*.md`.
+- `agents/*.md`, `codex/agents/*.toml` and `skills/ios-workflow/references/*.md`
+  are generated. After source edits, run `python3 scripts/framework.py generate`.
+- Register catalog changes in `scripts/framework.py` and
+  `.claude-plugin/marketplace.json`. Keep descriptions brief and roles distinct.
+- Preserve the target app's architecture, toolchain and OS support. Verify uncertain
+  API behavior in primary documentation or the installed SDK. Avoid generic
+  tutorials, mandatory MCP lookups, model pinning and automatic delegation.
+- Keep runtime prompts self-contained; load detailed references only for matching
+  work. Preserve parent permissions and the user's requested scope.
+- `install-codex` installs only into an explicitly selected project. Never replace
+  that app's instructions or install globally by default. `hooks/` is Claude-only.
 
-Keep runtime prompts self-contained and focused on decisions a capable model might
-otherwise get wrong. Preserve project toolchains, deployment targets and architecture.
-Use primary documentation for version-sensitive claims. Avoid mandatory MCP lookups,
-recursive delegation, model pinning, arbitrary quality gates and copied API tutorials.
-
-Python tooling requires Python 3.11+. After a substantive change, run:
+Python tooling requires 3.11+. Validate substantive changes with:
 
 ```sh
 python3 scripts/framework.py check
 python3 -m unittest discover -s tests -v
 ```
 
-`python3 scripts/framework.py budget` reports size without dependencies;
-`budget --tokens` additionally requires tiktoken and may download its dictionary.
-Treat tokenization as a proxy, not billed usage or evidence of model effectiveness.
-Local audits and notes under `docs/` are ignored and optional; distributed tooling
-must work without them. Do not commit or publish unless requested, and preserve
-unrelated local edits.
+`budget` reports current sizes; `budget --tokens` optionally uses tiktoken as a
+text-size proxy. `evals/` contains intentionally imperfect review fixtures and
+behavioral criteria; catalog validation does not prove model effectiveness.
+
+Keep audits/results under ignored `docs/`; tooling must work without it. Preserve
+unrelated local edits. Commit or publish only when requested.

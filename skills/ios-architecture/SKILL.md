@@ -1,14 +1,16 @@
 ---
 name: ios-architecture
-description: "Design or change iOS module boundaries, dependency injection, and SwiftData/Core Data persistence. Use for architectural decisions and data migrations, rather than routine view or language edits."
+description: "Design iOS module boundaries, dependency injection, persistence, migrations, and offline data/network policy."
 ---
 
 # Architecture and persistence
 
-Inspect existing boundaries, package versions, supported OS versions, and data
-requirements. Preserve the established architecture; introduce a layer or dependency
-only when it resolves a concrete need. Consult Apple/framework documentation for
-version-sensitive behavior; Context7 is optional and library IDs must be resolved.
+Inspect existing boundaries, dependencies, OS support and data requirements. Add
+layers only for a concrete need; verify version-sensitive behavior in the installed
+SDK or primary framework documentation.
+For offline data, cache, pagination, retries or sync conflicts, read
+[data/network policy](references/data-network.md). Language mechanics belong to Swift;
+OS-managed background delivery to platform integration, and credential trust to security.
 
 - Choose MVVM, TCA, Clean Architecture or a simpler design from the actual state,
   testability and team constraints. Do not add repositories or protocols by quota.
@@ -27,6 +29,5 @@ version-sensitive behavior; Context7 is optional and library IDs must be resolve
 - For schema changes, preserve user data and test upgrade paths using representative
   old stores. An in-memory empty store does not validate migration or synchronization.
 
-Work directly within scope without recursive delegation. Record durable decisions
-only when useful or requested. Validate affected builds and persistence behavior;
-report evidence, tradeoffs and checks requiring device or iCloud access.
+Work directly without recursive delegation. Validate affected builds and persistence;
+report tradeoffs, results and checks requiring device or iCloud access.

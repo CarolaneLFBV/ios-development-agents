@@ -1,5 +1,5 @@
 ---
-description: "Design UI/UX and system architecture with Apple HIG compliance"
+description: "Propose iOS UI, architecture, and system designs."
 argument-hint: "[component] [--scope ui|architecture|system] [--pattern mvvm]"
 ---
 
@@ -18,8 +18,9 @@ requires implementation intent in the request. Work directly unless delegation i
 - `--dark-mode` includes light/dark appearance behavior.
 
 Use SwiftUI expertise for UI and architecture expertise for boundaries/persistence.
+The UI role covers UIKit/hybrid UI; platform expertise owns system execution and
+extensions. Separate purchase entitlement policy from App Store release preparation.
 Check current Apple HIG and API availability where the design depends on them.
-Cover state ownership, errors, navigation and accessibility where relevant. Avoid
-mandatory abstraction layers, arbitrary file counts, or a universal spacing grid.
+Cover state ownership, errors, navigation and accessibility where relevant.
 
 Return the proposal, tradeoffs and actionable implementation steps.

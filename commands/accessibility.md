@@ -1,5 +1,5 @@
 ---
-description: "Comprehensive accessibility audit and implementation (VoiceOver, Dynamic Type, etc.)"
+description: "Audit or improve iOS accessibility, including VoiceOver and Dynamic Type."
 argument-hint: "[target] [--level a|aa|aaa] [--fix]"
 ---
 

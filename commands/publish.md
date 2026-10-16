@@ -1,5 +1,5 @@
 ---
-description: "App Store submission preparation and validation"
+description: "Prepare and validate App Store build artifacts and metadata."
 argument-hint: "[--validate] [--screenshots] [--metadata]"
 ---
 

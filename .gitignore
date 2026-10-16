@@ -51,9 +51,6 @@ yarn-error.log*
 !/agents/**/*.md
 !/commands/**/*.md
 !/skills/**/*.md
-!/.claude/CLAUDE.md
-!/.claude/CORE.md
-!/.claude/WORKFLOWS.md
 !/examples/minimal-plugin/README.md
 !/examples/minimal-plugin/agents/**/*.md
 !/examples/minimal-plugin/commands/**/*.md

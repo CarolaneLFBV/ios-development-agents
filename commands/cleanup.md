@@ -1,5 +1,5 @@
 ---
-description: "Clean up iOS code, find dead code, unused resources, and technical debt"
+description: "Find or remove confirmed unused iOS code, imports, resources, and deprecated APIs."
 argument-hint: "[target] [--type dead-code|imports|resources] [--fix]"
 ---
 

@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "mode": "Review-only tasks; fixtures intentionally contain problems and are not a buildable app.",
+  "results": "Store actual model/client versions, settings, findings, checks, elapsed time and reported usage locally under docs/. Mark each criterion pass, fail, or not-run, with evidence.",
+  "cases": [
+    {
+      "id": "platform-background",
+      "skills": ["ios-platform"],
+      "fixture": "evals/fixtures/BackgroundRefresh.swift",
+      "prompt": "Review BackgroundRefresh.swift before shipping. Identify correctness issues and propose minimal fixes. Explain what must be checked outside this snippet. Do not edit files.",
+      "criteria": [
+        "Explains that earliestBeginDate does not guarantee an exact fifteen-minute schedule.",
+        "Connects expiration to cancelling and cleaning up the work task, instead of only reporting failure.",
+        "Addresses the completion/expiration race and exactly-once completion on a defined isolation domain.",
+        "Checks task registration timing, configured identifiers and capabilities without claiming they are verified from this snippet.",
+        "Does not claim real background scheduling or device checks were executed."
+      ]
+    },
+    {
+      "id": "uikit-interop",
+      "skills": ["ios-swiftui"],
+      "fixture": "evals/fixtures/EditorBridge.swift",
+      "prompt": "Review EditorBridge.swift for bugs after repeated updates and parent-state changes. Preserve the UIKit/SwiftUI bridge. Do not edit files.",
+      "criteria": [
+        "Identifies duplicate notification registrations during updates and missing cleanup.",
+        "Accounts for coordinator parent/callback state becoming stale and proposes updating it.",
+        "Avoids direct frame mutation when SwiftUI owns layout.",
+        "Considers text-update feedback/cursor behavior and tests removal/recreation.",
+        "Preserves the existing UIKit integration rather than requiring a full SwiftUI rewrite."
+      ]
+    },
+    {
+      "id": "storekit-access",
+      "skills": ["ios-storekit"],
+      "fixture": "evals/fixtures/PurchaseController.swift",
+      "prompt": "Review PurchaseController.swift for correctness across purchase, app restart, and subscription changes. Describe scoped corrections and relevant tests. Do not edit files.",
+      "criteria": [
+        "Rejects unlocking from an unverified payload or trusting a persisted local Boolean as purchase authority.",
+        "Defines an app/service-owned update listener independent of paywall visibility and prevents duplicate listener creation.",
+        "Reconciles current entitlements with product identity/type, revocation and subscription policy including grace periods.",
+        "Finishes only after successful delivery and accounts for pending, cancellation, error and duplicate results.",
+        "Separates consumable restoration from non-consumable/subscription entitlements and distinguishes configuration tests from sandbox/production evidence."
+      ]
+    },
+    {
+      "id": "data-network-policy",
+      "skills": ["ios-architecture", "ios-swift"],
+      "fixture": "evals/fixtures/RequestClient.swift",
+      "prompt": "Review RequestClient.swift, which is used for GET requests and payment POST requests. Propose a bounded, cancellation-aware request policy without replacing the app architecture. Do not edit files.",
+      "criteria": [
+        "Requires an idempotency/reconciliation contract before replaying a payment POST.",
+        "Preserves task cancellation and meaningful terminal errors instead of swallowing them or returning empty data.",
+        "Validates HTTP status and classifies eligible retry failures.",
+        "Uses bounded attempts and overall deadlines with suitable backoff/jitter and server retry guidance.",
+        "Proposes deterministic transport/clock tests without adding arbitrary abstraction layers."
+      ]
+    },
+    {
+      "id": "accessible-profile",
+      "skills": ["ios-swiftui"],
+      "fixture": "evals/fixtures/ProfileCard.swift",
+      "prompt": "Review ProfileCard.swift for long localized names, accessibility text sizes, and VoiceOver. Suggest minimal improvements, keeping the design intent. Do not edit files.",
+      "criteria": [
+        "Identifies fixed font/height and single-line truncation risks at accessibility sizes.",
+        "Provides an appropriate accessible name for the icon-only save action.",
+        "Addresses adaptive layout and usable hit targets rather than simply adding a label.",
+        "Proposes actual large-text/long-locale and VoiceOver verification, distinguishing it from source review."
+      ]
+    },
+    {
+      "id": "deterministic-loading-test",
+      "skills": ["ios-testing", "ios-swift"],
+      "fixture": "evals/fixtures/LoadingTests.swift",
+      "prompt": "Review LoadingTests.swift for deterministic verification of the loading state. Explain a minimal testing approach and relevant isolation requirements. Do not edit files.",
+      "criteria": [
+        "Identifies that creating a Task does not guarantee it has started before the immediate assertion.",
+        "Uses a controllable dependency or explicit readiness handshake rather than arbitrary sleep/yield counts.",
+        "Checks both the intermediate loading state and completed state with proper UI isolation.",
+        "Does not treat a proposed test as executed or introduce an iOS 17 cutoff for Swift Testing."
+      ]
+    }
+  ]
+}

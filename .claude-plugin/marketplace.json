@@ -1,6 +1,6 @@
 {
   "name": "ios-development",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "owner": {
     "name": "iOS Development Framework",
     "email": "carolanelefebvre@okorp.fr"
@@ -13,8 +13,8 @@
     {
       "name": "ios",
       "source": "./",
-      "description": "Fifteen iOS workflows and seven specialists sharing portable Swift, SwiftUI, persistence, testing, security and delivery guidance.",
-      "version": "6.0.0",
+      "description": "Fifteen iOS workflows, eight specialists, and a StoreKit skill with focused Swift, UI, data, platform, testing, security and delivery guidance.",
+      "version": "6.1.0",
       "category": "iOS Development",
       "keywords": [
         "ios",
@@ -56,7 +56,8 @@
         "./agents/performance-specialist.md",
         "./agents/testing-specialist.md",
         "./agents/security-specialist.md",
-        "./agents/devops-specialist.md"
+        "./agents/devops-specialist.md",
+        "./agents/platform-specialist.md"
       ]
     }
   ]

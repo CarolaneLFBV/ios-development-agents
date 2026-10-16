@@ -12,8 +12,8 @@ expertise. Work directly unless delegation is explicitly requested.
 
 Inspect target/toolchain compatibility and existing suites. Use Swift Testing for
 suitable new unit tests; preserve XCTest, and use XCTest/XCUITest for UI/performance.
-Do not choose framework availability from an iOS 17 cutoff. Do not add snapshot
-dependencies without checking the project's existing solution.
+Check the target's testing requirements and existing snapshot solution before
+adding dependencies.
 
 Keep fixtures isolated and async synchronization deterministic. Never start a Task
 and immediately assume its loading-state mutation ran. Discover actual schemes,

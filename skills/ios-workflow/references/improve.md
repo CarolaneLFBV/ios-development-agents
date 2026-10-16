@@ -17,6 +17,5 @@ claims. Observation does not provide actor isolation; async conversion must pres
 cancellation/errors; actors introduce reentrancy; persistence migrations must protect
 existing data. Verify version support before adopting a newer API.
 
-Avoid broad style rewrites, mandatory protocol layers or automatic lazy containers.
-Run targeted regression checks after changes. Return applied/proposed changes,
+Keep the refactor scoped and run targeted regression checks. Return applied/proposed changes,
 rationale, actual verification and material limitations.

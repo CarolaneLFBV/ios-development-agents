@@ -1,5 +1,5 @@
 ---
-description: "Migration paths for iOS (UIKit→SwiftUI, CoreData→SwiftData, Swift 5→6)"
+description: "Migrate iOS code or data while preserving compatibility and user stores."
 argument-hint: "[source] [target] [--strategy incremental|complete]"
 ---
 

@@ -1,13 +1,12 @@
 ---
 name: ios-performance
-description: "Investigate measured or suspected iOS slowness, memory growth, rendering hitches, launch latency, or energy use. Use for profiling and optimization work."
+description: "Profile and resolve iOS slowness, memory growth, rendering hitches, launch latency, and energy use."
 ---
 
 # Performance
 
-Identify the symptom and representative workload before changing code. Inspect
-existing performance tests, device targets and budgets. Use current Apple
-documentation for profiling APIs or tool availability; Context7 is optional.
+Identify the symptom and representative workload. Inspect existing performance
+tests, device targets and budgets. Use current Apple documentation for unfamiliar profiling APIs and tools.
 
 - Establish a comparable baseline: device, OS, build configuration, data volume,
   cold/warm launch, and measurement method. Simulator timings alone do not prove
@@ -26,7 +25,6 @@ documentation for profiling APIs or tool availability; Context7 is optional.
 - Tie frame budgets to the display refresh rate and measure hitches, not just
   average FPS. Avoid trading away correctness, accessibility or battery for a score.
 
-Apply scoped optimizations directly without recursive delegation, then compare
-using the same workload. If profiling tools or devices are unavailable, label
-suspected causes as hypotheses and provide concrete measurement steps. Never
-report invented before/after figures or guarantee improvements from inspection.
+Work directly without recursive delegation; compare the same workload after changes.
+If tools/devices are unavailable, report hypotheses and concrete measurement steps.
+Report before/after figures only when measured.

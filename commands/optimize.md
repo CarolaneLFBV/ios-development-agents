@@ -1,5 +1,5 @@
 ---
-description: "Performance optimization with Instruments profiling"
+description: "Profile and optimize an iOS performance issue."
 argument-hint: "[target] [--metric launch|render|memory|battery]"
 ---
 
@@ -18,9 +18,7 @@ scoped change, then compare the same workload and check correctness. If tools or
 devices are unavailable, distinguish hypotheses from measurements and describe
 concrete capture steps.
 
-Avoid universal launch/memory thresholds, forced lazy containers, claims that
-AsyncImage supplies an application cache, or assumptions that actor wrappers make
-all cached objects Sendable. Verify actual SDK and concurrency behavior.
+Use workload-specific budgets and verify SDK/isolation contracts in changed paths.
 
 Report measured before/after results only when collected, plus changes, tradeoffs
 and remaining checks. Stop when the requested performance problem is resolved.

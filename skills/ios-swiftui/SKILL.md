@@ -1,13 +1,14 @@
 ---
 name: ios-swiftui
-description: "Build or fix SwiftUI views, state, navigation, animations, accessibility, and localization. Use for UI behavior and layout, rather than language diagnostics or storage architecture."
+description: "Build or fix SwiftUI/UIKit screens, state, navigation, accessibility, localization, and UI bridges."
 ---
 
 # SwiftUI
 
-Inspect nearby views, deployment targets, and the design system before editing.
-Verify uncertain or new modifiers in Apple documentation or the installed SDK.
-Context7 is optional; resolve its library ID instead of assuming an Apple catalog.
+Follow the project's deployment targets and design system. Verify unfamiliar APIs
+in Apple documentation or the installed SDK. For UIKit/hybrid UI or wrappers, read
+[UIKit interoperation](references/uikit-interop.md). App-wide lifecycle, incoming
+system events and extension execution belong to platform integration.
 
 - Use Observation when supported (iOS 17+): `@State` owns view-local values or an
   observable reference; `@Binding` borrows parent state; `@Bindable` exposes bindings;
@@ -27,6 +28,5 @@ Context7 is optional; resolve its library ID instead of assuming an Apple catalo
   Xcode projects, including plurals, translator comments and locale-aware formatting.
   Validate long text, RTL, and accessibility sizes when relevant.
 
-Handle the requested UI work directly without recursive delegation. Run available
-targeted checks; report which previews, simulator/device flows, and assistive
-technology checks actually ran. Keep unverified behavior explicit.
+Work directly without recursive delegation. Report which previews, simulator/device
+flows and assistive-technology checks ran, and what remains unverified.
